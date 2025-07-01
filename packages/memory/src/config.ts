@@ -1,9 +1,9 @@
 import { join } from 'node:path'
 import { root } from './root.ts'
 
-export const threshold = 490_000
+export const threshold = 370_000
 
-export const instantiations = 15_000
+export const instantiations = 1
 
 export const instantiationsPath = join(root, 'packages', 'references-view')
 
