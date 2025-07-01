@@ -5,7 +5,9 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
   const state: ReferencesState = {
     id,
     message: '',
-    rows: [],
+    references: [],
+    displayReferences: [],
+    focusedIndex: -1,
   }
   r.set(id, state, state)
 }

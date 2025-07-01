@@ -5,7 +5,9 @@ export const createDefaultState = (uid = 0): ReferencesState => {
   const state: ReferencesState = {
     id: uid,
     message: '',
-    rows: [],
+    references: [],
+    displayReferences: [],
+    focusedIndex: -1,
   }
   set(uid, state, state)
   return state
