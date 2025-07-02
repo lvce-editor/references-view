@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
-import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
 
 test('renderItems returns correct ViewletCommand with empty state', () => {
   const oldState = createDefaultState(1)
