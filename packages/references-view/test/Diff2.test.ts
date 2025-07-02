@@ -6,6 +6,8 @@ import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesState
 
 test('diff2 returns empty array when states are equal', () => {
   const uid = 1
+  const state = createDefaultState()
+  ReferencesStates.set(uid, state, state)
   const result = Diff2.diff2(uid)
   expect(result).toEqual([])
 })
