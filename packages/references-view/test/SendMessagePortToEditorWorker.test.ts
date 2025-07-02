@@ -19,6 +19,7 @@ test('sendMessagePortToEditorWorker sends port to editor worker', async () => {
     },
   })
   RendererWorker.set(mockRpc)
+  // @ts-ignore
   const { port2 } = new MessageChannel()
   await SendMessagePortToEditorWorker.sendMessagePortToEditorWorker(port2)
 })
