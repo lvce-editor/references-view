@@ -24,6 +24,6 @@ test('render2 returns correct ViewletCommand for RenderItems diff', () => {
   ReferencesStates.set(uid, oldState, newState)
   const diffResult = [DiffType.RenderItems]
   const result = Render2.render2(uid, diffResult)
-  const expectedDom = GetLocationsVirtualDom.getLocationsVirtualDom(newState.references, newState.message)
+  const expectedDom = GetLocationsVirtualDom.getLocationsVirtualDom(newState.displayReferences, newState.message)
   expect(result).toEqual([['Viewlet.setDom2', newState.id, expectedDom]])
 })
