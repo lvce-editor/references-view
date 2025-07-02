@@ -1,15 +1,16 @@
 import { test, expect } from '@jest/globals'
+import type { Reference } from '../src/parts/Reference/Reference.ts'
 import * as GetDisplayReferences from '../src/parts/GetDisplayReferences/GetDisplayReferences.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getDisplayReferences with empty references', () => {
-  const references: readonly any[] = []
+  const references: readonly Reference[] = []
   const result = GetDisplayReferences.getDisplayReferences(references)
   expect(result).toEqual([])
 })
 
 test('getDisplayReferences with single reference', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file.ts',
       lineText: 'const example = "test"',
@@ -54,7 +55,7 @@ test('getDisplayReferences with single reference', () => {
 })
 
 test('getDisplayReferences with multiple references in same file', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file.ts',
       lineText: 'const example = "test"',
@@ -120,7 +121,7 @@ test('getDisplayReferences with multiple references in same file', () => {
 })
 
 test('getDisplayReferences with references from different files', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file1.ts',
       lineText: 'const example = "test"',
@@ -201,7 +202,7 @@ test('getDisplayReferences with references from different files', () => {
 })
 
 test('getDisplayReferences with startOffset and endOffset instead of column indices', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file.ts',
       lineText: 'const example = "test"',
@@ -228,7 +229,7 @@ test('getDisplayReferences with startOffset and endOffset instead of column indi
 })
 
 test('getDisplayReferences with empty lineText', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file.ts',
       lineText: '',
@@ -255,7 +256,7 @@ test('getDisplayReferences with empty lineText', () => {
 })
 
 test('getDisplayReferences with missing lineText', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file.ts',
       startColumnIndex: 6,
@@ -281,7 +282,7 @@ test('getDisplayReferences with missing lineText', () => {
 })
 
 test('getDisplayReferences with file path without extension', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file',
       lineText: 'const example = "test"',
@@ -308,7 +309,7 @@ test('getDisplayReferences with file path without extension', () => {
 })
 
 test('getDisplayReferences with empty uri', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '',
       lineText: 'const example = "test"',
@@ -335,7 +336,7 @@ test('getDisplayReferences with empty uri', () => {
 })
 
 test('getDisplayReferences with complex file structure', () => {
-  const references: readonly any[] = [
+  const references: readonly Reference[] = [
     {
       uri: '/path/to/file1.ts',
       lineText: 'const example = "test"',

@@ -4,8 +4,8 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
 
 test('renderItems returns correct ViewletCommand with empty state', () => {
-  const oldState = createDefaultState(1)
-  const newState = createDefaultState(2)
+  const oldState: ReferencesState = createDefaultState(1)
+  const newState: ReferencesState = createDefaultState(2)
 
   const result = RenderItems.renderItems(oldState, newState)
 
@@ -15,13 +15,13 @@ test('renderItems returns correct ViewletCommand with empty state', () => {
 })
 
 test('renderItems returns correct ViewletCommand with references', () => {
-  const oldState = createDefaultState(1)
+  const oldState: ReferencesState = createDefaultState(1)
   const newState: ReferencesState = {
     id: 3,
     message: 'Found 2 references',
     references: [
-      { type: 'leaf', index: 0, lineText: 'test line', startOffset: 5, endOffset: 9 },
-      { type: 'expanded', index: 1, name: 'test.ts', icon: 'file-icon' }
+      { uri: 'file:///test1.ts', lineText: 'test line', startOffset: 5, endOffset: 9 },
+      { uri: 'file:///test2.ts', lineText: 'another line', startOffset: 0, endOffset: 5 }
     ],
     displayReferences: [],
     focusedIndex: 0
@@ -38,14 +38,14 @@ test('renderItems uses newState for rendering', () => {
   const oldState: ReferencesState = {
     id: 1,
     message: 'Old message',
-    references: [{ type: 'leaf', index: 0, lineText: 'old line' }],
+    references: [{ uri: 'file:///old.ts', lineText: 'old line' }],
     displayReferences: [],
     focusedIndex: 0
   }
   const newState: ReferencesState = {
     id: 2,
     message: 'New message',
-    references: [{ type: 'leaf', index: 1, lineText: 'new line', startOffset: 0, endOffset: 3 }],
+    references: [{ uri: 'file:///new.ts', lineText: 'new line', startOffset: 0, endOffset: 3 }],
     displayReferences: [],
     focusedIndex: 1
   }

@@ -1,11 +1,12 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplayReference } from '../DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as LocationType from '../LocationType/LocationType.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-const getLeafVirtualDom = (location: any): readonly VirtualDomNode[] => {
+const getLeafVirtualDom = (location: DisplayReference): readonly VirtualDomNode[] => {
   const { lineText, index, startOffset, endOffset } = location
   const dom = []
   dom.push({
@@ -47,7 +48,7 @@ const getLeafVirtualDom = (location: any): readonly VirtualDomNode[] => {
   return dom
 }
 
-const getCollapsedVirtualDom = (location: any): readonly VirtualDomNode[] => {
+const getCollapsedVirtualDom = (location: DisplayReference): readonly VirtualDomNode[] => {
   const { index, name } = location
   return [
     {
@@ -61,7 +62,7 @@ const getCollapsedVirtualDom = (location: any): readonly VirtualDomNode[] => {
   ]
 }
 
-const getExpandedVirtualDom = (location: any): readonly VirtualDomNode[] => {
+const getExpandedVirtualDom = (location: DisplayReference): readonly VirtualDomNode[] => {
   const { index, name, icon } = location
   return [
     {
@@ -81,7 +82,7 @@ const getExpandedVirtualDom = (location: any): readonly VirtualDomNode[] => {
   ]
 }
 
-const getLocationVirtualDom = (location: any): readonly VirtualDomNode[] => {
+const getLocationVirtualDom = (location: DisplayReference): readonly VirtualDomNode[] => {
   const { type } = location
   switch (type) {
     case LocationType.Leaf:
@@ -95,7 +96,7 @@ const getLocationVirtualDom = (location: any): readonly VirtualDomNode[] => {
   }
 }
 
-export const getLocationsVirtualDom = (locations: readonly any[], message: string): readonly VirtualDomNode[] => {
+export const getLocationsVirtualDom = (locations: readonly DisplayReference[], message: string): readonly VirtualDomNode[] => {
   const dom = []
   dom.push({
     type: VirtualDomElements.Div,
