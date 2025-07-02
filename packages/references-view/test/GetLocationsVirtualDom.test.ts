@@ -1,6 +1,5 @@
 import { test, expect } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetLocationsVirtualDom from '../src/parts/GetLocationsVirtualDom/GetLocationsVirtualDom.ts'
 import * as LocationStrings from '../src/parts/LocationStrings/LocationsStrings.ts'
@@ -103,7 +102,7 @@ test('getLocationsVirtualDom with leaf location', () => {
     childCount: 3,
   })
 
-    expect(result[6]).toEqual({
+  expect(result[6]).toEqual({
     type: VirtualDomElements.Text,
     text: 'const ',
     childCount: 0,

@@ -1,6 +1,5 @@
-import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker';
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as LocationType from '../LocationType/LocationType.ts'
