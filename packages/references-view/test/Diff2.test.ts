@@ -1,8 +1,8 @@
 import { test, expect } from '@jest/globals'
-import * as Diff2 from '../src/parts/Diff2/Diff2.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesStates.ts'
+import * as Diff2 from '../src/parts/Diff2/Diff2.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
+import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesStates.ts'
 
 test('diff2 returns empty array when states are equal', () => {
   const uid = 1
