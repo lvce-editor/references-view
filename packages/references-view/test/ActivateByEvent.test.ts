@@ -1,19 +1,14 @@
-import { test, expect } from '@jest/globals'
+import { test, expect, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as ActivateByEvent from '../src/parts/ActivateByEvent/ActivateByEvent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('activateByEvent calls RendererWorker.invoke with correct parameters', async () => {
-  let invokedMethod: string | undefined
-  let invokedEvent: string | undefined
+  const mockInvoke = jest.fn()
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, event: string) => {
-      invokedMethod = method
-      invokedEvent = event
-      return undefined
-    },
+    invoke: mockInvoke,
   })
 
   RendererWorker.set(mockRpc)
@@ -21,19 +16,15 @@ test('activateByEvent calls RendererWorker.invoke with correct parameters', asyn
   const testEvent = 'onCommand:references.findReferences'
   await ActivateByEvent.activateByEvent(testEvent)
 
-  expect(invokedMethod).toBe('ExtensionHostManagement.activateByEvent')
-  expect(invokedEvent).toBe(testEvent)
+  expect(mockInvoke).toHaveBeenCalledWith('ExtensionHostManagement.activateByEvent', testEvent)
 })
 
 test('activateByEvent handles different event types', async () => {
-  let invokedEvent: string | undefined
+  const mockInvoke = jest.fn()
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, event: string) => {
-      invokedEvent = event
-      return undefined
-    },
+    invoke: mockInvoke,
   })
 
   RendererWorker.set(mockRpc)
@@ -47,16 +38,16 @@ test('activateByEvent handles different event types', async () => {
 
   for (const event of events) {
     await ActivateByEvent.activateByEvent(event)
-    expect(invokedEvent).toBe(event)
+    expect(mockInvoke).toHaveBeenCalledWith('ExtensionHostManagement.activateByEvent', event)
   }
 })
 
 test('activateByEvent returns Promise<void>', async () => {
+  const mockInvoke = jest.fn().mockReturnValue(Promise.resolve())
+
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: () => {
-      return Promise.resolve()
-    },
+    invoke: mockInvoke,
   })
 
   RendererWorker.set(mockRpc)
