@@ -10,6 +10,6 @@ export interface DisplayReference {
   readonly lineText: string
   readonly icon: string
   readonly index: number
-  readonly startOffset: number
-  readonly endOffset: number
+  readonly startOffset: number | undefined
+  readonly endOffset: number | undefined
 }
