@@ -1,4 +1,4 @@
-import * as LocationType from '../LocationType/LocationType.ts'
+import type * as LocationType from '../LocationType/LocationType.ts'
 
 export interface DisplayReference {
   readonly depth: 1 | 2
