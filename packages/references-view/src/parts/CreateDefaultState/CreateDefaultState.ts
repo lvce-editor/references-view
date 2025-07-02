@@ -1,5 +1,5 @@
 import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
-import { set } from '../ReferencesStates/ReferencesStates.ts'
+import * as ReferencesStates from '../ReferencesStates/ReferencesStates.ts'
 
 export const createDefaultState = (uid = 0): ReferencesState => {
   const state: ReferencesState = {
@@ -9,6 +9,6 @@ export const createDefaultState = (uid = 0): ReferencesState => {
     displayReferences: [],
     focusedIndex: -1,
   }
-  set(uid, state, state)
+  ReferencesStates.set(uid, state, state)
   return state
 }
