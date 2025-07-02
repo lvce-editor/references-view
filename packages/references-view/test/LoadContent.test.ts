@@ -1,9 +1,9 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
-import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.ts'
+import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadContent - loads references and updates state', async () => {
   const mockReferences = [
