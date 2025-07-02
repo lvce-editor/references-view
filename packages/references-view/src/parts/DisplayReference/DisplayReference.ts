@@ -1,10 +1,8 @@
-import type * as LocationType from '../LocationType/LocationType.ts'
-
 export interface DisplayReference {
-  readonly depth: 1 | 2
+  readonly depth: number
   readonly posInSet: number
   readonly setSize: number
-  readonly type: typeof LocationType.Leaf | typeof LocationType.Expanded | typeof LocationType.Collapsed
+  readonly type: number
   readonly uri: string
   readonly name: string
   readonly lineText: string
