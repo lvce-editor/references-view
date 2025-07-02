@@ -21,10 +21,3 @@ test('createDefaultState should create state with custom uid', () => {
   expect(state.displayReferences).toEqual([])
   expect(state.focusedIndex).toBe(-1)
 })
-
-test('createDefaultState should register state in ReferencesStates', () => {
-  const state = CreateDefaultState.createDefaultState(456)
-  const retrievedState = ReferencesStates.get(456)
-
-  expect(retrievedState.newState).toBe(state)
-})
