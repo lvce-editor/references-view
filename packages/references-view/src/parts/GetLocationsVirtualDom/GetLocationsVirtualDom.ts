@@ -4,7 +4,7 @@ import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as LocationType from '../LocationType/LocationType.ts'
-import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
+import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const getLeafVirtualDom = (location: any): readonly VirtualDomNode[] => {
   const { lineText, index, startOffset, endOffset } = location
@@ -23,7 +23,7 @@ const getLeafVirtualDom = (location: any): readonly VirtualDomNode[] => {
         className: ClassNames.Label,
         childCount: 1,
       },
-      text(lineText || '(empty line)'),
+      VirtualDomHelpers.text(lineText || '(empty line)'),
     )
   } else {
     const before = lineText.slice(0, startOffset)
@@ -35,14 +35,14 @@ const getLeafVirtualDom = (location: any): readonly VirtualDomNode[] => {
         className: ClassNames.Label,
         childCount: 3,
       },
-      text(before),
+      VirtualDomHelpers.text(before),
       {
         type: VirtualDomElements.Span,
         className: ClassNames.Highlight,
         childCount: 1,
       },
-      text(middle),
-      text(end),
+      VirtualDomHelpers.text(middle),
+      VirtualDomHelpers.text(end),
     )
   }
   return dom
@@ -58,7 +58,7 @@ const getCollapsedVirtualDom = (location: any): readonly VirtualDomNode[] => {
       id: `Reference-${index}`,
       childCount: 1,
     },
-    text(name),
+    VirtualDomHelpers.text(name),
   ]
 }
 
@@ -78,7 +78,7 @@ const getExpandedVirtualDom = (location: any): readonly VirtualDomNode[] => {
       className: ClassNames.FileIcon,
       src: icon,
     },
-    text(name),
+    VirtualDomHelpers.text(name),
   ]
 }
 
@@ -112,7 +112,7 @@ export const getLocationsVirtualDom = (locations: readonly any[], message: strin
       role: AriaRoles.Status,
       childCount: 1,
     },
-    text(message),
+    VirtualDomHelpers.text(message),
     {
       type: VirtualDomElements.Div,
       className: ClassNames.LocationList,

@@ -1,15 +1,15 @@
 import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
-import { getDisplayReferences } from '../GetDisplayReferences/GetDisplayReferences.ts'
-import { getFileCount } from '../GetReferencesFileCount/GetReferencesFileCount.ts'
-import { getMessage } from '../GetReferencesMessage/GetReferencesMessage.ts'
-import { getReferences } from '../References/References.ts'
+import * as GetDisplayReferences from '../GetDisplayReferences/GetDisplayReferences.ts'
+import * as GetReferencesFileCount from '../GetReferencesFileCount/GetReferencesFileCount.ts'
+import * as GetReferencesMessage from '../GetReferencesMessage/GetReferencesMessage.ts'
+import * as References from '../References/References.ts'
 
 export const loadContent = async (state: ReferencesState): Promise<ReferencesState> => {
   const editor = {}
-  const references = await getReferences(editor)
-  const displayReferences = getDisplayReferences(references)
-  const fileCount = getFileCount(references)
-  const message = getMessage(references.length, fileCount)
+  const references = await References.getReferences(editor)
+  const displayReferences = GetDisplayReferences.getDisplayReferences(references)
+  const fileCount = GetReferencesFileCount.getFileCount(references)
+  const message = GetReferencesMessage.getMessage(references.length, fileCount)
   return {
     ...state,
     references,

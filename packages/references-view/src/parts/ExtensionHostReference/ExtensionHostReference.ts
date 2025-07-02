@@ -1,10 +1,10 @@
 import * as Assert from '../Assert/Assert.ts'
-import { executeProvider } from '../ExecuteProvider/ExecuteProvider.ts'
+import * as ExecuteProvider from '../ExecuteProvider/ExecuteProvider.ts'
 import * as ExtensionHostActivationEvent from '../ExtensionHostActivationEvent/ExtensionHostActivationEvent.ts'
 import * as ExtensionHostCommandType from '../ExtensionHostCommandType/ExtensionHostCommandType.ts'
 
 export const executeReferenceProvider = async (editor: any, offset: number): Promise<readonly any[]> => {
-  const result = await executeProvider({
+  const result = await ExecuteProvider.executeProvider({
     event: ExtensionHostActivationEvent.OnReferences,
     method: ExtensionHostCommandType.ReferenceExecuteReferenceProvider,
     params: [editor.id, offset],
@@ -14,7 +14,7 @@ export const executeReferenceProvider = async (editor: any, offset: number): Pro
 }
 
 export const executeFileReferenceProvider = (id: number, languageId: string): Promise<readonly any[]> => {
-  return executeProvider({
+  return ExecuteProvider.executeProvider({
     event: `onReferences:${languageId}`,
     method: ExtensionHostCommandType.ReferenceExecuteFileReferenceProvider,
     params: [id],
