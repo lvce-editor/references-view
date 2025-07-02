@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
-import { getIcon } from '../src/parts/IconTheme/IconTheme.js'
+import * as IconTheme from '../src/parts/IconTheme/IconTheme.js'
 
 test('getIcon should return empty string', () => {
-  expect(getIcon({})).toBe('')
-  expect(getIcon({ foo: 'bar' })).toBe('')
+  expect(IconTheme.getIcon({})).toBe('')
+  expect(IconTheme.getIcon({ foo: 'bar' })).toBe('')
 })
