@@ -1,7 +1,7 @@
 import { test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
-import { sendMessagePortToEditorWorker } from '../src/parts/SendMessagePortToEditorWorker/SendMessagePortToEditorWorker.ts'
+import * as SendMessagePortToEditorWorker from '../src/parts/SendMessagePortToEditorWorker/SendMessagePortToEditorWorker.ts'
 
 test('sendMessagePortToEditorWorker sends port to editor worker', async () => {
   const mockRpc = MockRpc.create({
@@ -20,5 +20,5 @@ test('sendMessagePortToEditorWorker sends port to editor worker', async () => {
   })
   RendererWorker.set(mockRpc)
   const { port2 } = new MessageChannel()
-  await sendMessagePortToEditorWorker(port2)
+  await SendMessagePortToEditorWorker.sendMessagePortToEditorWorker(port2)
 })
