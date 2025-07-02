@@ -6,10 +6,7 @@ import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesState
 
 test('diff2 returns empty array when states are equal', () => {
   const uid = 1
-  const state = createDefaultState(uid)
-
   const result = Diff2.diff2(uid)
-
   expect(result).toEqual([])
 })
 
@@ -18,7 +15,7 @@ test('diff2 returns diff type when states are different', () => {
   const oldState = createDefaultState(uid)
   const newState = {
     ...oldState,
-    references: [{ type: 'leaf', index: 0, lineText: 'test' }]
+    references: [{ type: 'leaf', index: 0, lineText: 'test' }],
   }
   ReferencesStates.set(uid, oldState, newState)
 
@@ -33,7 +30,7 @@ test('diff2 uses states from ReferencesStates', () => {
   const newState = {
     ...oldState,
     message: 'Different message',
-    references: [{ type: 'expanded', index: 1, name: 'test.ts' }]
+    references: [{ type: 'expanded', index: 1, name: 'test.ts' }],
   }
   ReferencesStates.set(uid, oldState, newState)
 
