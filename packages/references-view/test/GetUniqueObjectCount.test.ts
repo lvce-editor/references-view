@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import { getUniqueObjectCount } from '../src/parts/GetUniqueObjectCount/GetUniqueObjectCount.js'
+import * as GetUniqueObjectCount from '../src/parts/GetUniqueObjectCount/GetUniqueObjectCount.js'
 
 test('getUniqueObjectCount should count unique values by key', () => {
   const arr = [
@@ -9,9 +9,9 @@ test('getUniqueObjectCount should count unique values by key', () => {
     { id: 3 },
     { id: 2 },
   ]
-  expect(getUniqueObjectCount(arr, 'id')).toBe(3)
+  expect(GetUniqueObjectCount.getUniqueObjectCount(arr, 'id')).toBe(3)
 })
 
 test('getUniqueObjectCount should return 0 for empty array', () => {
-  expect(getUniqueObjectCount([], 'id')).toBe(0)
+  expect(GetUniqueObjectCount.getUniqueObjectCount([], 'id')).toBe(0)
 })
