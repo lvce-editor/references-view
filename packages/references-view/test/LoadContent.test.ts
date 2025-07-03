@@ -23,7 +23,7 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
       }
-      if (method === 'GetActiveEditorId.getActiveEditorId') {
+      if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
       throw new Error(`unexpected method ${method}`)
@@ -56,7 +56,7 @@ test('loadContent - handles empty references', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return []
       }
-      if (method === 'GetActiveEditorId.getActiveEditorId') {
+      if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
       throw new Error(`unexpected method ${method}`)
@@ -91,7 +91,7 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
       }
-      if (method === 'GetActiveEditorId.getActiveEditorId') {
+      if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
       throw new Error(`unexpected method ${method}`)
