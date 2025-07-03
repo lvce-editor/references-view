@@ -1,6 +1,7 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.ts'
 import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.ts'
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
@@ -26,11 +27,15 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
+      if (method === 'Editor.getOffsetAtCursor') {
+        return 0
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
   RendererWorker.set(mockRpc)
   ExtensionHost.set(mockRpc)
+  EditorWorker.set(mockRpc)
 
   const initialState = createDefaultState(1)
   const result = await LoadContent.loadContent(initialState)
@@ -59,11 +64,15 @@ test('loadContent - handles empty references', async () => {
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
+      if (method === 'Editor.getOffsetAtCursor') {
+        return 0
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
   RendererWorker.set(mockRpc)
   ExtensionHost.set(mockRpc)
+  EditorWorker.set(mockRpc)
 
   const initialState = createDefaultState(2)
   const result = await LoadContent.loadContent(initialState)
@@ -94,11 +103,15 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
+      if (method === 'Editor.getOffsetAtCursor') {
+        return 0
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
   RendererWorker.set(mockRpc)
   ExtensionHost.set(mockRpc)
+  EditorWorker.set(mockRpc)
 
   const initialState = createDefaultState(3)
   const result = await LoadContent.loadContent(initialState)
