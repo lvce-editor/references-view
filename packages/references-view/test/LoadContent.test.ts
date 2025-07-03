@@ -30,6 +30,9 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'Editor.getOffsetAtCursor') {
         return 0
       }
+      if (method === 'FileSystem.readFile') {
+        return ''
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -41,7 +44,36 @@ test('loadContent - loads references and updates state', async () => {
   const result = await LoadContent.loadContent(initialState)
 
   expect(result.id).toBe(1)
-  expect(result.references).toBe(mockReferences)
+  expect(result.references).toEqual([
+    {
+      lineText: '',
+      range: {
+        end: {
+          character: 10,
+          line: 1,
+        },
+        start: {
+          character: 0,
+          line: 1,
+        },
+      },
+      uri: 'file:///test1.ts',
+    },
+    {
+      lineText: '',
+      range: {
+        end: {
+          character: 15,
+          line: 5,
+        },
+        start: {
+          character: 0,
+          line: 5,
+        },
+      },
+      uri: 'file:///test2.ts',
+    },
+  ])
   expect(Array.isArray(result.displayReferences)).toBe(true)
   expect(result.displayReferences.length).toBeGreaterThanOrEqual(mockReferences.length)
   expect(typeof result.message).toBe('string')
@@ -66,6 +98,9 @@ test('loadContent - handles empty references', async () => {
       }
       if (method === 'Editor.getOffsetAtCursor') {
         return 0
+      }
+      if (method === 'FileSystem.readFile') {
+        return ''
       }
       throw new Error(`unexpected method ${method}`)
     },
@@ -106,6 +141,9 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'Editor.getOffsetAtCursor') {
         return 0
       }
+      if (method === 'FileSystem.readFile') {
+        return ''
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -118,7 +156,22 @@ test('loadContent - preserves existing state properties', async () => {
 
   expect(result.id).toBe(3)
   expect(result.focusedIndex).toBe(-1)
-  expect(result.references).toBe(mockReferences)
+  expect(result.references).toEqual([
+    {
+      lineText: '',
+      range: {
+        end: {
+          character: 5,
+          line: 1,
+        },
+        start: {
+          character: 0,
+          line: 1,
+        },
+      },
+      uri: 'file:///test.ts',
+    },
+  ])
   expect(Array.isArray(result.displayReferences)).toBe(true)
   expect(result.displayReferences.length).toBeGreaterThanOrEqual(mockReferences.length)
   expect(typeof result.message).toBe('string')
