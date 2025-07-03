@@ -32,9 +32,9 @@ test('executeReferenceProvider calls ExtensionHost.invoke with correct parameter
   ExtensionHost.set(mockExtensionHostRpc)
   RendererWorker.set(mockRendererWorkerRpc)
 
-  const editor = { id: 123 }
+  const editorId = 123
   const offset = 42
-  const result = await ExtensionHostReference.executeReferenceProvider(editor, offset)
+  const result = await ExtensionHostReference.executeReferenceProvider(editorId, offset)
 
   expect(invokedMethod).toBe('ExtensionHostReference.executeReferenceProvider')
   expect(invokedParams).toEqual([123, 42])

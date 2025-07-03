@@ -3,11 +3,11 @@ import * as ExecuteProvider from '../ExecuteProvider/ExecuteProvider.ts'
 import * as ExtensionHostActivationEvent from '../ExtensionHostActivationEvent/ExtensionHostActivationEvent.ts'
 import * as ExtensionHostCommandType from '../ExtensionHostCommandType/ExtensionHostCommandType.ts'
 
-export const executeReferenceProvider = async (editor: any, offset: number): Promise<readonly any[]> => {
+export const executeReferenceProvider = async (editorId: number, offset: number): Promise<readonly any[]> => {
   const result = await ExecuteProvider.executeProvider({
     event: ExtensionHostActivationEvent.OnReferences,
     method: ExtensionHostCommandType.ReferenceExecuteReferenceProvider,
-    params: [editor.id, offset],
+    params: [editorId, offset],
   })
   Assert.array(result)
   return result
