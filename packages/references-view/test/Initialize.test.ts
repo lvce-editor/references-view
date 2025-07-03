@@ -3,7 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.js'
 import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.js'
 import { initialize } from '../src/parts/Initialize/Initialize.js'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.js'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('initialize - success', async () => {
   const mockInvokeRendererWorker = jest.fn()
