@@ -3,9 +3,17 @@ import * as GetDisplayReferences from '../GetDisplayReferences/GetDisplayReferen
 import * as GetReferencesFileCount from '../GetReferencesFileCount/GetReferencesFileCount.ts'
 import * as GetReferencesMessage from '../GetReferencesMessage/GetReferencesMessage.ts'
 import * as References from '../References/References.ts'
+import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 export const loadContent = async (state: ReferencesState): Promise<ReferencesState> => {
-  const editorId = -1
+  // @ts-ignore
+  const editorId = await RendererWorker.invoke('GetActiveEditor.getActiveEditorId')
+  if (editorId === -1) {
+    return {
+      ...state,
+      message: 'No Editor found',
+    }
+  }
   const references = await References.getReferences(editorId)
   const displayReferences = GetDisplayReferences.getDisplayReferences(references)
   const fileCount = GetReferencesFileCount.getFileCount(references)

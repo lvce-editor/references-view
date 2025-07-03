@@ -23,6 +23,9 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
       }
+      if (method === 'GetActiveEditor.getActiveEditorId') {
+        return 1
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -53,6 +56,9 @@ test('loadContent - handles empty references', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return []
       }
+      if (method === 'GetActiveEditor.getActiveEditorId') {
+        return 1
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -71,9 +77,7 @@ test('loadContent - handles empty references', async () => {
 })
 
 test('loadContent - preserves existing state properties', async () => {
-  const mockReferences = [
-    { uri: 'file:///test.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 5 } } },
-  ]
+  const mockReferences = [{ uri: 'file:///test.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 5 } } }]
 
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -86,6 +90,9 @@ test('loadContent - preserves existing state properties', async () => {
       }
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
+      }
+      if (method === 'GetActiveEditor.getActiveEditorId') {
+        return 1
       }
       throw new Error(`unexpected method ${method}`)
     },
