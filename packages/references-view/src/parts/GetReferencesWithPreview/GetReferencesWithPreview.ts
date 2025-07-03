@@ -1,8 +1,6 @@
-import * as GetReferenceWithPreview from '../GetReferenceWithPreview/GetReferenceWithPreview.js'
-import * as References from '../References/References.ts'
+import * as GetReferenceWithPreview from '../GetReferenceWithPreview/GetReferenceWithPreview.ts'
 
-export const getReferencesWithPreview = async (editor: any): Promise<readonly any[]> => {
-  const references = await References.getReferences(editor)
+export const getReferencesWithPreview = async (references: readonly any[]): Promise<readonly any[]> => {
   const withPreview = await Promise.all(references.map(GetReferenceWithPreview.getReferenceWithPreview))
   return withPreview
 }
