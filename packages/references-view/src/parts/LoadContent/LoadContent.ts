@@ -5,8 +5,8 @@ import * as GetReferencesMessage from '../GetReferencesMessage/GetReferencesMess
 import * as References from '../References/References.ts'
 
 export const loadContent = async (state: ReferencesState): Promise<ReferencesState> => {
-  const editor = {}
-  const references = await References.getReferences(editor)
+  const editorId = -1
+  const references = await References.getReferences(editorId)
   const displayReferences = GetDisplayReferences.getDisplayReferences(references)
   const fileCount = GetReferencesFileCount.getFileCount(references)
   const message = GetReferencesMessage.getMessage(references.length, fileCount)
