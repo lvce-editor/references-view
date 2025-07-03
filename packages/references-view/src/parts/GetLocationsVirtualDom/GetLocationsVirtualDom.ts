@@ -7,14 +7,13 @@ import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getLocationsVirtualDom = (locations: readonly DisplayReference[], message: string): readonly VirtualDomNode[] => {
-  const dom = []
-  dom.push({
-    type: VirtualDomElements.Div,
-    className: 'Viewlet Locations',
-    onMouseDown: 'handleLocationsMouseDown',
-    childCount: 2,
-  })
-  dom.push(
+  return [
+    {
+      type: VirtualDomElements.Div,
+      className: 'Viewlet Locations',
+      onMouseDown: 'handleLocationsMouseDown',
+      childCount: 2,
+    },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.LocationsMessage,
@@ -33,6 +32,5 @@ export const getLocationsVirtualDom = (locations: readonly DisplayReference[], m
       childCount: locations.length,
     },
     ...locations.flatMap(GetLocationVirtualDom.getLocationVirtualDom),
-  )
-  return dom
+  ]
 }
