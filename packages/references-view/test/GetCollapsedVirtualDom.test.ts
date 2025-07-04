@@ -27,6 +27,8 @@ test('getCollapsedVirtualDom', () => {
       className: ClassNames.TreeItem,
       ariaExpanded: false,
       id: 'Reference-0',
+      'data-index': 0,
+      role: 'treeitem',
       childCount: 1,
     },
     {

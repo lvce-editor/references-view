@@ -25,6 +25,8 @@ test('getLeafVirtualDom with highlighted text', () => {
     type: VirtualDomElements.Div,
     className: ClassNames.TreeItem,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 1,
     paddingLeft: '2rem',
   })
@@ -81,6 +83,8 @@ test('getLeafVirtualDom with empty line', () => {
     type: VirtualDomElements.Div,
     className: ClassNames.TreeItem,
     id: 'Reference-1',
+    'data-index': 1,
+    role: 'treeitem',
     childCount: 1,
     paddingLeft: '2rem',
   })

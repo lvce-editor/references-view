@@ -12,6 +12,8 @@ export const getExpandedVirtualDom = (location: DisplayReference): readonly Virt
       className: ClassNames.TreeItem,
       ariaExpanded: true,
       id: `Reference-${index}`,
+      'data-index': index,
+      role: 'treeitem',
       childCount: 2,
       paddingLeft: '1rem',
     },
