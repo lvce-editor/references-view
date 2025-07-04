@@ -92,6 +92,8 @@ test('getLocationsVirtualDom with leaf location', () => {
     type: VirtualDomElements.Div,
     className: ClassNames.TreeItem,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 1,
     paddingLeft: '2rem',
   })
@@ -146,6 +148,8 @@ test('getLocationsVirtualDom with leaf location empty line', () => {
     type: VirtualDomElements.Div,
     className: ClassNames.TreeItem,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 1,
     paddingLeft: '2rem',
   })
@@ -181,6 +185,8 @@ test('getLocationsVirtualDom with collapsed location', () => {
     className: ClassNames.TreeItem,
     ariaExpanded: false,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 1,
   })
 
@@ -210,6 +216,8 @@ test('getLocationsVirtualDom with expanded location', () => {
     className: ClassNames.TreeItem,
     ariaExpanded: true,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 2,
     paddingLeft: '1rem',
   })
