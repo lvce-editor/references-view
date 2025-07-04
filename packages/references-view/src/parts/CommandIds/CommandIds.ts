@@ -9,4 +9,5 @@ export const commandIds: readonly string[] = [
   'focusNext',
   'focusPrevious',
   'selectIndex',
+  'restoreState',
 ]
