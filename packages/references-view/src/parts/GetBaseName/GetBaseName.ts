@@ -1,4 +1,4 @@
-export const getName = (uri: string): string => {
+export const getBaseName = (uri: string): string => {
   if (!uri) {
     return ''
   }
