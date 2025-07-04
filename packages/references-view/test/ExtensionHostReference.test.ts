@@ -8,11 +8,11 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('executeReferenceProvider calls ExtensionHost.invoke with correct parameters', async () => {
   let invokedMethod: string | undefined
-  let invokedParams: any[] | undefined
+  let invokedParams: readonly unknown[] | undefined
 
   const mockExtensionHostRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...params: any[]) => {
+    invoke: (method: string, ...params: readonly unknown[]) => {
       invokedMethod = method
       invokedParams = params
       return Promise.resolve([{ id: 1, ref: 'abc' }])
@@ -43,11 +43,11 @@ test('executeReferenceProvider calls ExtensionHost.invoke with correct parameter
 
 test('executeFileReferenceProvider calls ExtensionHost.invoke with correct parameters', async () => {
   let invokedMethod: string | undefined
-  let invokedParams: any[] | undefined
+  let invokedParams: readonly unknown[] | undefined
 
   const mockExtensionHostRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...params: any[]) => {
+    invoke: (method: string, ...params: readonly unknown[]) => {
       invokedMethod = method
       invokedParams = params
       return Promise.resolve([{ id: 2, ref: 'def' }])

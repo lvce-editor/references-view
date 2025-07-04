@@ -1,12 +1,14 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
+import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { selectIndex } from '../src/parts/SelectIndex/SelectIndex.ts'
 
 test('selectIndex should return same state when index is out of bounds', async () => {
-  const state = createDefaultState()
+  const state: ReferencesState = createDefaultState()
   const result = await selectIndex(state, -1)
   expect(result).toBe(state)
 
@@ -26,8 +28,8 @@ test('selectIndex should update focusedIndex for Leaf type', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -41,7 +43,7 @@ test('selectIndex should update focusedIndex for Leaf type', async () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
@@ -52,8 +54,8 @@ test('selectIndex should update focusedIndex for Leaf type', async () => {
 })
 
 test('selectIndex should update focusedIndex for Expanded type', async () => {
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -67,7 +69,7 @@ test('selectIndex should update focusedIndex for Expanded type', async () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
@@ -78,8 +80,8 @@ test('selectIndex should update focusedIndex for Expanded type', async () => {
 })
 
 test('selectIndex should update focusedIndex for Collapsed type', async () => {
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -93,7 +95,7 @@ test('selectIndex should update focusedIndex for Collapsed type', async () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
@@ -104,8 +106,8 @@ test('selectIndex should update focusedIndex for Collapsed type', async () => {
 })
 
 test('selectIndex should return same state for unknown type', async () => {
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -119,7 +121,7 @@ test('selectIndex should return same state for unknown type', async () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
@@ -129,8 +131,8 @@ test('selectIndex should return same state for unknown type', async () => {
 })
 
 test('selectIndex should handle multiple display references', async () => {
-  const state = createDefaultState()
-  const displayReferences = [
+  const state: ReferencesState = createDefaultState()
+  const displayReferences: readonly DisplayReference[] = [
     {
       depth: 0,
       posInSet: 1,
@@ -159,7 +161,7 @@ test('selectIndex should handle multiple display references', async () => {
     },
   ]
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences,
   }

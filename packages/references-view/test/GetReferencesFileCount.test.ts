@@ -2,7 +2,7 @@ import { test, expect } from '@jest/globals'
 import { getFileCount } from '../src/parts/GetReferencesFileCount/GetReferencesFileCount.js'
 
 test('getFileCount should count unique URIs', () => {
-  const references = [
+  const references: readonly { readonly uri: string }[] = [
     { uri: 'file1.ts' },
     { uri: 'file2.ts' },
     { uri: 'file1.ts' },
@@ -16,7 +16,7 @@ test('getFileCount should return 0 for empty array', () => {
 })
 
 test('getFileCount should return 1 for single file', () => {
-  const references = [
+  const references: readonly { readonly uri: string }[] = [
     { uri: 'file1.ts' },
     { uri: 'file1.ts' },
   ]

@@ -1,10 +1,12 @@
 import { test, expect } from '@jest/globals'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
+import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getUri } from '../src/parts/GetUri/GetUri.ts'
 
 test('getUri should return uri for valid index', () => {
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -18,27 +20,27 @@ test('getUri should return uri for valid index', () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
 
-  const result = getUri(newState, 0)
+  const result: string = getUri(newState, 0)
   expect(result).toBe('file:///test.ts')
 })
 
 test('getUri should return empty string for invalid index', () => {
-  const state = createDefaultState()
-  const result = getUri(state, -1)
+  const state: ReferencesState = createDefaultState()
+  const result: string = getUri(state, -1)
   expect(result).toBe('')
 
-  const result2 = getUri(state, 10)
+  const result2: string = getUri(state, 10)
   expect(result2).toBe('')
 })
 
 test('getUri should return empty string for undefined uri', () => {
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -52,11 +54,11 @@ test('getUri should return empty string for undefined uri', () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
 
-  const result = getUri(newState, 0)
+  const result: string = getUri(newState, 0)
   expect(result).toBe('')
 })

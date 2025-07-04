@@ -1,8 +1,9 @@
 import { test, expect } from '@jest/globals'
+import type { SavedState } from '../src/parts/SavedState/SavedState.ts'
 import { restoreState } from '../src/parts/RestoreState/RestoreState.ts'
 
 test('restoreState should return RestoredState with focusedIndex from valid SavedState', () => {
-  const input = {
+  const input: SavedState = {
     message: 'Test message',
     focusedIndex: 5,
   }
@@ -51,7 +52,7 @@ test('restoreState should return RestoredState with default focusedIndex when fo
 })
 
 test('restoreState should return RestoredState with focusedIndex 0', () => {
-  const input = {
+  const input: SavedState = {
     message: 'Test message',
     focusedIndex: 0,
   }
