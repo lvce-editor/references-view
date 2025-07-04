@@ -2,6 +2,7 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplayReference } from '../DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetLocationVirtualDom from '../GetLocationVirtualDom/GetLocationVirtualDom.ts'
 import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
@@ -11,7 +12,7 @@ export const getLocationsVirtualDom = (locations: readonly DisplayReference[], m
     {
       type: VirtualDomElements.Div,
       className: 'Viewlet Locations',
-      onMouseDown: 'handleLocationsMouseDown',
+      onMouseDown: DomEventListenerFunctions.HandleClickReference,
       childCount: 2,
     },
     {
