@@ -15,7 +15,7 @@ test('getLocationsVirtualDom with empty locations', () => {
     {
       type: VirtualDomElements.Div,
       className: 'Viewlet Locations',
-      onMouseDown: 'handleLocationsMouseDown',
+      onMouseDown: 'handleClickReference',
       childCount: 2,
     },
     {
@@ -59,7 +59,7 @@ test('getLocationsVirtualDom with leaf location', () => {
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: 'Viewlet Locations',
-    onMouseDown: 'handleLocationsMouseDown',
+    onMouseDown: 'handleClickReference',
     childCount: 2,
   })
 
