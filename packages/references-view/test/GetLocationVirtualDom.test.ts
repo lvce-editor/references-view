@@ -1,11 +1,12 @@
 import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetLocationVirtualDom from '../src/parts/GetLocationVirtualDom/GetLocationVirtualDom.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getLocationVirtualDom with leaf type', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Leaf,
     lineText: 'const test = "value"',
     index: 0,
@@ -33,7 +34,7 @@ test('getLocationVirtualDom with leaf type', () => {
 })
 
 test('getLocationVirtualDom with collapsed type', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Collapsed,
     index: 0,
     name: 'example.ts',
@@ -61,7 +62,7 @@ test('getLocationVirtualDom with collapsed type', () => {
 })
 
 test('getLocationVirtualDom with expanded type', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Expanded,
     index: 0,
     name: 'example.ts',
@@ -90,7 +91,7 @@ test('getLocationVirtualDom with expanded type', () => {
 })
 
 test('getLocationVirtualDom with unknown type', () => {
-  const location = {
+  const location: DisplayReference = {
     type: 999,
     index: 0,
     name: 'unknown.ts',

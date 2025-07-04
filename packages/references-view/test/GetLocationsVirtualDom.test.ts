@@ -1,13 +1,14 @@
 import { test, expect } from '@jest/globals'
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetLocationsVirtualDom from '../src/parts/GetLocationsVirtualDom/GetLocationsVirtualDom.ts'
 import * as LocationStrings from '../src/parts/LocationStrings/LocationsStrings.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getLocationsVirtualDom with empty locations', () => {
-  const locations: readonly any[] = []
-  const message = 'No results found'
+  const locations: readonly DisplayReference[] = []
+  const message: string = 'No results found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -43,7 +44,7 @@ test('getLocationsVirtualDom with empty locations', () => {
 })
 
 test('getLocationsVirtualDom with leaf location', () => {
-  const locations: readonly any[] = [
+  const locations: readonly DisplayReference[] = [
     {
       type: LocationType.Leaf,
       lineText: 'const example = "test"',
@@ -52,7 +53,7 @@ test('getLocationsVirtualDom with leaf location', () => {
       endOffset: 13,
     },
   ]
-  const message = '1 result found'
+  const message: string = '1 result found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -130,7 +131,7 @@ test('getLocationsVirtualDom with leaf location', () => {
 })
 
 test('getLocationsVirtualDom with leaf location empty line', () => {
-  const locations: readonly any[] = [
+  const locations: readonly DisplayReference[] = [
     {
       type: LocationType.Leaf,
       lineText: '',
@@ -139,7 +140,7 @@ test('getLocationsVirtualDom with leaf location empty line', () => {
       endOffset: 0,
     },
   ]
-  const message = '1 result found'
+  const message: string = '1 result found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -168,14 +169,14 @@ test('getLocationsVirtualDom with leaf location empty line', () => {
 })
 
 test('getLocationsVirtualDom with collapsed location', () => {
-  const locations: readonly any[] = [
+  const locations: readonly DisplayReference[] = [
     {
       type: LocationType.Collapsed,
       index: 0,
       name: 'example.ts',
     },
   ]
-  const message = '1 file found'
+  const message: string = '1 file found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -198,7 +199,7 @@ test('getLocationsVirtualDom with collapsed location', () => {
 })
 
 test('getLocationsVirtualDom with expanded location', () => {
-  const locations: readonly any[] = [
+  const locations: readonly DisplayReference[] = [
     {
       type: LocationType.Expanded,
       index: 0,
@@ -206,7 +207,7 @@ test('getLocationsVirtualDom with expanded location', () => {
       icon: 'file-icon.png',
     },
   ]
-  const message = '1 file found'
+  const message: string = '1 file found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -236,7 +237,7 @@ test('getLocationsVirtualDom with expanded location', () => {
 })
 
 test('getLocationsVirtualDom with multiple locations', () => {
-  const locations: readonly any[] = [
+  const locations: readonly DisplayReference[] = [
     {
       type: LocationType.Expanded,
       index: 0,
@@ -256,7 +257,7 @@ test('getLocationsVirtualDom with multiple locations', () => {
       name: 'file2.ts',
     },
   ]
-  const message = '3 results found'
+  const message: string = '3 results found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -275,14 +276,14 @@ test('getLocationsVirtualDom with multiple locations', () => {
 })
 
 test('getLocationsVirtualDom with unknown location type', () => {
-  const locations: readonly any[] = [
+  const locations: readonly DisplayReference[] = [
     {
       type: 999, // Unknown type
       index: 0,
       name: 'unknown.ts',
     },
   ]
-  const message = '1 result found'
+  const message: string = '1 result found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
