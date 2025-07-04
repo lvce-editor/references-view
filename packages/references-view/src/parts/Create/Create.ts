@@ -8,6 +8,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     references: [],
     displayReferences: [],
     focusedIndex: -1,
+    fileIconCache: {},
   }
   ReferencesStates.set(id, state, state)
 }
