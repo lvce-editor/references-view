@@ -1,19 +1,19 @@
 import { test, expect } from '@jest/globals'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
-import { selectIndex } from '../src/parts/SelectIndex/SelectIndex.ts'
+import * as SelectIndex from '../src/parts/SelectIndex/SelectIndex.ts'
 
 test('selectIndex should return same state when index is out of bounds', async () => {
-  const state = createDefaultState()
-  const result = await selectIndex(state, -1)
+  const state = CreateDefaultState.createDefaultState()
+  const result = await SelectIndex.selectIndex(state, -1)
   expect(result).toBe(state)
 
-  const result2 = await selectIndex(state, 10)
+  const result2 = await SelectIndex.selectIndex(state, 10)
   expect(result2).toBe(state)
 })
 
 test('selectIndex should update focusedIndex for Leaf type', async () => {
-  const state = createDefaultState()
+  const state = CreateDefaultState.createDefaultState()
   const displayReference = {
     depth: 0,
     posInSet: 1,
@@ -33,13 +33,13 @@ test('selectIndex should update focusedIndex for Leaf type', async () => {
     displayReferences: [displayReference],
   }
 
-  const result = await selectIndex(newState, 0)
+  const result = await SelectIndex.selectIndex(newState, 0)
   expect(result.focusedIndex).toBe(0)
   expect(result.displayReferences).toBe(newState.displayReferences)
 })
 
 test('selectIndex should update focusedIndex for Expanded type', async () => {
-  const state = createDefaultState()
+  const state = CreateDefaultState.createDefaultState()
   const displayReference = {
     depth: 0,
     posInSet: 1,
@@ -59,13 +59,13 @@ test('selectIndex should update focusedIndex for Expanded type', async () => {
     displayReferences: [displayReference],
   }
 
-  const result = await selectIndex(newState, 0)
+  const result = await SelectIndex.selectIndex(newState, 0)
   expect(result.focusedIndex).toBe(0)
   expect(result.displayReferences).toBe(newState.displayReferences)
 })
 
 test('selectIndex should update focusedIndex for Collapsed type', async () => {
-  const state = createDefaultState()
+  const state = CreateDefaultState.createDefaultState()
   const displayReference = {
     depth: 0,
     posInSet: 1,
@@ -85,13 +85,13 @@ test('selectIndex should update focusedIndex for Collapsed type', async () => {
     displayReferences: [displayReference],
   }
 
-  const result = await selectIndex(newState, 0)
+  const result = await SelectIndex.selectIndex(newState, 0)
   expect(result.focusedIndex).toBe(0)
   expect(result.displayReferences).toBe(newState.displayReferences)
 })
 
 test('selectIndex should return same state for unknown type', async () => {
-  const state = createDefaultState()
+  const state = CreateDefaultState.createDefaultState()
   const displayReference = {
     depth: 0,
     posInSet: 1,
@@ -111,12 +111,12 @@ test('selectIndex should return same state for unknown type', async () => {
     displayReferences: [displayReference],
   }
 
-  const result = await selectIndex(newState, 0)
+  const result = await SelectIndex.selectIndex(newState, 0)
   expect(result).toBe(newState)
 })
 
 test('selectIndex should handle multiple display references', async () => {
-  const state = createDefaultState()
+  const state = CreateDefaultState.createDefaultState()
   const displayReferences = [
     {
       depth: 0,
@@ -151,7 +151,7 @@ test('selectIndex should handle multiple display references', async () => {
     displayReferences,
   }
 
-  const result = await selectIndex(newState, 1)
+  const result = await SelectIndex.selectIndex(newState, 1)
   expect(result.focusedIndex).toBe(1)
   expect(result.displayReferences).toBe(newState.displayReferences)
 })
