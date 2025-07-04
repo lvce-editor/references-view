@@ -5,15 +5,15 @@ import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesStates.ts'
 
 test('diff2 returns empty array when states are equal', () => {
-  const uid = 1
+  const uid: number = 1
   const state = createDefaultState()
   ReferencesStates.set(uid, state, state)
-  const result = Diff2.diff2(uid)
+  const result: readonly unknown[] = Diff2.diff2(uid)
   expect(result).toEqual([])
 })
 
 test('diff2 returns diff type when states are different', () => {
-  const uid = 2
+  const uid: number = 2
   const oldState = createDefaultState(uid)
   const newState = {
     ...oldState,
@@ -21,13 +21,13 @@ test('diff2 returns diff type when states are different', () => {
   }
   ReferencesStates.set(uid, oldState, newState)
 
-  const result = Diff2.diff2(uid)
+  const result: readonly unknown[] = Diff2.diff2(uid)
 
   expect(result).toEqual([DiffType.RenderItems])
 })
 
 test('diff2 uses states from ReferencesStates', () => {
-  const uid = 3
+  const uid: number = 3
   const oldState = createDefaultState(uid)
   const newState = {
     ...oldState,
@@ -36,7 +36,7 @@ test('diff2 uses states from ReferencesStates', () => {
   }
   ReferencesStates.set(uid, oldState, newState)
 
-  const result = Diff2.diff2(uid)
+  const result: readonly unknown[] = Diff2.diff2(uid)
 
   expect(result).toEqual([DiffType.RenderItems])
 })

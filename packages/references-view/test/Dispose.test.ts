@@ -4,7 +4,7 @@ import { dispose } from '../src/parts/Dispose/Dispose.ts'
 import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesStates.ts'
 
 test('dispose', async () => {
-  const uid = 123
+  const uid: number = 123
   const state = createDefaultState()
   ReferencesStates.set(uid, state, state)
   await dispose(uid)

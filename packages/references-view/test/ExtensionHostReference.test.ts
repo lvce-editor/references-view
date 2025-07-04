@@ -8,11 +8,11 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('executeReferenceProvider calls ExtensionHost.invoke with correct parameters', async () => {
   let invokedMethod: string | undefined
-  let invokedParams: any[] | undefined
+  let invokedParams: readonly unknown[] | undefined
 
   const mockExtensionHostRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...params: any[]) => {
+    invoke: (method: string, ...params: readonly unknown[]) => {
       invokedMethod = method
       invokedParams = params
       return Promise.resolve([{ id: 1, ref: 'abc' }])
@@ -32,8 +32,8 @@ test('executeReferenceProvider calls ExtensionHost.invoke with correct parameter
   ExtensionHost.set(mockExtensionHostRpc)
   RendererWorker.set(mockRendererWorkerRpc)
 
-  const editorId = 123
-  const offset = 42
+  const editorId: number = 123
+  const offset: number = 42
   const result = await ExtensionHostReference.executeReferenceProvider(editorId, offset)
 
   expect(invokedMethod).toBe('ExtensionHostReference.executeReferenceProvider')
@@ -43,11 +43,11 @@ test('executeReferenceProvider calls ExtensionHost.invoke with correct parameter
 
 test('executeFileReferenceProvider calls ExtensionHost.invoke with correct parameters', async () => {
   let invokedMethod: string | undefined
-  let invokedParams: any[] | undefined
+  let invokedParams: readonly unknown[] | undefined
 
   const mockExtensionHostRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...params: any[]) => {
+    invoke: (method: string, ...params: readonly unknown[]) => {
       invokedMethod = method
       invokedParams = params
       return Promise.resolve([{ id: 2, ref: 'def' }])
@@ -67,8 +67,8 @@ test('executeFileReferenceProvider calls ExtensionHost.invoke with correct param
   ExtensionHost.set(mockExtensionHostRpc)
   RendererWorker.set(mockRendererWorkerRpc)
 
-  const id = 456
-  const languageId = 'typescript'
+  const id: number = 456
+  const languageId: string = 'typescript'
   const result = await ExtensionHostReference.executeFileReferenceProvider(id, languageId)
 
   expect(invokedMethod).toBe('ExtensionHostReference.executeFileReferenceProvider')
