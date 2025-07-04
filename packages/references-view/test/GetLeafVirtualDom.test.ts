@@ -1,11 +1,12 @@
 import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetLeafVirtualDom from '../src/parts/GetLeafVirtualDom/GetLeafVirtualDom.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getLeafVirtualDom with highlighted text', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Leaf,
     lineText: 'const example = "test"',
     index: 0,
@@ -63,7 +64,7 @@ test('getLeafVirtualDom with highlighted text', () => {
 })
 
 test('getLeafVirtualDom with empty line', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Leaf,
     lineText: '',
     index: 1,
@@ -103,7 +104,7 @@ test('getLeafVirtualDom with empty line', () => {
 })
 
 test('getLeafVirtualDom with null lineText', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Leaf,
     lineText: null as any,
     index: 2,

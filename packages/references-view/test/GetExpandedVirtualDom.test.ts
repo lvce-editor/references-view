@@ -1,11 +1,12 @@
 import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetExpandedVirtualDom from '../src/parts/GetExpandedVirtualDom/GetExpandedVirtualDom.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getExpandedVirtualDom', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Expanded,
     index: 0,
     name: 'example.ts',
