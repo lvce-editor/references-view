@@ -1,6 +1,6 @@
+import * as DirentType from '../DirentType/DirentType.ts'
 import { getBaseName } from '../GetBaseName/GetBaseName.ts'
 import { getSimpleIconRequestType } from '../GetSimpleIconRequestType/GetSimpleIconRequestType.ts'
-import * as DirentType from '../DirentType/DirentType.ts'
 
 export const toSimpleIconRequest = (request: any): any => {
   const { uri } = request

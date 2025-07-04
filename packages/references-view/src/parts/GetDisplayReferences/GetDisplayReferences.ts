@@ -1,7 +1,7 @@
 import type { DisplayReference } from '../DisplayReference/DisplayReference.ts'
+import type { Reference } from '../Reference/Reference.ts'
 import * as GetName from '../GetBaseName/GetBaseName.ts'
 import * as LocationType from '../LocationType/LocationType.ts'
-import type { Reference } from '../Reference/Reference.ts'
 
 export const getDisplayReferences = (references: readonly Reference[], icons: readonly string[]): readonly DisplayReference[] => {
   const displayReferences: DisplayReference[] = []
