@@ -51,6 +51,12 @@ test('getLocationsVirtualDom with leaf location', () => {
       index: 0,
       startOffset: 6,
       endOffset: 13,
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///test.ts',
+      name: 'test.ts',
+      icon: 'file-icon.png',
     },
   ]
   const message: string = '1 result found'
@@ -138,6 +144,12 @@ test('getLocationsVirtualDom with leaf location empty line', () => {
       index: 0,
       startOffset: 0,
       endOffset: 0,
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///test.ts',
+      name: 'test.ts',
+      icon: 'file-icon.png',
     },
   ]
   const message: string = '1 result found'
@@ -174,6 +186,14 @@ test('getLocationsVirtualDom with collapsed location', () => {
       type: LocationType.Collapsed,
       index: 0,
       name: 'example.ts',
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///example.ts',
+      lineText: '',
+      icon: 'file-icon.png',
+      startOffset: undefined,
+      endOffset: undefined,
     },
   ]
   const message: string = '1 file found'
@@ -205,6 +225,13 @@ test('getLocationsVirtualDom with expanded location', () => {
       index: 0,
       name: 'example.ts',
       icon: 'file-icon.png',
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///example.ts',
+      lineText: '',
+      startOffset: undefined,
+      endOffset: undefined,
     },
   ]
   const message: string = '1 file found'
@@ -243,6 +270,13 @@ test('getLocationsVirtualDom with multiple locations', () => {
       index: 0,
       name: 'file1.ts',
       icon: 'file-icon.png',
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///file1.ts',
+      lineText: '',
+      startOffset: undefined,
+      endOffset: undefined,
     },
     {
       type: LocationType.Leaf,
@@ -250,11 +284,25 @@ test('getLocationsVirtualDom with multiple locations', () => {
       index: 1,
       startOffset: 6,
       endOffset: 10,
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///test.ts',
+      name: 'test.ts',
+      icon: 'file-icon.png',
     },
     {
       type: LocationType.Collapsed,
       index: 2,
       name: 'file2.ts',
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///file2.ts',
+      lineText: '',
+      icon: 'file-icon.png',
+      startOffset: undefined,
+      endOffset: undefined,
     },
   ]
   const message: string = '3 results found'
@@ -281,6 +329,14 @@ test('getLocationsVirtualDom with unknown location type', () => {
       type: 999, // Unknown type
       index: 0,
       name: 'unknown.ts',
+      depth: 0,
+      posInSet: 1,
+      setSize: 1,
+      uri: 'file:///unknown.ts',
+      lineText: '',
+      icon: 'file-icon.png',
+      startOffset: undefined,
+      endOffset: undefined,
     },
   ]
   const message: string = '1 result found'
