@@ -5,7 +5,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
   return [
     {
       name: DomEventListenerFunctions.HandleClickReference,
-      params: ['handleClick', 'event.target.dataset.index'],
+      params: ['handleClickReference', 'event.target.dataset.index'],
     },
   ]
 }
