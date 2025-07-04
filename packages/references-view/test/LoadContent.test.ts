@@ -1,5 +1,6 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.ts'
 import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.ts'
@@ -7,7 +8,7 @@ import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadContent - loads references and updates state', async () => {
-  const mockReferences = [
+  const mockReferences: readonly { readonly uri: string; readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } } }[] = [
     { uri: 'file:///test1.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 10 } } },
     { uri: 'file:///test2.ts', range: { start: { line: 5, character: 0 }, end: { line: 5, character: 15 } } },
   ]
@@ -43,8 +44,8 @@ test('loadContent - loads references and updates state', async () => {
   ExtensionHost.set(mockRpc)
   EditorWorker.set(mockRpc)
 
-  const initialState = createDefaultState(1)
-  const result = await LoadContent.loadContent(initialState)
+  const initialState: ReferencesState = createDefaultState(1)
+  const result: ReferencesState = await LoadContent.loadContent(initialState)
 
   expect(result.id).toBe(1)
   expect(result.references).toEqual([
@@ -115,8 +116,8 @@ test('loadContent - handles empty references', async () => {
   ExtensionHost.set(mockRpc)
   EditorWorker.set(mockRpc)
 
-  const initialState = createDefaultState(2)
-  const result = await LoadContent.loadContent(initialState)
+  const initialState: ReferencesState = createDefaultState(2)
+  const result: ReferencesState = await LoadContent.loadContent(initialState)
 
   expect(result.id).toBe(2)
   expect(result.references).toEqual([])
@@ -127,7 +128,7 @@ test('loadContent - handles empty references', async () => {
 })
 
 test('loadContent - preserves existing state properties', async () => {
-  const mockReferences = [{ uri: 'file:///test.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 5 } } }]
+  const mockReferences: readonly { readonly uri: string; readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } } }[] = [{ uri: 'file:///test.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 5 } } }]
 
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -160,8 +161,8 @@ test('loadContent - preserves existing state properties', async () => {
   ExtensionHost.set(mockRpc)
   EditorWorker.set(mockRpc)
 
-  const initialState = createDefaultState(3)
-  const result = await LoadContent.loadContent(initialState)
+  const initialState: ReferencesState = createDefaultState(3)
+  const result: ReferencesState = await LoadContent.loadContent(initialState)
 
   expect(result.id).toBe(3)
   expect(result.focusedIndex).toBe(-1)
