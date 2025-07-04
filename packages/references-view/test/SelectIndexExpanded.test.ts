@@ -1,10 +1,12 @@
 import { test, expect } from '@jest/globals'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
+import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { selectIndexExpanded } from '../src/parts/SelectIndexExpanded/SelectIndexExpanded.ts'
 
 test('selectIndexExpanded should update focusedIndex', () => {
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -18,7 +20,7 @@ test('selectIndexExpanded should update focusedIndex', () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
@@ -29,8 +31,8 @@ test('selectIndexExpanded should update focusedIndex', () => {
 })
 
 test('selectIndexExpanded should preserve other state properties', () => {
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -44,7 +46,7 @@ test('selectIndexExpanded should preserve other state properties', () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
     focusedIndex: -1,

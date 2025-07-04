@@ -1,5 +1,7 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
+import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { selectIndexLead } from '../src/parts/SelectIndexLead/SelectIndexLead.ts'
@@ -16,8 +18,8 @@ test('selectIndexLead should update focusedIndex', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -31,7 +33,7 @@ test('selectIndexLead should update focusedIndex', async () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
   }
@@ -53,8 +55,8 @@ test('selectIndexLead should preserve other state properties', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState()
-  const displayReference = {
+  const state: ReferencesState = createDefaultState()
+  const displayReference: DisplayReference = {
     depth: 0,
     posInSet: 1,
     setSize: 1,
@@ -68,7 +70,7 @@ test('selectIndexLead should preserve other state properties', async () => {
     endOffset: undefined,
   }
 
-  const newState = {
+  const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
     focusedIndex: -1,
