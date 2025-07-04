@@ -1,11 +1,9 @@
 import type { DisplayReference } from '../DisplayReference/DisplayReference.ts'
 import type { Reference } from '../Reference/Reference.ts'
-import * as DirentType from '../DirentType/DirentType.ts'
 import * as GetName from '../GetBaseName/GetBaseName.ts'
-import * as IconTheme from '../IconTheme/IconTheme.ts'
 import * as LocationType from '../LocationType/LocationType.ts'
 
-export const getDisplayReferences = (references: readonly Reference[]): readonly DisplayReference[] => {
+export const getDisplayReferences = (references: readonly Reference[], icons: readonly string[]): readonly DisplayReference[] => {
   const displayReferences: DisplayReference[] = []
   let currentUri = ''
   let outerPosInSet = 1
@@ -32,6 +30,8 @@ export const getDisplayReferences = (references: readonly Reference[]): readonly
       currentUri = reference.uri
       innerPosInSet = 1
       const name = GetName.getBaseName(reference.uri)
+      const relativeIndex = references.indexOf(reference)
+      const icon = icons[relativeIndex]
       displayReferences.push({
         depth: 1,
         posInSet: outerPosInSet++,
@@ -40,11 +40,7 @@ export const getDisplayReferences = (references: readonly Reference[]): readonly
         uri: reference.uri,
         name,
         lineText: '',
-        icon: IconTheme.getIcon({
-          type: DirentType.File,
-          path: reference.uri,
-          name,
-        }),
+        icon,
         index: index++,
         startOffset: 0,
         endOffset: 0,
