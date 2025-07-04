@@ -25,3 +25,15 @@ export const manyResultsInManyFiles = (resultCount: number, fileCount: number): 
     PH2: fileCount,
   })
 }
+
+export const refresh = (): string => {
+  return I18nString.i18nString(UiStrings.Refresh)
+}
+
+export const clear = (): string => {
+  return I18nString.i18nString(UiStrings.Clear)
+}
+
+export const collapseAll = (): string => {
+  return I18nString.i18nString(UiStrings.CollapseAll)
+}

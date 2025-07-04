@@ -14,6 +14,7 @@ import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as WrapCommand from '../ReferencesStates/ReferencesStates.ts'
 import * as Render2 from '../Render2/Render2.ts'
+import * as RenderActions from '../RenderActions/RenderActions.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
@@ -34,6 +35,7 @@ export const commandMap = {
   'References.initialize': Initialize.initialize,
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'References.render2': Render2.render2,
+  'References.renderActions': RenderActions.renderActions,
   'References.renderEventListeners': RenderEventListeners.renderEventListeners,
   'References.restoreState': RestoreState.restoreState,
   'References.saveState': SaveState.saveState,
