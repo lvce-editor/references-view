@@ -8,6 +8,7 @@ import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import * as HandleClickReference from '../HandleClickReference/HandleClickReference.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as WrapCommand from '../ReferencesStates/ReferencesStates.ts'
@@ -15,7 +16,6 @@ import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectIndex from '../SelectIndex/SelectIndex.ts'
-import * as HandleClickReference from '../HandleClickReference/HandleClickReference.ts'
 
 export const commandMap = {
   'References.create': Create.create,
