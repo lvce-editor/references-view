@@ -1,13 +1,14 @@
 export const commandIds: readonly string[] = [
   'create',
   'dispose',
-  'saveState',
-  'terminate',
-  'focusIndex',
   'focusFirst',
+  'focusIndex',
   'focusLast',
   'focusNext',
   'focusPrevious',
-  'selectIndex',
+  'handleClickReference',
   'restoreState',
+  'saveState',
+  'selectIndex',
+  'terminate',
 ]
