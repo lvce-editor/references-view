@@ -33,6 +33,9 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'FileSystem.readFile') {
         return ''
       }
+      if (method === 'IconTheme.getIcons') {
+        return []
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -102,6 +105,9 @@ test('loadContent - handles empty references', async () => {
       if (method === 'FileSystem.readFile') {
         return ''
       }
+      if (method === 'IconTheme.getIcons') {
+        return []
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -143,6 +149,9 @@ test('loadContent - preserves existing state properties', async () => {
       }
       if (method === 'FileSystem.readFile') {
         return ''
+      }
+      if (method === 'IconTheme.getIcons') {
+        return []
       }
       throw new Error(`unexpected method ${method}`)
     },
