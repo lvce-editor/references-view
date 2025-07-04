@@ -6,7 +6,7 @@ import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesState
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 
 test('saveState should return SavedState with message and focusedIndex from ReferencesState', () => {
-  const id: number = 1
+  const id = 1
   const mockReferencesState: ReferencesState = {
     ...createDefaultState(),
 
@@ -28,7 +28,7 @@ test('saveState should return SavedState with message and focusedIndex from Refe
 })
 
 test('saveState should return SavedState with empty message and focusedIndex when ReferencesState has empty message', () => {
-  const id: number = 2
+  const id = 2
   const mockReferencesState: ReferencesState = {
     ...createDefaultState(),
 

@@ -32,8 +32,8 @@ test('executeReferenceProvider calls ExtensionHost.invoke with correct parameter
   ExtensionHost.set(mockExtensionHostRpc)
   RendererWorker.set(mockRendererWorkerRpc)
 
-  const editorId: number = 123
-  const offset: number = 42
+  const editorId = 123
+  const offset = 42
   const result = await ExtensionHostReference.executeReferenceProvider(editorId, offset)
 
   expect(invokedMethod).toBe('ExtensionHostReference.executeReferenceProvider')
@@ -67,8 +67,8 @@ test('executeFileReferenceProvider calls ExtensionHost.invoke with correct param
   ExtensionHost.set(mockExtensionHostRpc)
   RendererWorker.set(mockRendererWorkerRpc)
 
-  const id: number = 456
-  const languageId: string = 'typescript'
+  const id = 456
+  const languageId = 'typescript'
   const result = await ExtensionHostReference.executeFileReferenceProvider(id, languageId)
 
   expect(invokedMethod).toBe('ExtensionHostReference.executeFileReferenceProvider')
