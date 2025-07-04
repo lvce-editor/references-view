@@ -4,6 +4,7 @@ import * as GetReferencesFileCount from '../GetReferencesFileCount/GetReferences
 import * as GetReferencesMessage from '../GetReferencesMessage/GetReferencesMessage.ts'
 import * as References from '../References/References.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import { requestFileIcons } from '../RequestFileIcons/RequestFileIcons.ts'
 
 export const loadContent = async (state: ReferencesState): Promise<ReferencesState> => {
   const editorId = await RendererWorker.getActiveEditorId()
@@ -14,7 +15,8 @@ export const loadContent = async (state: ReferencesState): Promise<ReferencesSta
     }
   }
   const references = await References.getReferences(editorId)
-  const displayReferences = GetDisplayReferences.getDisplayReferences(references)
+  const icons = await requestFileIcons(references)
+  const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons)
   const fileCount = GetReferencesFileCount.getFileCount(references)
   const message = GetReferencesMessage.getMessage(references.length, fileCount)
   return {
