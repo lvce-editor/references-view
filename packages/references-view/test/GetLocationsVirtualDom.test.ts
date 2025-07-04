@@ -8,7 +8,7 @@ import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getLocationsVirtualDom with empty locations', () => {
   const locations: readonly DisplayReference[] = []
-  const message: string = 'No results found'
+  const message = 'No results found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -59,7 +59,7 @@ test('getLocationsVirtualDom with leaf location', () => {
       icon: 'file-icon.png',
     },
   ]
-  const message: string = '1 result found'
+  const message = '1 result found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -152,7 +152,7 @@ test('getLocationsVirtualDom with leaf location empty line', () => {
       icon: 'file-icon.png',
     },
   ]
-  const message: string = '1 result found'
+  const message = '1 result found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -196,7 +196,7 @@ test('getLocationsVirtualDom with collapsed location', () => {
       endOffset: undefined,
     },
   ]
-  const message: string = '1 file found'
+  const message = '1 file found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -234,7 +234,7 @@ test('getLocationsVirtualDom with expanded location', () => {
       endOffset: undefined,
     },
   ]
-  const message: string = '1 file found'
+  const message = '1 file found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -305,7 +305,7 @@ test('getLocationsVirtualDom with multiple locations', () => {
       endOffset: undefined,
     },
   ]
-  const message: string = '3 results found'
+  const message = '3 results found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
@@ -339,7 +339,7 @@ test('getLocationsVirtualDom with unknown location type', () => {
       endOffset: undefined,
     },
   ]
-  const message: string = '1 result found'
+  const message = '1 result found'
 
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
