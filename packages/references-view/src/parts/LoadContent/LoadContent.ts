@@ -6,8 +6,7 @@ import * as References from '../References/References.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 export const loadContent = async (state: ReferencesState): Promise<ReferencesState> => {
-  // @ts-ignore
-  const editorId = await RendererWorker.invoke('GetActiveEditor.getActiveEditorId')
+  const editorId = await RendererWorker.getActiveEditorId()
   if (editorId === -1) {
     return {
       ...state,

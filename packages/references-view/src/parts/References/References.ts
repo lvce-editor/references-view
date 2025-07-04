@@ -4,7 +4,7 @@ import * as GetReferencesWithPreview from '../GetReferencesWithPreview/GetRefere
 
 export const getReferences = async (editorId: number): Promise<readonly any[]> => {
   // @ts-ignore
-  const offset = await EditorWorker.invoke('Editor.getOffsetAtCursor', editorId)
+  const offset = await EditorWorker.getOffsetAtCursor(editorId)
   // @ts-ignore
   const references = await ExtensionHostReference.executeReferenceProvider(editorId, offset)
   const withPreview = await GetReferencesWithPreview.getReferencesWithPreview(references)

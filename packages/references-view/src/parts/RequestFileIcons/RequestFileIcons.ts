@@ -7,6 +7,6 @@ export const requestFileIcons = async (requests: readonly IconRequest[]): Promis
     return []
   }
   const simpleRequests = requests.map(toSimpleIconRequest)
-  const icons = await RendererWorker.invoke('IconTheme.getIcons', simpleRequests)
+  const icons = await RendererWorker.getIcons(simpleRequests)
   return icons
 }
