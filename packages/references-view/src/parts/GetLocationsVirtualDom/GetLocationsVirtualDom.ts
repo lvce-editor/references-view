@@ -5,13 +5,14 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetLocationVirtualDom from '../GetLocationVirtualDom/GetLocationVirtualDom.ts'
 import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
 export const getLocationsVirtualDom = (locations: readonly DisplayReference[], message: string): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
       className: 'Viewlet Locations',
-      onMouseDown: 'handleLocationsMouseDown',
+      onMouseDown: DomEventListenerFunctions.HandleClickReference,
       childCount: 2,
     },
     {
