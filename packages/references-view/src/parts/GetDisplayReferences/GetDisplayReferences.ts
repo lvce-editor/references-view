@@ -1,7 +1,7 @@
 import type { DisplayReference } from '../DisplayReference/DisplayReference.ts'
 import type { Reference } from '../Reference/Reference.ts'
 import * as DirentType from '../DirentType/DirentType.ts'
-import * as GetName from '../GetName/GetName.ts'
+import * as GetName from '../GetBaseName/GetBaseName.ts'
 import * as IconTheme from '../IconTheme/IconTheme.ts'
 import * as LocationType from '../LocationType/LocationType.ts'
 
@@ -31,7 +31,7 @@ export const getDisplayReferences = (references: readonly Reference[]): readonly
       fileCount++
       currentUri = reference.uri
       innerPosInSet = 1
-      const name = GetName.getName(reference.uri)
+      const name = GetName.getBaseName(reference.uri)
       displayReferences.push({
         depth: 1,
         posInSet: outerPosInSet++,
