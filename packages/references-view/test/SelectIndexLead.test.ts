@@ -1,8 +1,21 @@
 import { test, expect } from '@jest/globals'
+import { MockRpc } from '@lvce-editor/rpc'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { selectIndexLead } from '../src/parts/SelectIndexLead/SelectIndexLead.ts'
 
 test('selectIndexLead should update focusedIndex', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'FileSystem.readDirWithFileTypes') {
+        return []
+      }
+      return undefined
+    },
+  })
+  RendererWorker.set(mockRpc)
+
   const state = createDefaultState()
   const displayReference = {
     depth: 0,
@@ -29,6 +42,17 @@ test('selectIndexLead should update focusedIndex', async () => {
 })
 
 test('selectIndexLead should preserve other state properties', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'FileSystem.readDirWithFileTypes') {
+        return []
+      }
+      return undefined
+    },
+  })
+  RendererWorker.set(mockRpc)
+
   const state = createDefaultState()
   const displayReference = {
     depth: 0,

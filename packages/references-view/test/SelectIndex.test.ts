@@ -1,4 +1,6 @@
 import { test, expect } from '@jest/globals'
+import { MockRpc } from '@lvce-editor/rpc'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 import { selectIndex } from '../src/parts/SelectIndex/SelectIndex.ts'
@@ -13,6 +15,17 @@ test('selectIndex should return same state when index is out of bounds', async (
 })
 
 test('selectIndex should update focusedIndex for Leaf type', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'FileSystem.readDirWithFileTypes') {
+        return []
+      }
+      return undefined
+    },
+  })
+  RendererWorker.set(mockRpc)
+
   const state = createDefaultState()
   const displayReference = {
     depth: 0,
