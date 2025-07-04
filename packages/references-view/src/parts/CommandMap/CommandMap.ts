@@ -17,6 +17,7 @@ import * as RenderEventListeners from '../RenderEventListeners/RenderEventListen
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectIndex from '../SelectIndex/SelectIndex.ts'
+import * as GetKeyBindings from '../GetKeyBindings/GetKeyBindings.ts'
 
 export const commandMap = {
   'References.create': Create.create,
@@ -28,13 +29,14 @@ export const commandMap = {
   'References.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
   'References.focusPrevious': WrapCommand.wrapCommand(FocusPrevious.focusPrevious),
   'References.getCommandIds': GetCommandIds.getCommandIds,
+  'References.getKeyBindings': GetKeyBindings.getKeyBindings,
+  'References.handleClickReference': WrapCommand.wrapCommand(HandleClickReference.handleClickReference),
+  'References.initialize': Initialize.initialize,
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'References.render2': Render2.render2,
-  'References.restoreState': RestoreState.restoreState,
-  'References.terminate': terminate,
-  'References.initialize': Initialize.initialize,
-  'References.saveState': SaveState.saveState,
   'References.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'References.restoreState': RestoreState.restoreState,
+  'References.saveState': SaveState.saveState,
   'References.selectIndex': WrapCommand.wrapCommand(SelectIndex.selectIndex),
-  'References.handleClickReference': WrapCommand.wrapCommand(HandleClickReference.handleClickReference),
+  'References.terminate': terminate,
 }
