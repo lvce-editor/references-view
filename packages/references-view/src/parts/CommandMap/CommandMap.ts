@@ -2,6 +2,11 @@ import { terminate } from '@lvce-editor/viewlet-registry'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
+import * as FocusFirst from '../FocusFirst/FocusFirst.ts'
+import * as FocusIndex from '../FocusIndex/FocusIndex.ts'
+import * as FocusLast from '../FocusLast/FocusLast.ts'
+import * as FocusNext from '../FocusNext/FocusNext.ts'
+import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
@@ -13,6 +18,11 @@ export const commandMap = {
   'References.create': Create.create,
   'References.diff2': Diff2.diff2,
   'References.dispose': Dispose.dispose,
+  'References.focusFirst': FocusFirst.focusFirst,
+  'References.focusIndex': FocusIndex.focusIndex,
+  'References.focusLast': FocusLast.focusLast,
+  'References.focusNext': FocusNext.focusNext,
+  'References.focusPrevious': FocusPrevious.focusPrevious,
   'References.getCommandIds': GetCommandIds.getCommandIds,
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'References.render2': Render2.render2,
