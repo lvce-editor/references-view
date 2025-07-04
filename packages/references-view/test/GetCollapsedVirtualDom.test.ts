@@ -1,11 +1,12 @@
 import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { DisplayReference } from '../src/parts/DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetCollapsedVirtualDom from '../src/parts/GetCollapsedVirtualDom/GetCollapsedVirtualDom.ts'
 import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getCollapsedVirtualDom', () => {
-  const location = {
+  const location: DisplayReference = {
     type: LocationType.Collapsed,
     index: 0,
     name: 'example.ts',
