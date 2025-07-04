@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesStates.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 
-test('saveState should return SavedState with message from ReferencesState', () => {
+test('saveState should return SavedState with message and focusedIndex from ReferencesState', () => {
   const id = 1
   const mockReferencesState: ReferencesState = {
     ...createDefaultState(),
@@ -23,10 +23,11 @@ test('saveState should return SavedState with message from ReferencesState', () 
 
   expect(result).toEqual({
     message: 'Test message',
+    focusedIndex: 0,
   })
 })
 
-test('saveState should return SavedState with empty message when ReferencesState has empty message', () => {
+test('saveState should return SavedState with empty message and focusedIndex when ReferencesState has empty message', () => {
   const id = 2
   const mockReferencesState: ReferencesState = {
     ...createDefaultState(),
@@ -35,7 +36,7 @@ test('saveState should return SavedState with empty message when ReferencesState
     references: [],
     displayReferences: [],
     id: 2,
-    focusedIndex: 0,
+    focusedIndex: 5,
   }
 
   ReferencesStates.set(id, mockReferencesState, mockReferencesState)
@@ -44,5 +45,6 @@ test('saveState should return SavedState with empty message when ReferencesState
 
   expect(result).toEqual({
     message: '',
+    focusedIndex: 5,
   })
 })
