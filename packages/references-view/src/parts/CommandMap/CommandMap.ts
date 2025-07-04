@@ -8,6 +8,7 @@ import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import * as HandleClickReference from '../HandleClickReference/HandleClickReference.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as WrapCommand from '../ReferencesStates/ReferencesStates.ts'
@@ -20,11 +21,11 @@ export const commandMap = {
   'References.create': Create.create,
   'References.diff2': Diff2.diff2,
   'References.dispose': Dispose.dispose,
-  'References.focusFirst': FocusFirst.focusFirst,
-  'References.focusIndex': FocusIndex.focusIndex,
-  'References.focusLast': FocusLast.focusLast,
-  'References.focusNext': FocusNext.focusNext,
-  'References.focusPrevious': FocusPrevious.focusPrevious,
+  'References.focusFirst': WrapCommand.wrapCommand(FocusFirst.focusFirst),
+  'References.focusIndex': WrapCommand.wrapCommand(FocusIndex.focusIndex),
+  'References.focusLast': WrapCommand.wrapCommand(FocusLast.focusLast),
+  'References.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
+  'References.focusPrevious': WrapCommand.wrapCommand(FocusPrevious.focusPrevious),
   'References.getCommandIds': GetCommandIds.getCommandIds,
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'References.render2': Render2.render2,
@@ -32,5 +33,6 @@ export const commandMap = {
   'References.initialize': Initialize.initialize,
   'References.saveState': SaveState.saveState,
   'References.renderEventListeners': RenderEventListeners.renderEventListeners,
-  'References.selectIndex': SelectIndex.selectIndex,
+  'References.selectIndex': WrapCommand.wrapCommand(SelectIndex.selectIndex),
+  'References.handleClickReference': WrapCommand.wrapCommand(HandleClickReference.handleClickReference),
 }
