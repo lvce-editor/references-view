@@ -27,6 +27,8 @@ test('getExpandedVirtualDom', () => {
       className: ClassNames.TreeItem,
       ariaExpanded: true,
       id: 'Reference-0',
+      'data-index': 0,
+      role: 'treeitem',
       childCount: 2,
       paddingLeft: '1rem',
     },

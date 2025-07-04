@@ -12,6 +12,8 @@ export const getCollapsedVirtualDom = (location: DisplayReference): readonly Vir
       className: ClassNames.TreeItem,
       ariaExpanded: false,
       id: `Reference-${index}`,
+      'data-index': index,
+      role: 'treeitem',
       childCount: 1,
     },
     VirtualDomHelpers.text(name),

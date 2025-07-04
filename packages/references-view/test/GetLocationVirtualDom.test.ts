@@ -25,6 +25,8 @@ test('getLocationVirtualDom with leaf type', () => {
     type: VirtualDomElements.Div,
     className: ClassNames.TreeItem,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 1,
     paddingLeft: '2rem',
   })
@@ -52,6 +54,8 @@ test('getLocationVirtualDom with collapsed type', () => {
     className: ClassNames.TreeItem,
     ariaExpanded: false,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 1,
   })
 })
@@ -78,6 +82,8 @@ test('getLocationVirtualDom with expanded type', () => {
     className: ClassNames.TreeItem,
     ariaExpanded: true,
     id: 'Reference-0',
+    'data-index': 0,
+    role: 'treeitem',
     childCount: 2,
     paddingLeft: '1rem',
   })
