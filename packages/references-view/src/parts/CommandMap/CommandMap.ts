@@ -8,6 +8,7 @@ import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import * as GetKeyBindings from '../GetKeyBindings/GetKeyBindings.ts'
 import * as HandleClickReference from '../HandleClickReference/HandleClickReference.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
@@ -17,7 +18,6 @@ import * as RenderEventListeners from '../RenderEventListeners/RenderEventListen
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectIndex from '../SelectIndex/SelectIndex.ts'
-import * as GetKeyBindings from '../GetKeyBindings/GetKeyBindings.ts'
 
 export const commandMap = {
   'References.create': Create.create,
