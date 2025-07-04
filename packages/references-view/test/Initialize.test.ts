@@ -25,7 +25,7 @@ test('initialize - success', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker',
     expect.anything(),
     'HandleMessagePort.handleMessagePort2',
-    55,
+    0,
   )
   expect(mockInvokeRendererWorker).toHaveBeenNthCalledWith(
     2,
