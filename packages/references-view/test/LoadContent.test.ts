@@ -105,6 +105,9 @@ test('loadContent - handles empty references', async () => {
       if (method === 'FileSystem.readFile') {
         return ''
       }
+      if (method === 'IconTheme.getIcons') {
+        return []
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
