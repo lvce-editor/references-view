@@ -15,6 +15,7 @@ import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectIndex from '../SelectIndex/SelectIndex.ts'
+import * as HandleClickReference from '../HandleClickReference/HandleClickReference.ts'
 
 export const commandMap = {
   'References.create': Create.create,
@@ -33,4 +34,5 @@ export const commandMap = {
   'References.saveState': SaveState.saveState,
   'References.renderEventListeners': RenderEventListeners.renderEventListeners,
   'References.selectIndex': SelectIndex.selectIndex,
+  'References.handleClickReference': HandleClickReference.handleClickReference,
 }
