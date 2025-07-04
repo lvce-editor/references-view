@@ -1,8 +1,8 @@
-import { jest, test, expect } from '@jest/globals'
-import * as RenderActions from '../src/parts/RenderActions/RenderActions.ts'
+import { expect, test } from '@jest/globals'
 import * as ActionType from '../src/parts/ActionType/ActionType.ts'
 import * as Icon from '../src/parts/Icon/Icon.ts'
 import * as LocationStrings from '../src/parts/LocationStrings/LocationsStrings.ts'
+import * as RenderActions from '../src/parts/RenderActions/RenderActions.ts'
 
 test('renderActions returns correct action buttons', () => {
   const actions = RenderActions.renderActions()
