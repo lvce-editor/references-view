@@ -6,6 +6,7 @@ export const commandIds: readonly string[] = [
   'focusLast',
   'focusNext',
   'focusPrevious',
+  'getKeyBindings',
   'handleClickReference',
   'restoreState',
   'saveState',
