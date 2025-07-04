@@ -1,5 +1,4 @@
-import { jest, test, expect } from '@jest/globals'
-import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
+import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleClickReference } from '../src/parts/HandleClickReference/HandleClickReference.ts'
 
