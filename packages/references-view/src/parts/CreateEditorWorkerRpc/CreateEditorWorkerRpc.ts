@@ -6,7 +6,7 @@ export const createEditorWorkerRpc = async (): Promise<Rpc> => {
   try {
     const rpc = await TransferMessagePortRpcParent.create({
       commandMap: {},
-      send: SendMessagePortToEditorWorker.sendMessagePortToEditorWorker,
+      send: (port: any) => SendMessagePortToEditorWorker.sendMessagePortToEditorWorker(port, 0),
     })
     return rpc
   } catch (error) {
