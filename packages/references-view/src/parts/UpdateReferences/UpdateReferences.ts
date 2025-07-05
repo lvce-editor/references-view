@@ -20,6 +20,7 @@ export const updateReferences = async (state: ReferencesState, uri: string, lang
     message,
     offset,
     uri,
+    languageId,
   }
 }
 
