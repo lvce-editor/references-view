@@ -8,7 +8,10 @@ import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadContent - loads references and updates state', async () => {
-  const mockReferences: readonly { readonly uri: string; readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } } }[] = [
+  const mockReferences: readonly {
+    readonly uri: string
+    readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } }
+  }[] = [
     { uri: 'file:///test1.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 10 } } },
     { uri: 'file:///test2.ts', range: { start: { line: 5, character: 0 }, end: { line: 5, character: 15 } } },
   ]
@@ -25,6 +28,9 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
       }
+      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
+        return mockReferences
+      }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
@@ -37,6 +43,18 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'IconTheme.getIcons') {
         return []
       }
+      if (method === 'Editor.getUri') {
+        return ''
+      }
+      if (method === 'Editor.getLanguageId') {
+        return 'test'
+      }
+      if (method === 'Editor.getPositionAtCursor') {
+        return {
+          rowIndex: 0,
+          columnIndex: 0,
+        }
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -45,7 +63,7 @@ test('loadContent - loads references and updates state', async () => {
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(1)
-  const result: ReferencesState = await LoadContent.loadContent(initialState)
+  const result: ReferencesState = await LoadContent.loadContent(initialState, {})
 
   expect(result.id).toBe(1)
   expect(result.references).toEqual([
@@ -109,6 +127,18 @@ test('loadContent - handles empty references', async () => {
       if (method === 'IconTheme.getIcons') {
         return []
       }
+      if (method === 'Editor.getUri') {
+        return ''
+      }
+      if (method === 'Editor.getLanguageId') {
+        return 'test'
+      }
+      if (method === 'Editor.getPositionAtCursor') {
+        return {
+          rowIndex: 0,
+          columnIndex: 0,
+        }
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -117,7 +147,7 @@ test('loadContent - handles empty references', async () => {
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(2)
-  const result: ReferencesState = await LoadContent.loadContent(initialState)
+  const result: ReferencesState = await LoadContent.loadContent(initialState, {})
 
   expect(result.id).toBe(2)
   expect(result.references).toEqual([])
@@ -128,7 +158,10 @@ test('loadContent - handles empty references', async () => {
 })
 
 test('loadContent - preserves existing state properties', async () => {
-  const mockReferences: readonly { readonly uri: string; readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } } }[] = [{ uri: 'file:///test.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 5 } } }]
+  const mockReferences: readonly {
+    readonly uri: string
+    readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } }
+  }[] = [{ uri: 'file:///test.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 5 } } }]
 
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -154,6 +187,18 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'IconTheme.getIcons') {
         return []
       }
+      if (method === 'Editor.getUri') {
+        return ''
+      }
+      if (method === 'Editor.getLanguageId') {
+        return 'test'
+      }
+      if (method === 'Editor.getPositionAtCursor') {
+        return {
+          rowIndex: 0,
+          columnIndex: 0,
+        }
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -162,7 +207,7 @@ test('loadContent - preserves existing state properties', async () => {
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(3)
-  const result: ReferencesState = await LoadContent.loadContent(initialState)
+  const result: ReferencesState = await LoadContent.loadContent(initialState, {})
 
   expect(result.id).toBe(3)
   expect(result.focusedIndex).toBe(-1)
