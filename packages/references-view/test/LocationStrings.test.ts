@@ -1,5 +1,14 @@
 import { test, expect } from '@jest/globals'
-import { noResults, oneResultInOneFile, locations, manyResultsInOneFile, manyResultsInManyFiles, refresh, clear, collapseAll } from '../src/parts/LocationStrings/LocationsStrings.js'
+import {
+  noResults,
+  oneResultInOneFile,
+  locations,
+  manyResultsInOneFile,
+  manyResultsInManyFiles,
+  refresh,
+  clear,
+  collapseAll,
+} from '../src/parts/LocationStrings/LocationsStrings.js'
 
 test('noResults should return correct string', () => {
   const result = noResults()
