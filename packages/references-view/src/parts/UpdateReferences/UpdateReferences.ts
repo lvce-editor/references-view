@@ -1,9 +1,9 @@
+import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
 import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 import * as GetDisplayReferences from '../GetDisplayReferences/GetDisplayReferences.ts'
 import * as GetReferencesFileCount from '../GetReferencesFileCount/GetReferencesFileCount.ts'
 import * as GetReferencesMessage from '../GetReferencesMessage/GetReferencesMessage.ts'
 import * as References from '../References/References.ts'
-import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 import { requestFileIcons } from '../RequestFileIcons/RequestFileIcons.ts'
 
