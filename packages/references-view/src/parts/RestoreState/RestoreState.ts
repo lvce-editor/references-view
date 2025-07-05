@@ -1,7 +1,7 @@
 export interface RestoredState {
   readonly focusedIndex: number
   readonly offset: number
-  readonly uri: number
+  readonly uri: string
 }
 
 const restoreFocusedIndex = (state: unknown): number => {
