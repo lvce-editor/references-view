@@ -11,6 +11,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     fileIconCache: {},
     offset: -1,
     uri: '',
+    languageId: '',
   }
   ReferencesStates.set(id, state, state)
 }

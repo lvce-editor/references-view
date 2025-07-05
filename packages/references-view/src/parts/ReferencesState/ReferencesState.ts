@@ -11,4 +11,5 @@ export interface ReferencesState {
   readonly references: readonly Reference[]
   readonly offset: number
   readonly uri: string
+  readonly languageId: string
 }
