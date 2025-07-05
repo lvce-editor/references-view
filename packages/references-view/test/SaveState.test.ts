@@ -26,6 +26,7 @@ test('saveState should return SavedState with message and focusedIndex from Refe
     focusedIndex: 0,
     offset: -1,
     uri: '',
+    languageId: '',
   })
 })
 
@@ -50,5 +51,6 @@ test('saveState should return SavedState with empty message and focusedIndex whe
     focusedIndex: 5,
     offset: -1,
     uri: '',
+    languageId: '',
   })
 })
