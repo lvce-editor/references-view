@@ -1,5 +1,4 @@
 import { test, expect } from '@jest/globals'
-import type { SavedState } from '../src/parts/SavedState/SavedState.ts'
 import { restoreState } from '../src/parts/RestoreState/RestoreState.ts'
 
 test('restoreState should return RestoredState with focusedIndex from valid SavedState', () => {
