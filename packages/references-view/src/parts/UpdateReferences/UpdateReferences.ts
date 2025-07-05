@@ -7,17 +7,8 @@ import * as References from '../References/References.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 import { requestFileIcons } from '../RequestFileIcons/RequestFileIcons.ts'
 
-export const loadContent = async (state: ReferencesState, savedState: unknown): Promise<ReferencesState> => {
-  // TODO need to wait for editor
-  const editorId = await RendererWorker.getActiveEditorId()
-  if (editorId === -1) {
-    return {
-      ...state,
-      message: 'No Editor found',
-    }
-  }
-  const offset = await EditorWorker.getOffsetAtCursor(editorId)
-  const references = await References.getReferences(editorId, offset)
+export const updateReferences = async (state: ReferencesState, uri: string, languageId: string, offset: number, position: any): Promise<ReferencesState> => {
+  const references = await References.getReferences2(uri, languageId, offset, position)
   const icons = await requestFileIcons(references)
   const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons)
   const fileCount = GetReferencesFileCount.getFileCount(references)
@@ -28,5 +19,22 @@ export const loadContent = async (state: ReferencesState, savedState: unknown): 
     displayReferences,
     message,
     offset,
+    uri,
   }
+}
+
+export const getAndUpdateReferences = async (state: ReferencesState): Promise<ReferencesState> => {
+  // TODO need to wait for editor
+  const editorId = await RendererWorker.getActiveEditorId()
+  if (editorId === -1) {
+    return {
+      ...state,
+      message: 'No Editor found',
+    }
+  }
+  const uri = await EditorWorker.getUri(editorId)
+  const languageId = await EditorWorker.getLanguageId(editorId)
+  const offset = await EditorWorker.getOffsetAtCursor(editorId)
+  const position = await EditorWorker.getPositionAtCursor(editorId)
+  return updateReferences(state, uri, languageId, offset, position)
 }
