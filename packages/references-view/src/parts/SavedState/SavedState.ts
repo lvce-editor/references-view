@@ -3,4 +3,5 @@ export interface SavedState {
   readonly focusedIndex: number
   readonly offset: number
   readonly uri: string
+  readonly languageId: string
 }

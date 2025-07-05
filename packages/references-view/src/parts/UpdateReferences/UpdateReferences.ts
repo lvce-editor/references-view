@@ -1,3 +1,4 @@
+import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
 import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 import * as GetDisplayReferences from '../GetDisplayReferences/GetDisplayReferences.ts'
 import * as GetReferencesFileCount from '../GetReferencesFileCount/GetReferencesFileCount.ts'
@@ -33,8 +34,8 @@ export const getAndUpdateReferences = async (state: ReferencesState): Promise<Re
       message: 'No Editor found',
     }
   }
-  const uri = await EditorWorker.invoke('Editor.getUri', editorId)
-  const languageId = await EditorWorker.invoke('Editor.getLanguageId', editorId)
+  const uri = await EditorWorker.getUri(editorId)
+  const languageId = await EditorWorker.getLanguageId(editorId)
   const offset = await EditorWorker.getOffsetAtCursor(editorId)
   const position = await EditorWorker.getPositionAtCursor(editorId)
   return updateReferences(state, uri, languageId, offset, position)
