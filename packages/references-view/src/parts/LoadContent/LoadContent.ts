@@ -7,7 +7,7 @@ import * as References from '../References/References.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 import { requestFileIcons } from '../RequestFileIcons/RequestFileIcons.ts'
 
-export const loadContent = async (state: ReferencesState): Promise<ReferencesState> => {
+export const loadContent = async (state: ReferencesState, savedState: unknown): Promise<ReferencesState> => {
   // TODO need to wait for editor
   const editorId = await RendererWorker.getActiveEditorId()
   if (editorId === -1) {
