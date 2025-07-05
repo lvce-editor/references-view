@@ -2,7 +2,7 @@ export interface RestoredState {
   readonly focusedIndex: number
   readonly offset: number
   readonly uri: string
-  readonly language: string
+  readonly languageId: string
   readonly position: any
 }
 
