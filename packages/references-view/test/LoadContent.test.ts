@@ -175,6 +175,9 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
       }
+      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
+        return mockReferences
+      }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
