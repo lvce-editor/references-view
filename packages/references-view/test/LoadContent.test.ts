@@ -28,9 +28,6 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
       }
-      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
-        return mockReferences
-      }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
@@ -43,18 +40,6 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'IconTheme.getIcons') {
         return []
       }
-      if (method === 'Editor.getUri') {
-        return ''
-      }
-      if (method === 'Editor.getLanguageId') {
-        return 'test'
-      }
-      if (method === 'Editor.getPositionAtCursor') {
-        return {
-          rowIndex: 0,
-          columnIndex: 0,
-        }
-      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -63,7 +48,7 @@ test('loadContent - loads references and updates state', async () => {
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(1)
-  const result: ReferencesState = await LoadContent.loadContent(initialState, {})
+  const result: ReferencesState = await LoadContent.loadContent(initialState)
 
   expect(result.id).toBe(1)
   expect(result.references).toEqual([
@@ -115,9 +100,6 @@ test('loadContent - handles empty references', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return []
       }
-      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
-        return []
-      }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
@@ -130,18 +112,6 @@ test('loadContent - handles empty references', async () => {
       if (method === 'IconTheme.getIcons') {
         return []
       }
-      if (method === 'Editor.getUri') {
-        return ''
-      }
-      if (method === 'Editor.getLanguageId') {
-        return 'test'
-      }
-      if (method === 'Editor.getPositionAtCursor') {
-        return {
-          rowIndex: 0,
-          columnIndex: 0,
-        }
-      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -150,7 +120,7 @@ test('loadContent - handles empty references', async () => {
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(2)
-  const result: ReferencesState = await LoadContent.loadContent(initialState, {})
+  const result: ReferencesState = await LoadContent.loadContent(initialState)
 
   expect(result.id).toBe(2)
   expect(result.references).toEqual([])
@@ -178,9 +148,6 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return mockReferences
       }
-      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
-        return mockReferences
-      }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
@@ -193,18 +160,6 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'IconTheme.getIcons') {
         return []
       }
-      if (method === 'Editor.getUri') {
-        return ''
-      }
-      if (method === 'Editor.getLanguageId') {
-        return 'test'
-      }
-      if (method === 'Editor.getPositionAtCursor') {
-        return {
-          rowIndex: 0,
-          columnIndex: 0,
-        }
-      }
       throw new Error(`unexpected method ${method}`)
     },
   })
@@ -213,7 +168,7 @@ test('loadContent - preserves existing state properties', async () => {
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(3)
-  const result: ReferencesState = await LoadContent.loadContent(initialState, {})
+  const result: ReferencesState = await LoadContent.loadContent(initialState)
 
   expect(result.id).toBe(3)
   expect(result.focusedIndex).toBe(-1)
