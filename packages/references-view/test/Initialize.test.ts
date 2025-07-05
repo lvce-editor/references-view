@@ -32,7 +32,7 @@ test('initialize - success', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker',
     expect.anything(),
     'HandleMessagePort.handleMessagePort',
-    55,
+    0,
   )
 })
 
