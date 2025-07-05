@@ -24,6 +24,7 @@ test('saveState should return SavedState with message and focusedIndex from Refe
   expect(result).toEqual({
     message: 'Test message',
     focusedIndex: 0,
+    offset: -1,
   })
 })
 
@@ -46,5 +47,6 @@ test('saveState should return SavedState with empty message and focusedIndex whe
   expect(result).toEqual({
     message: '',
     focusedIndex: 5,
+    offset: -1,
   })
 })
