@@ -1,4 +1,3 @@
-import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
 import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 import * as GetDisplayReferences from '../GetDisplayReferences/GetDisplayReferences.ts'
 import * as GetReferencesFileCount from '../GetReferencesFileCount/GetReferencesFileCount.ts'
