@@ -8,6 +8,7 @@ export const createDefaultState = (uid = 0): ReferencesState => {
     displayReferences: [],
     focusedIndex: -1,
     fileIconCache: {},
+    offset: -1,
   }
   return state
 }
