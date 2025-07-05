@@ -16,6 +16,8 @@ export const loadContent = async (state: ReferencesState): Promise<ReferencesSta
       message: 'No Editor found',
     }
   }
+  const uri = await EditorWorker.invoke('Editor.getUri', editorId)
+  console.log({ uri })
   const offset = await EditorWorker.getOffsetAtCursor(editorId)
   const references = await References.getReferences(editorId, offset)
   const icons = await requestFileIcons(references)
