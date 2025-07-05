@@ -1,11 +1,12 @@
 import type { SavedState } from '../SavedState/SavedState.ts'
-import * as r from '../ReferencesStates/ReferencesStates.ts'
+import * as ReferencesStates from '../ReferencesStates/ReferencesStates.ts'
 
 export const saveState = (id: number): SavedState => {
-  const { newState } = r.get(id)
-  const { message, focusedIndex } = newState
+  const { newState } = ReferencesStates.get(id)
+  const { message, focusedIndex, offset } = newState
   return {
     message,
     focusedIndex,
+    offset,
   }
 }
