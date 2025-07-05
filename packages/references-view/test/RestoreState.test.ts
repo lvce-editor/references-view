@@ -12,6 +12,7 @@ test('restoreState should return RestoredState with focusedIndex from valid Save
 
   expect(result).toEqual({
     focusedIndex: 5,
+    offset: -1,
   })
 })
 
@@ -20,6 +21,7 @@ test('restoreState should return RestoredState with default focusedIndex when in
 
   expect(result).toEqual({
     focusedIndex: -1,
+    offset: -1,
   })
 })
 
@@ -28,6 +30,7 @@ test('restoreState should return RestoredState with default focusedIndex when in
 
   expect(result).toEqual({
     focusedIndex: -1,
+    offset: -1,
   })
 })
 
@@ -36,6 +39,7 @@ test('restoreState should return RestoredState with default focusedIndex when in
 
   expect(result).toEqual({
     focusedIndex: -1,
+    offset: -1,
   })
 })
 
@@ -48,6 +52,7 @@ test('restoreState should return RestoredState with default focusedIndex when fo
 
   expect(result).toEqual({
     focusedIndex: -1,
+    offset: -1,
   })
 })
 
@@ -61,5 +66,6 @@ test('restoreState should return RestoredState with focusedIndex 0', () => {
 
   expect(result).toEqual({
     focusedIndex: 0,
+    offset: -1,
   })
 })
