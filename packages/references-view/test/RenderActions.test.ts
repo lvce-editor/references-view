@@ -13,20 +13,20 @@ test('renderActions returns correct action buttons', () => {
     type: ActionType.Button,
     id: LocationStrings.refresh(),
     icon: Icon.Refresh,
-    command: 'refresh',
+    command: 'References.refresh',
   })
 
   expect(actions[1]).toEqual({
     type: ActionType.Button,
     id: LocationStrings.clear(),
     icon: Icon.ClearAll,
-    command: 'clear',
+    command: 'References.clear',
   })
 
   expect(actions[2]).toEqual({
     type: ActionType.Button,
     id: LocationStrings.collapseAll(),
     icon: Icon.CollapseAll,
-    command: 'collapseAll',
+    command: 'References.collapseAll',
   })
 })

@@ -8,19 +8,19 @@ export const renderActions = (): readonly any[] => {
       type: ActionType.Button,
       id: ViewletReferencesStrings.refresh(),
       icon: Icon.Refresh,
-      command: 'refresh',
+      command: 'References.refresh',
     },
     {
       type: ActionType.Button,
       id: ViewletReferencesStrings.clear(),
       icon: Icon.ClearAll,
-      command: 'clear',
+      command: 'References.clear',
     },
     {
       type: ActionType.Button,
       id: ViewletReferencesStrings.collapseAll(),
       icon: Icon.CollapseAll,
-      command: 'collapseAll',
+      command: 'References.collapseAll',
     },
   ]
 }
