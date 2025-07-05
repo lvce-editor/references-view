@@ -17,9 +17,11 @@ export const loadContent = async (state: ReferencesState): Promise<ReferencesSta
     }
   }
   const uri = await EditorWorker.invoke('Editor.getUri', editorId)
+  const languageId = await EditorWorker.invoke('Editor.getLanguageId', editorId)
   console.log({ uri })
   const offset = await EditorWorker.getOffsetAtCursor(editorId)
-  const references = await References.getReferences(editorId, offset)
+  // @ts-ignore
+  const references = await References.getReferences2(uri, languageId, offset)
   const icons = await requestFileIcons(references)
   const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons)
   const fileCount = GetReferencesFileCount.getFileCount(references)

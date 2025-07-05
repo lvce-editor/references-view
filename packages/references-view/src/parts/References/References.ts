@@ -8,8 +8,8 @@ export const getReferences = async (editorId: number, offset: number): Promise<r
   return withPreview
 }
 
-export const getReferences2 = async (uri: string, offset: number): Promise<readonly Reference[]> => {
-  const references = await ExtensionHostReference.executeReferenceProvider2(uri, offset)
+export const getReferences2 = async (uri: string, languageId: string, offset: number): Promise<readonly Reference[]> => {
+  const references = await ExtensionHostReference.executeReferenceProvider2(uri, languageId, offset)
   const withPreview = await GetReferencesWithPreview.getReferencesWithPreview(references)
   return withPreview
 }
