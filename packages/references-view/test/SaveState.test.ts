@@ -25,6 +25,7 @@ test('saveState should return SavedState with message and focusedIndex from Refe
     message: 'Test message',
     focusedIndex: 0,
     offset: -1,
+    uri: '',
   })
 })
 
@@ -48,5 +49,6 @@ test('saveState should return SavedState with empty message and focusedIndex whe
     message: '',
     focusedIndex: 5,
     offset: -1,
+    uri: '',
   })
 })

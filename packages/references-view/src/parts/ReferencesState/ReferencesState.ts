@@ -10,4 +10,5 @@ export interface ReferencesState {
   readonly message: string
   readonly references: readonly Reference[]
   readonly offset: number
+  readonly uri: string
 }
