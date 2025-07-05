@@ -13,6 +13,8 @@ test('restoreState should return RestoredState with focusedIndex from valid Save
     focusedIndex: 5,
     offset: -1,
     uri: '',
+    languageId: '',
+    position: {},
   })
 })
 
@@ -23,6 +25,8 @@ test('restoreState should return RestoredState with default focusedIndex when in
     focusedIndex: -1,
     offset: -1,
     uri: '',
+    languageId: '',
+    position: {},
   })
 })
 
@@ -33,6 +37,8 @@ test('restoreState should return RestoredState with default focusedIndex when in
     focusedIndex: -1,
     offset: -1,
     uri: '',
+    languageId: '',
+    position: {},
   })
 })
 
@@ -43,6 +49,8 @@ test('restoreState should return RestoredState with default focusedIndex when in
     focusedIndex: -1,
     offset: -1,
     uri: '',
+    languageId: '',
+    position: {},
   })
 })
 
@@ -57,6 +65,8 @@ test('restoreState should return RestoredState with default focusedIndex when fo
     focusedIndex: -1,
     offset: -1,
     uri: '',
+    languageId: '',
+    position: {},
   })
 })
 
@@ -72,5 +82,7 @@ test('restoreState should return RestoredState with focusedIndex 0', () => {
     focusedIndex: 0,
     offset: -1,
     uri: '',
+    languageId: '',
+    position: {},
   })
 })

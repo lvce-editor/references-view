@@ -13,11 +13,11 @@ export const executeReferenceProvider = async (editorId: number, offset: number)
   return result
 }
 
-export const executeReferenceProvider2 = async (uri: string, offset: number): Promise<readonly any[]> => {
+export const executeReferenceProvider2 = async (uri: string, languageId: string, offset: number, position: any): Promise<readonly any[]> => {
   const result = await ExecuteProvider.executeProvider({
     event: ExtensionHostActivationEvent.OnReferences,
     method: ExtensionHostCommandType.ReferenceExecuteReferenceProvider2,
-    params: [uri, offset],
+    params: [uri, languageId, offset, position],
   })
   Assert.array(result)
   return result
