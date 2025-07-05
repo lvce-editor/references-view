@@ -19,7 +19,6 @@ export const loadContent = async (state: ReferencesState): Promise<ReferencesSta
     }
     const uri = await EditorWorker.invoke('Editor.getUri', editorId)
     const languageId = await EditorWorker.invoke('Editor.getLanguageId', editorId)
-    console.log({ uri })
     const offset = await EditorWorker.getOffsetAtCursor(editorId)
     const position = await EditorWorker.getPositionAtCursor(editorId)
     // @ts-ignore
@@ -34,6 +33,7 @@ export const loadContent = async (state: ReferencesState): Promise<ReferencesSta
       displayReferences,
       message,
       offset,
+      uri,
     }
   } catch (error) {
     // TODO send error to error worker
