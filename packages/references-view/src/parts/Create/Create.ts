@@ -10,6 +10,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     focusedIndex: -1,
     fileIconCache: {},
     offset: -1,
+    uri: '',
   }
   ReferencesStates.set(id, state, state)
 }
