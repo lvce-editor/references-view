@@ -115,6 +115,9 @@ test('loadContent - handles empty references', async () => {
       if (method === 'ExtensionHostReference.executeReferenceProvider') {
         return []
       }
+      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
+        return []
+      }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
       }
