@@ -1,7 +1,7 @@
+import { cp, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { root } from './root.js'
-import { cp } from 'node:fs/promises'
 
 const sharedProcessPath = join(root, 'packages', 'server', 'node_modules', '@lvce-editor', 'shared-process', 'index.js')
 
@@ -15,18 +15,23 @@ const { commitHash } = await sharedProcess.exportStatic({
   extensionPath: '',
 })
 
-await cp(
-  join(root, '.tmp', 'dist', 'dist', 'referencesViewWorkerMain.js'),
-  join(root, 'dist', commitHash, 'packages', 'references-view', 'dist', 'referencesViewWorkerMain.js'),
-)
+const rendererWorkerPath = join(root, 'dist', commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
 
-const nodeModulesPath = join(root, 'packages', 'server', 'node_modules')
+export const getRemoteUrl = (path) => {
+  const url = pathToFileURL(path).toString().slice(8)
+  return `/remote/${url}`
+}
 
-const serverStaticPath = join(nodeModulesPath, '@lvce-editor', 'static-server', 'static')
+const content = await readFile(rendererWorkerPath, 'utf8')
+const workerPath = join(root, '.tmp/dist/dist/debugSearchWorkerMain.js')
+const remoteUrl = getRemoteUrl(workerPath)
 
-await cp(
-  join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js.original'),
-  join(root, 'dist', commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js'),
-)
+if (content.includes('// const referencesViewWorkerUrl = ')) {
+  const occurrence = `// const referencesViewWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\`
+  const referencesViewWorkerUrl = \`${remoteUrl}\``
+  const replacement = `const referencesViewWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\``
+  const newContent = content.replace(occurrence, replacement)
+  await writeFile(rendererWorkerPath, newContent)
+}
 
 await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })
