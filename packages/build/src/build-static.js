@@ -23,7 +23,7 @@ export const getRemoteUrl = (path) => {
 }
 
 const content = await readFile(rendererWorkerPath, 'utf8')
-const workerPath = join(root, '.tmp/dist/dist/debugSearchWorkerMain.js')
+const workerPath = join(root, '.tmp/dist/dist/referencesViewWorkerMain.js')
 const remoteUrl = getRemoteUrl(workerPath)
 
 if (content.includes('// const referencesViewWorkerUrl = ')) {
