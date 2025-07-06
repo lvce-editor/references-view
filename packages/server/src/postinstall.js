@@ -30,7 +30,6 @@ const content = await readFile(rendererWorkerMainPath, 'utf-8')
 
 const remoteUrl = getRemoteUrl(workerPath)
 if (!content.includes('// const referencesWorkerUrl = ')) {
-  await cp(rendererWorkerMainPath, rendererWorkerMainPath + '.original')
   const occurrence = `const referencesWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\``
   const replacement = `// const referencesWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\`
   const referencesWorkerUrl = \`${remoteUrl}\``
