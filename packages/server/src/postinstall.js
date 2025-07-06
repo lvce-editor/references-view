@@ -1,8 +1,8 @@
-import { readdir, readFile, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { cp, readFile, readdir, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = import.meta.dirname
 
 const root = join(__dirname, '..', '..', '..')
 
@@ -27,8 +27,10 @@ const commitHash = dirents.find(isCommitHash) || ''
 const rendererWorkerMainPath = join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
 
 const content = await readFile(rendererWorkerMainPath, 'utf-8')
+
 const remoteUrl = getRemoteUrl(workerPath)
 if (!content.includes('// const referencesWorkerUrl = ')) {
+  await cp(rendererWorkerMainPath, rendererWorkerMainPath + '.original')
   const occurrence = `const referencesWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\``
   const replacement = `// const referencesWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\`
   const referencesWorkerUrl = \`${remoteUrl}\``
