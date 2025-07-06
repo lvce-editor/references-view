@@ -26,12 +26,13 @@ const content = await readFile(rendererWorkerPath, 'utf8')
 const workerPath = join(root, '.tmp/dist/dist/referencesViewWorkerMain.js')
 const remoteUrl = getRemoteUrl(workerPath)
 
-if (content.includes('// const referencesViewWorkerUrl = ')) {
-  const occurrence = `// const referencesViewWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\`
-const referencesViewWorkerUrl = \`${remoteUrl}\``
-  const replacement = `const referencesViewWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\``
-  const newContent = content.replace(occurrence, replacement)
-  await writeFile(rendererWorkerPath, newContent)
+const occurrence = `// const referencesWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\`
+const referencesWorkerUrl = \`${remoteUrl}\``
+const replacement = `const referencesWorkerUrl = \`\${assetDir}/packages/references-view/dist/referencesViewWorkerMain.js\``
+if (!content.includes(occurrence)) {
+  throw new Error('occurrence not found')
 }
+const newContent = content.replace(occurrence, replacement)
+await writeFile(rendererWorkerPath, newContent)
 
 await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })
