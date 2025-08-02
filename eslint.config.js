@@ -28,6 +28,7 @@ export default [
       '@typescript-eslint/prefer-function-type': 'off',
       '@typescript-eslint/prefer-optional-chain': 'off',
       '@typescript-eslint/prefer-regexp-exec': 'off',
+      'no-restricted-syntax': 'off',
     },
   },
   {
