@@ -2,7 +2,7 @@ import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { getAndUpdateReferences, updateReferences } from '../UpdateReferences/UpdateReferences.ts'
 
-const isMemory = (uri: string) => {
+const isMemory = (uri: string): boolean => {
   return uri.startsWith('memfs://')
 }
 
