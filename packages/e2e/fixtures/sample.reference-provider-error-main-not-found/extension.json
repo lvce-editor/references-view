@@ -1,6 +1,6 @@
 {
   "browser": "not-found.js",
-  "activation": ["onReferences:xyz"],
+  "activation": ["onReferences:xyz", "onReferences"],
   "languages": [
     {
       "id": "xyz",
