@@ -2,38 +2,24 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'references.error'
 
-export const skip = 1
-
-export const test: Test = async ({ FileSystem, Main, Editor, Locator, expect }) => {
+export const test: Test = async ({ Extension, FileSystem, Main, Editor, Locator, expect }) => {
   // arrange
+  const url = import.meta.resolve('../fixtures/sample.reference-provider-error').toString()
+  await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
-    `${tmpDir}/tsconfig.json`,
-    JSON.stringify(
-      {
-        compilerOptions: {
-          lib: ['esnext'],
-          types: [],
-        },
-      },
-      null,
-      2,
-    ),
-  )
-  await FileSystem.writeFile(
-    `${tmpDir}/add.ts`,
+    `${tmpDir}/add.xyz`,
     `export const add = () => {}
 `,
   )
   await FileSystem.writeFile(
-    `${tmpDir}/test.ts`,
-    `import { add } from './not-found.ts'
+    `${tmpDir}/test.xyz`,
+    `import { add } from './not-found.xyz'
 
 add(1,2)
 `,
   )
-  await FileSystem.writeFile(`${tmpDir}/tsconfig.json`, `{}`)
-  await Main.openUri(`${tmpDir}/test.ts`)
+  await Main.openUri(`${tmpDir}/test.xyz`)
   await Editor.setCursor(2, 2)
 
   // act
@@ -41,6 +27,7 @@ add(1,2)
 
   // assert
   const viewletError = Locator('.Viewlet.Error')
+
   await expect(viewletError).toBeVisible()
-  await expect(viewletError).toHaveText('Error: Unexpected end of JSON input') // TODO
+  await expect(viewletError).toHaveText('Error: oops') // TODO
 }

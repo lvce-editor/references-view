@@ -1,7 +1,7 @@
 const referenceProvider = {
   languageId: 'xyz',
-  provideReferences(textDocument, offset) {
-    throw new Error('oops')
+  provideReferences2(textDocument, offset) {
+    throw new Error(`oops`)
   },
 }
 
