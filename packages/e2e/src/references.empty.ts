@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'references.empty'
 
-export const skip = 1
-
 export const test: Test = async ({ FileSystem, Main, Editor, Locator, expect, Extension }) => {
   // arrange
   const url = import.meta.resolve('../fixtures/sample.reference-provider-no-results').toString()
