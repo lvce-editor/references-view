@@ -1,5 +1,6 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
 import { clear } from '../Clear/Clear.ts'
+import { collapseAll } from '../CollapseAll/CollapseAll.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
@@ -37,6 +38,7 @@ export const commandMap = {
   'References.initialize': Initialize.initialize,
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'References.render2': Render2.render2,
+  'References.collapseAll': WrapCommand.wrapCommand(collapseAll),
   'References.renderActions': RenderActions.renderActions,
   'References.renderEventListeners': RenderEventListeners.renderEventListeners,
   'References.restoreState': RestoreState.restoreState,
