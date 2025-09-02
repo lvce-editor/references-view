@@ -7,7 +7,6 @@ import * as FocusIndex from '../FocusIndex/FocusIndex.ts'
 import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
-import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as GetKeyBindings from '../GetKeyBindings/GetKeyBindings.ts'
 import * as HandleClickReference from '../HandleClickReference/HandleClickReference.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
@@ -29,7 +28,7 @@ export const commandMap = {
   'References.focusLast': WrapCommand.wrapCommand(FocusLast.focusLast),
   'References.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
   'References.focusPrevious': WrapCommand.wrapCommand(FocusPrevious.focusPrevious),
-  'References.getCommandIds': GetCommandIds.getCommandIds,
+  'References.getCommandIds': WrapCommand.getCommandIds,
   'References.getKeyBindings': GetKeyBindings.getKeyBindings,
   'References.handleClickReference': WrapCommand.wrapCommand(HandleClickReference.handleClickReference),
   'References.initialize': Initialize.initialize,
