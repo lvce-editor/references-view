@@ -5,7 +5,9 @@ import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getDisplayReferences with empty references', () => {
   const references: readonly Reference[] = []
-  const result = GetDisplayReferences.getDisplayReferences(references, [])
+
+  const collapsedUris: readonly string[] = []
+  const result = GetDisplayReferences.getDisplayReferences(references, [], collapsedUris)
   expect(result).toEqual([])
 })
 
@@ -19,7 +21,9 @@ test('getDisplayReferences with single reference', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, [''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, [''], collapsedUris)
 
   expect(result).toHaveLength(2)
 
@@ -70,7 +74,9 @@ test('getDisplayReferences with multiple references in same file', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, ['', ''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, ['', ''], collapsedUris)
 
   expect(result).toHaveLength(3)
 
@@ -136,7 +142,9 @@ test('getDisplayReferences with references from different files', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, ['', ''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, ['', ''], collapsedUris)
 
   expect(result).toHaveLength(4)
 
@@ -211,7 +219,9 @@ test('getDisplayReferences with startOffset and endOffset instead of column indi
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, [''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, [''], collapsedUris)
 
   expect(result[1]).toEqual({
     depth: 2,
@@ -238,7 +248,9 @@ test('getDisplayReferences with empty lineText', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, [''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, [''], collapsedUris)
 
   expect(result[1]).toEqual({
     depth: 2,
@@ -264,7 +276,9 @@ test('getDisplayReferences with missing lineText', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, [''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, [''], collapsedUris)
 
   expect(result[1]).toEqual({
     depth: 2,
@@ -291,7 +305,9 @@ test('getDisplayReferences with file path without extension', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, [''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, [''], collapsedUris)
 
   expect(result[0]).toEqual({
     depth: 1,
@@ -318,7 +334,9 @@ test('getDisplayReferences with empty uri', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, [''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, [''], collapsedUris)
 
   expect(result[0]).toEqual({
     depth: 2,
@@ -363,7 +381,9 @@ test('getDisplayReferences with complex file structure', () => {
     },
   ]
 
-  const result = GetDisplayReferences.getDisplayReferences(references, ['', '', '', ''])
+  const collapsedUris: readonly string[] = []
+
+  const result = GetDisplayReferences.getDisplayReferences(references, ['', '', '', ''], collapsedUris)
 
   expect(result).toHaveLength(7)
 
