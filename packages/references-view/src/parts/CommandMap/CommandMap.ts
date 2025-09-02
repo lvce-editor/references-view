@@ -42,5 +42,5 @@ export const commandMap = {
   'References.saveState': SaveState.saveState,
   'References.selectIndex': WrapCommand.wrapCommand(SelectIndex.selectIndex),
   'References.terminate': terminate,
-  'References.clear': WrapCommand.dispose(clear),
+  'References.clear': WrapCommand.wrapCommand(clear),
 }
