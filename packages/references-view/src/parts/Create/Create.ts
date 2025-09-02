@@ -12,6 +12,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     offset: -1,
     uri: '',
     languageId: '',
+    collapsedUris: [],
   }
   ReferencesStates.set(id, state, state)
 }
