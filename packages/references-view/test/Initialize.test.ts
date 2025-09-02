@@ -1,16 +1,13 @@
-import { test, expect, jest } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
+import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.js'
 import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.js'
 import { initialize } from '../src/parts/Initialize/Initialize.js'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('initialize - success', async () => {
-  const mockInvokeRendererWorker = jest.fn()
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: () => {},
-    invokeAndTransfer: mockInvokeRendererWorker,
+  const mockRpc = RendererWorker.registerMockRpc({
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {},
   })
   RendererWorker.set(mockRpc)
 
@@ -19,78 +16,55 @@ test('initialize - success', async () => {
   await EditorWorker.dispose()
   await ExtensionHost.dispose()
 
-  expect(mockInvokeRendererWorker).toHaveBeenCalledTimes(2)
-  expect(mockInvokeRendererWorker).toHaveBeenNthCalledWith(
-    1,
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker',
-    expect.anything(),
-    'HandleMessagePort.handleMessagePort2',
-    0,
-  )
-  expect(mockInvokeRendererWorker).toHaveBeenNthCalledWith(
-    2,
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker',
-    expect.anything(),
-    'HandleMessagePort.handleMessagePort',
-    0,
-  )
+  expect(mockRpc.invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort2', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort', 0],
+  ])
 })
 
 test('initialize - editor worker error', async () => {
-  const mockInvokeRendererWorker = jest.fn()
-  mockInvokeRendererWorker
-    .mockResolvedValueOnce(undefined as never) // Extension host succeeds
-    .mockRejectedValueOnce(new Error('editor worker error') as never) // Editor worker fails
-
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: () => {},
-    invokeAndTransfer: mockInvokeRendererWorker,
+  const mockRpc = RendererWorker.registerMockRpc({
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {
+      throw new Error('editor worker error')
+    },
   })
-  RendererWorker.set(mockRpc)
-
-  // Should not throw since InitializeEditorWorker catches errors
   await initialize()
-
   await ExtensionHost.dispose()
-
-  expect(mockInvokeRendererWorker).toHaveBeenCalledTimes(2)
+  expect(mockRpc.invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort2', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort', 0],
+  ])
 })
 
 test('initialize - extension host error', async () => {
-  const mockInvokeRendererWorker = jest.fn()
-  mockInvokeRendererWorker
-    .mockRejectedValueOnce(new Error('extension host error') as never) // Extension host fails
-    .mockResolvedValueOnce(undefined as never) // Editor worker succeeds
-
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: () => {},
-    invokeAndTransfer: mockInvokeRendererWorker,
+  const mockRpc = RendererWorker.registerMockRpc({
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {
+      throw new Error('extension host error')
+    },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {},
   })
-  RendererWorker.set(mockRpc)
-
   await expect(initialize()).rejects.toThrow('Failed to create extension host rpc: extension host error')
 
   await EditorWorker.dispose()
-
-  expect(mockInvokeRendererWorker).toHaveBeenCalledTimes(2)
+  expect(mockRpc.invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort2', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort', 0],
+  ])
 })
 
 test('initialize - both errors', async () => {
-  const mockInvokeRendererWorker = jest.fn()
-  mockInvokeRendererWorker
-    .mockRejectedValueOnce(new Error('extension host error') as never) // Extension host fails
-    .mockRejectedValueOnce(new Error('editor worker error') as never) // Editor worker fails
-
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: () => {},
-    invokeAndTransfer: mockInvokeRendererWorker,
+  const mockRpc = RendererWorker.registerMockRpc({
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {
+      throw new Error('extension host error')
+    },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {
+      throw new Error('editor worker error')
+    },
   })
-  RendererWorker.set(mockRpc)
-
   await expect(initialize()).rejects.toThrow('Failed to create extension host rpc: extension host error')
-
-  expect(mockInvokeRendererWorker).toHaveBeenCalledTimes(2)
+  expect(mockRpc.invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort2', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort', 0],
+  ])
 })
