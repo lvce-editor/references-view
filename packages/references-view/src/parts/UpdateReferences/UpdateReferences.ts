@@ -10,7 +10,8 @@ import { requestFileIcons } from '../RequestFileIcons/RequestFileIcons.ts'
 export const updateReferences = async (state: ReferencesState, uri: string, languageId: string, offset: number, position: any): Promise<ReferencesState> => {
   const references = await References.getReferences2(uri, languageId, offset, position)
   const icons = await requestFileIcons(references)
-  const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons)
+  const collapseduris: readonly string[] = []
+  const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons, collapseduris)
   const fileCount = GetReferencesFileCount.getFileCount(references)
   const message = GetReferencesMessage.getMessage(references.length, fileCount)
   return {
