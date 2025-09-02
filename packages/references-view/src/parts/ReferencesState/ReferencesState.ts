@@ -12,4 +12,5 @@ export interface ReferencesState {
   readonly offset: number
   readonly uri: string
   readonly languageId: string
+  readonly collapsedUris: readonly string[]
 }

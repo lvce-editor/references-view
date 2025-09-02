@@ -11,6 +11,7 @@ export const createDefaultState = (uid = 0): ReferencesState => {
     offset: -1,
     uri: '',
     languageId: '',
+    collapsedUris: [],
   }
   return state
 }
