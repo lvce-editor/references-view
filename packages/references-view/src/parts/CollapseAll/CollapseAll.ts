@@ -1,5 +1,6 @@
 import type { Reference } from '../Reference/Reference.ts'
 import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
+import { getDisplayReferences } from '../GetDisplayReferences/GetDisplayReferences.ts'
 
 const getUri = (reference: Reference): string => {
   return reference.uri
@@ -8,8 +9,10 @@ const getUri = (reference: Reference): string => {
 export const collapseAll = async (state: ReferencesState): Promise<ReferencesState> => {
   const { references } = state
   const uris = references.map(getUri)
+  const displayReferences = getDisplayReferences(references, [], uris)
   return {
     ...state,
     collapsedUris: uris,
+    displayReferences,
   }
 }
