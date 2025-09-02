@@ -38,7 +38,7 @@ export const commandMap = {
   'References.initialize': Initialize.initialize,
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'References.render2': Render2.render2,
-  'References.collapseAll': WrapCommand.dispose(collapseAll),
+  'References.collapseAll': WrapCommand.wrapCommand(collapseAll),
   'References.renderActions': RenderActions.renderActions,
   'References.renderEventListeners': RenderEventListeners.renderEventListeners,
   'References.restoreState': RestoreState.restoreState,
