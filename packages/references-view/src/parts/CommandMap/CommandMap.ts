@@ -1,4 +1,5 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
+import { clear } from '../Clear/Clear.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
@@ -41,4 +42,5 @@ export const commandMap = {
   'References.saveState': SaveState.saveState,
   'References.selectIndex': WrapCommand.wrapCommand(SelectIndex.selectIndex),
   'References.terminate': terminate,
+  'References.clear': WrapCommand.dispose(clear),
 }
