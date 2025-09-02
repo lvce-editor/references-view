@@ -36,5 +36,6 @@ add(1,2)
   await Command.execute('References.collapseAll')
 
   // assert
-  // TODO
+  await expect(referenceItems).toHaveCount(1)
+  await expect(referenceItemOne).toHaveText('test.xyz')
 }
