@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'references.clear'
 
-export const test: Test = async ({ Extension, FileSystem, Main, Editor, Locator, expect }) => {
+export const test: Test = async ({ Command, Extension, FileSystem, Main, Editor, Locator, expect }) => {
   // arrange
   const url = import.meta.resolve('../fixtures/sample.reference-provider-basic').toString()
   await Extension.addWebExtension(url)
@@ -21,11 +21,7 @@ add(1,2)
   )
   await Main.openUri(`${tmpDir}/test.xyz`)
   await Editor.setCursor(2, 2)
-
-  // act
   await Editor.findAllReferences()
-
-  // assert
   const viewletLocations = Locator('.Locations')
   await expect(viewletLocations).toBeVisible()
   const viewletReferencesMessage = Locator('.LocationsMessage')
@@ -35,4 +31,10 @@ add(1,2)
   await expect(referenceItemOne).toHaveText('test.xyz')
   const referenceItemTwo = referenceItems.nth(1)
   await expect(referenceItemTwo).toHaveText(`import { add } from './add.xyz'`)
+
+  // act
+  await Command.execute('References.clear')
+
+  // assert
+  await expect(viewletReferencesMessage).toHaveText('No Results')
 }
