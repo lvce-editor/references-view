@@ -23,9 +23,9 @@ import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectIndex from '../SelectIndex/SelectIndex.ts'
 
 export const commandMap = {
+  'References.clear': WrapCommand.wrapCommand(clear),
   'References.create': Create.create,
   'References.diff2': Diff2.diff2,
-  'References.refresh': WrapCommand.wrapCommand(refresh),
   'References.dispose': Dispose.dispose,
   'References.focusFirst': WrapCommand.wrapCommand(FocusFirst.focusFirst),
   'References.focusIndex': WrapCommand.wrapCommand(FocusIndex.focusIndex),
@@ -37,6 +37,7 @@ export const commandMap = {
   'References.handleClickReference': WrapCommand.wrapCommand(HandleClickReference.handleClickReference),
   'References.initialize': Initialize.initialize,
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
+  'References.refresh': WrapCommand.wrapCommand(refresh),
   'References.render2': Render2.render2,
   'References.collapseAll': WrapCommand.wrapCommand(collapseAll),
   'References.renderActions': RenderActions.renderActions,
@@ -45,5 +46,4 @@ export const commandMap = {
   'References.saveState': SaveState.saveState,
   'References.selectIndex': WrapCommand.wrapCommand(SelectIndex.selectIndex),
   'References.terminate': terminate,
-  'References.clear': WrapCommand.wrapCommand(clear),
 }
