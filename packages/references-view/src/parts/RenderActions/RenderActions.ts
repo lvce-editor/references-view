@@ -10,19 +10,19 @@ const getActionButtons = (): readonly any[] => {
       type: ActionType.Button,
       id: ViewletReferencesStrings.refresh(),
       icon: Icon.Refresh,
-      command: 'References.refresh',
+      command: 'refresh',
     },
     {
       type: ActionType.Button,
       id: ViewletReferencesStrings.clear(),
       icon: Icon.ClearAll,
-      command: 'References.clear',
+      command: 'clear',
     },
     {
       type: ActionType.Button,
       id: ViewletReferencesStrings.collapseAll(),
       icon: Icon.CollapseAll,
-      command: 'References.collapseAll',
+      command: 'collapseAll',
     },
   ]
 }
