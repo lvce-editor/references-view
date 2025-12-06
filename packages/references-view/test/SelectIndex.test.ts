@@ -31,16 +31,16 @@ test('selectIndex should update focusedIndex for Leaf type', async () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: 'file:///test.ts',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: LocationType.Leaf,
+    uri: 'file:///test.ts',
   }
 
   const newState: ReferencesState = {
@@ -57,16 +57,16 @@ test('selectIndex should update focusedIndex for Expanded type', async () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Expanded,
-    uri: 'file:///test.ts',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: LocationType.Expanded,
+    uri: 'file:///test.ts',
   }
 
   const newState: ReferencesState = {
@@ -83,16 +83,16 @@ test('selectIndex should update focusedIndex for Collapsed type', async () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Collapsed,
-    uri: 'file:///test.ts',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: LocationType.Collapsed,
+    uri: 'file:///test.ts',
   }
 
   const newState: ReferencesState = {
@@ -109,16 +109,16 @@ test('selectIndex should return same state for unknown type', async () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: 999, // unknown type
-    uri: 'file:///test.ts',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: 999, // unknown type
+    uri: 'file:///test.ts',
   }
 
   const newState: ReferencesState = {
@@ -135,29 +135,29 @@ test('selectIndex should handle multiple display references', async () => {
   const displayReferences: readonly DisplayReference[] = [
     {
       depth: 0,
-      posInSet: 1,
-      setSize: 2,
-      type: LocationType.Leaf,
-      uri: 'file:///test1.ts',
-      name: 'test1.ts',
-      lineText: 'test1',
+      endOffset: undefined,
       icon: 'file',
       index: 0,
+      lineText: 'test1',
+      name: 'test1.ts',
+      posInSet: 1,
+      setSize: 2,
       startOffset: undefined,
-      endOffset: undefined,
+      type: LocationType.Leaf,
+      uri: 'file:///test1.ts',
     },
     {
       depth: 0,
-      posInSet: 2,
-      setSize: 2,
-      type: LocationType.Expanded,
-      uri: 'file:///test2.ts',
-      name: 'test2.ts',
-      lineText: 'test2',
+      endOffset: undefined,
       icon: 'file',
       index: 1,
+      lineText: 'test2',
+      name: 'test2.ts',
+      posInSet: 2,
+      setSize: 2,
       startOffset: undefined,
-      endOffset: undefined,
+      type: LocationType.Expanded,
+      uri: 'file:///test2.ts',
     },
   ]
 

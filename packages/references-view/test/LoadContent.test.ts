@@ -12,8 +12,8 @@ test('loadContent - loads references and updates state', async () => {
     readonly uri: string
     readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } }
   }[] = [
-    { uri: 'file:///test1.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 10 } } },
-    { uri: 'file:///test2.ts', range: { start: { line: 5, character: 0 }, end: { line: 5, character: 15 } } },
+    { range: { end: { character: 10, line: 1 }, start: { character: 0, line: 1 } }, uri: 'file:///test1.ts' },
+    { range: { end: { character: 15, line: 5 }, start: { character: 0, line: 5 } }, uri: 'file:///test2.ts' },
   ]
 
   const mockRpc = MockRpc.create({
@@ -51,8 +51,8 @@ test('loadContent - loads references and updates state', async () => {
       }
       if (method === 'Editor.getPositionAtCursor') {
         return {
-          rowIndex: 0,
           columnIndex: 0,
+          rowIndex: 0,
         }
       }
       throw new Error(`unexpected method ${method}`)
@@ -138,8 +138,8 @@ test('loadContent - handles empty references', async () => {
       }
       if (method === 'Editor.getPositionAtCursor') {
         return {
-          rowIndex: 0,
           columnIndex: 0,
+          rowIndex: 0,
         }
       }
       throw new Error(`unexpected method ${method}`)
@@ -164,7 +164,7 @@ test('loadContent - preserves existing state properties', async () => {
   const mockReferences: readonly {
     readonly uri: string
     readonly range: { readonly start: { readonly line: number; readonly character: number }; readonly end: { readonly line: number; readonly character: number } }
-  }[] = [{ uri: 'file:///test.ts', range: { start: { line: 1, character: 0 }, end: { line: 1, character: 5 } } }]
+  }[] = [{ range: { end: { character: 5, line: 1 }, start: { character: 0, line: 1 } }, uri: 'file:///test.ts' }]
 
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -201,8 +201,8 @@ test('loadContent - preserves existing state properties', async () => {
       }
       if (method === 'Editor.getPositionAtCursor') {
         return {
-          rowIndex: 0,
           columnIndex: 0,
+          rowIndex: 0,
         }
       }
       throw new Error(`unexpected method ${method}`)

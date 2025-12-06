@@ -8,16 +8,16 @@ test('selectIndexCollapsed should update focusedIndex', () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: 3,
-    uri: 'file:///test.ts',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: 3,
+    uri: 'file:///test.ts',
   }
 
   const newState: ReferencesState = {
@@ -34,16 +34,16 @@ test('selectIndexCollapsed should preserve other state properties', () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: 3,
-    uri: 'file:///test.ts',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: 3,
+    uri: 'file:///test.ts',
   }
 
   const newState: ReferencesState = {

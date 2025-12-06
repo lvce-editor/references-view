@@ -8,13 +8,13 @@ export const getLeafVirtualDom = (location: DisplayReference): readonly VirtualD
   const { index } = location
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.TreeItem,
-      id: `Reference-${index}`,
-      'data-index': index,
-      role: 'treeitem',
       childCount: 1,
+      className: ClassNames.TreeItem,
+      'data-index': index,
+      id: `Reference-${index}`,
       paddingLeft: '2rem',
+      role: 'treeitem',
+      type: VirtualDomElements.Div,
     },
     ...GetLabelDom.getLabelDom(location),
   ]

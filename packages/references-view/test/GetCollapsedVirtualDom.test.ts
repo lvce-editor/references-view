@@ -7,35 +7,35 @@ import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getCollapsedVirtualDom', () => {
   const location: DisplayReference = {
-    type: LocationType.Collapsed,
-    index: 0,
-    name: 'example.ts',
     depth: 0,
+    endOffset: undefined,
+    icon: 'file-icon.png',
+    index: 0,
+    lineText: '',
+    name: 'example.ts',
     posInSet: 1,
     setSize: 1,
-    uri: 'file:///example.ts',
-    lineText: '',
-    icon: 'file-icon.png',
     startOffset: undefined,
-    endOffset: undefined,
+    type: LocationType.Collapsed,
+    uri: 'file:///example.ts',
   }
 
   const result = GetCollapsedVirtualDom.getCollapsedVirtualDom(location)
 
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.TreeItem,
       ariaExpanded: false,
-      id: 'Reference-0',
-      'data-index': 0,
-      role: 'treeitem',
       childCount: 1,
+      className: ClassNames.TreeItem,
+      'data-index': 0,
+      id: 'Reference-0',
+      role: 'treeitem',
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'example.ts',
       childCount: 0,
+      text: 'example.ts',
+      type: VirtualDomElements.Text,
     },
   ])
 })

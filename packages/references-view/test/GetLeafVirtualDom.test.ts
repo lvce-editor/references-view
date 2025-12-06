@@ -7,122 +7,122 @@ import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getLeafVirtualDom with highlighted text', () => {
   const location: DisplayReference = {
-    type: LocationType.Leaf,
-    lineText: 'const example = "test"',
-    index: 0,
-    startOffset: 6,
-    endOffset: 13,
     depth: 0,
+    endOffset: 13,
+    icon: 'file-icon.png',
+    index: 0,
+    lineText: 'const example = "test"',
+    name: 'test.ts',
     posInSet: 1,
     setSize: 1,
+    startOffset: 6,
+    type: LocationType.Leaf,
     uri: 'file:///test.ts',
-    name: 'test.ts',
-    icon: 'file-icon.png',
   }
 
   const result = GetLeafVirtualDom.getLeafVirtualDom(location)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 1,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
     paddingLeft: '2rem',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.Label,
     childCount: 3,
+    className: ClassNames.Label,
+    type: VirtualDomElements.Div,
   })
 
   expect(result[2]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'const ',
     childCount: 0,
+    text: 'const ',
+    type: VirtualDomElements.Text,
   })
 
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.Highlight,
     childCount: 1,
+    className: ClassNames.Highlight,
+    type: VirtualDomElements.Span,
   })
 
   expect(result[4]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'example',
     childCount: 0,
+    text: 'example',
+    type: VirtualDomElements.Text,
   })
 
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Text,
-    text: ' = "test"',
     childCount: 0,
+    text: ' = "test"',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getLeafVirtualDom with empty line', () => {
   const location: DisplayReference = {
-    type: LocationType.Leaf,
-    lineText: '',
-    index: 1,
-    startOffset: 0,
-    endOffset: 0,
     depth: 0,
+    endOffset: 0,
+    icon: 'file-icon.png',
+    index: 1,
+    lineText: '',
+    name: 'test.ts',
     posInSet: 1,
     setSize: 1,
+    startOffset: 0,
+    type: LocationType.Leaf,
     uri: 'file:///test.ts',
-    name: 'test.ts',
-    icon: 'file-icon.png',
   }
 
   const result = GetLeafVirtualDom.getLeafVirtualDom(location)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
-    id: 'Reference-1',
-    'data-index': 1,
-    role: 'treeitem',
     childCount: 1,
+    className: ClassNames.TreeItem,
+    'data-index': 1,
+    id: 'Reference-1',
     paddingLeft: '2rem',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.Label,
     childCount: 1,
+    className: ClassNames.Label,
+    type: VirtualDomElements.Div,
   })
 
   expect(result[2]).toEqual({
-    type: VirtualDomElements.Text,
-    text: '(empty line)',
     childCount: 0,
+    text: '(empty line)',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getLeafVirtualDom with null lineText', () => {
   const location: DisplayReference = {
-    type: LocationType.Leaf,
-    lineText: null as any,
-    index: 2,
-    startOffset: 0,
-    endOffset: 0,
     depth: 0,
+    endOffset: 0,
+    icon: 'file-icon.png',
+    index: 2,
+    lineText: null as any,
+    name: 'test.ts',
     posInSet: 1,
     setSize: 1,
+    startOffset: 0,
+    type: LocationType.Leaf,
     uri: 'file:///test.ts',
-    name: 'test.ts',
-    icon: 'file-icon.png',
   }
 
   const result = GetLeafVirtualDom.getLeafVirtualDom(location)
 
   expect(result[2]).toEqual({
-    type: VirtualDomElements.Text,
-    text: '(empty line)',
     childCount: 0,
+    text: '(empty line)',
+    type: VirtualDomElements.Text,
   })
 })

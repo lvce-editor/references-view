@@ -10,20 +10,20 @@ test('render2 returns correct ViewletCommand for RenderItems diff', () => {
   const uid = 42
   const oldState: ReferencesState = {
     ...createDefaultState(),
+    displayReferences: [],
+    focusedIndex: 0,
+    id: 1,
     message: 'old message',
     references: [],
-    displayReferences: [],
-    id: 1,
-    focusedIndex: 0,
   }
   const newState: ReferencesState = {
     ...createDefaultState(),
 
+    displayReferences: [],
+    focusedIndex: 1,
+    id: 2,
     message: 'new message',
     references: [],
-    displayReferences: [],
-    id: 2,
-    focusedIndex: 1,
   }
   ReferencesStates.set(uid, oldState, newState)
   const diffResult = [DiffType.RenderItems]

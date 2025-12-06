@@ -6,8 +6,8 @@ import { initialize } from '../src/parts/Initialize/Initialize.js'
 
 test('initialize - success', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
   })
   RendererWorker.set(mockRpc)
 
@@ -24,10 +24,10 @@ test('initialize - success', async () => {
 
 test('initialize - editor worker error', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {
       throw new Error('editor worker error')
     },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
   })
   await initialize()
   await ExtensionHost.dispose()
@@ -39,10 +39,10 @@ test('initialize - editor worker error', async () => {
 
 test('initialize - extension host error', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {
       throw new Error('extension host error')
     },
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {},
   })
   await expect(initialize()).rejects.toThrow('Failed to create extension host rpc: extension host error')
 
@@ -55,11 +55,11 @@ test('initialize - extension host error', async () => {
 
 test('initialize - both errors', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {
-      throw new Error('extension host error')
-    },
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {
       throw new Error('editor worker error')
+    },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {
+      throw new Error('extension host error')
     },
   })
   await expect(initialize()).rejects.toThrow('Failed to create extension host rpc: extension host error')

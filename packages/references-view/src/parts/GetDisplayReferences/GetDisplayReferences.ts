@@ -14,16 +14,16 @@ export const getDisplayReferences = (references: readonly Reference[], icons: re
     if (reference.uri === currentUri) {
       displayReferences.push({
         depth: 2,
-        posInSet: innerPosInSet++,
-        setSize: 1,
-        type: LocationType.Leaf,
-        uri: '',
-        name: '',
-        lineText: reference.lineText || '',
+        endOffset: reference.endColumnIndex || reference.endOffset,
         icon: '',
         index: index++,
+        lineText: reference.lineText || '',
+        name: '',
+        posInSet: innerPosInSet++,
+        setSize: 1,
         startOffset: reference.startColumnIndex || reference.startOffset,
-        endOffset: reference.endColumnIndex || reference.endOffset,
+        type: LocationType.Leaf,
+        uri: '',
       })
     } else {
       fileCount++
@@ -34,30 +34,30 @@ export const getDisplayReferences = (references: readonly Reference[], icons: re
       const icon = icons[relativeIndex]
       displayReferences.push({
         depth: 1,
-        posInSet: outerPosInSet++,
-        setSize: 1,
-        type: LocationType.Expanded,
-        uri: reference.uri,
-        name,
-        lineText: '',
+        endOffset: 0,
         icon,
         index: index++,
+        lineText: '',
+        name,
+        posInSet: outerPosInSet++,
+        setSize: 1,
         startOffset: 0,
-        endOffset: 0,
+        type: LocationType.Expanded,
+        uri: reference.uri,
       })
       if (!collapsedUris.includes(reference.uri)) {
         displayReferences.push({
           depth: 2,
-          posInSet: innerPosInSet++,
-          setSize: 1,
-          type: LocationType.Leaf,
-          uri: '',
-          name: '',
-          lineText: reference.lineText || '',
+          endOffset: reference.endColumnIndex || reference.endOffset,
           icon: '',
           index: index++,
+          lineText: reference.lineText || '',
+          name: '',
+          posInSet: innerPosInSet++,
+          setSize: 1,
           startOffset: reference.startColumnIndex || reference.startOffset,
-          endOffset: reference.endColumnIndex || reference.endOffset,
+          type: LocationType.Leaf,
+          uri: '',
         })
       }
     }

@@ -10,11 +10,11 @@ test('saveState should return SavedState with message and focusedIndex from Refe
   const mockReferencesState: ReferencesState = {
     ...createDefaultState(),
 
+    displayReferences: [],
+    focusedIndex: 0,
+    id: 1,
     message: 'Test message',
     references: [],
-    displayReferences: [],
-    id: 1,
-    focusedIndex: 0,
   }
 
   ReferencesStates.set(id, mockReferencesState, mockReferencesState)
@@ -22,11 +22,11 @@ test('saveState should return SavedState with message and focusedIndex from Refe
   const result: SavedState = saveState(id)
 
   expect(result).toEqual({
-    message: 'Test message',
     focusedIndex: 0,
+    languageId: '',
+    message: 'Test message',
     offset: -1,
     uri: '',
-    languageId: '',
   })
 })
 
@@ -35,11 +35,11 @@ test('saveState should return SavedState with empty message and focusedIndex whe
   const mockReferencesState: ReferencesState = {
     ...createDefaultState(),
 
+    displayReferences: [],
+    focusedIndex: 5,
+    id: 2,
     message: '',
     references: [],
-    displayReferences: [],
-    id: 2,
-    focusedIndex: 5,
   }
 
   ReferencesStates.set(id, mockReferencesState, mockReferencesState)
@@ -47,10 +47,10 @@ test('saveState should return SavedState with empty message and focusedIndex whe
   const result: SavedState = saveState(id)
 
   expect(result).toEqual({
-    message: '',
     focusedIndex: 5,
+    languageId: '',
+    message: '',
     offset: -1,
     uri: '',
-    languageId: '',
   })
 })

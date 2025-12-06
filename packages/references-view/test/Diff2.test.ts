@@ -17,7 +17,7 @@ test('diff2 returns diff type when states are different', () => {
   const oldState = createDefaultState(uid)
   const newState = {
     ...oldState,
-    references: [{ uri: 'file:///test.ts', lineText: 'test' }],
+    references: [{ lineText: 'test', uri: 'file:///test.ts' }],
   }
   ReferencesStates.set(uid, oldState, newState)
 
@@ -32,7 +32,7 @@ test('diff2 uses states from ReferencesStates', () => {
   const newState = {
     ...oldState,
     message: 'Different message',
-    references: [{ uri: 'file:///test.ts', lineText: 'test' }],
+    references: [{ lineText: 'test', uri: 'file:///test.ts' }],
   }
   ReferencesStates.set(uid, oldState, newState)
 

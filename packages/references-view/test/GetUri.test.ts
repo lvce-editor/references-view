@@ -8,16 +8,16 @@ test('getUri should return uri for valid index', () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: 1,
-    uri: 'file:///test.ts',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: 1,
+    uri: 'file:///test.ts',
   }
 
   const newState: ReferencesState = {
@@ -42,16 +42,16 @@ test('getUri should return empty string for undefined uri', () => {
   const state: ReferencesState = createDefaultState()
   const displayReference: DisplayReference = {
     depth: 0,
-    posInSet: 1,
-    setSize: 1,
-    type: 1,
-    uri: '',
-    name: 'test.ts',
-    lineText: 'test',
+    endOffset: undefined,
     icon: 'file',
     index: 0,
+    lineText: 'test',
+    name: 'test.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: 1,
+    uri: '',
   }
 
   const newState: ReferencesState = {

@@ -8,7 +8,7 @@ const isMemory = (uri: string): boolean => {
 
 export const loadContent = async (state: ReferencesState, savedState: unknown): Promise<ReferencesState> => {
   try {
-    const { uri, offset, languageId, position } = restoreState(savedState)
+    const { languageId, offset, position, uri } = restoreState(savedState)
     if (uri && !isMemory(uri)) {
       return updateReferences(state, uri, languageId, offset, position)
     }

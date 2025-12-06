@@ -1,7 +1,7 @@
 export interface SavedState {
-  readonly message: string
   readonly focusedIndex: number
+  readonly languageId: string
+  readonly message: string
   readonly offset: number
   readonly uri: string
-  readonly languageId: string
 }

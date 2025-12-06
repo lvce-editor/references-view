@@ -1,9 +1,9 @@
 export interface RestoredState {
   readonly focusedIndex: number
-  readonly offset: number
-  readonly uri: string
   readonly languageId: string
+  readonly offset: number
   readonly position: any
+  readonly uri: string
 }
 
 const restoreFocusedIndex = (state: unknown): number => {
@@ -48,9 +48,9 @@ export const restoreState = (input: unknown): RestoredState => {
   const position = restorePosition(input)
   return {
     focusedIndex,
-    offset,
-    uri,
     languageId,
+    offset,
     position,
+    uri,
   }
 }

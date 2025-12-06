@@ -18,14 +18,14 @@ test('renderItems returns correct ViewletCommand with references', () => {
   const oldState: ReferencesState = createDefaultState(1)
   const newState: ReferencesState = {
     ...oldState,
+    displayReferences: [],
+    focusedIndex: 0,
     id: 3,
     message: 'Found 2 references',
     references: [
-      { uri: 'file:///test1.ts', lineText: 'test line', startOffset: 5, endOffset: 9 },
-      { uri: 'file:///test2.ts', lineText: 'another line', startOffset: 0, endOffset: 5 },
+      { endOffset: 9, lineText: 'test line', startOffset: 5, uri: 'file:///test1.ts' },
+      { endOffset: 5, lineText: 'another line', startOffset: 0, uri: 'file:///test2.ts' },
     ],
-    displayReferences: [],
-    focusedIndex: 0,
   }
 
   const result = RenderItems.renderItems(oldState, newState)
@@ -38,19 +38,19 @@ test('renderItems returns correct ViewletCommand with references', () => {
 test('renderItems uses newState for rendering', () => {
   const oldState: ReferencesState = {
     ...createDefaultState(),
-    id: 1,
-    message: 'Old message',
-    references: [{ uri: 'file:///old.ts', lineText: 'old line' }],
     displayReferences: [],
     focusedIndex: 0,
+    id: 1,
+    message: 'Old message',
+    references: [{ lineText: 'old line', uri: 'file:///old.ts' }],
   }
   const newState: ReferencesState = {
     ...oldState,
-    id: 2,
-    message: 'New message',
-    references: [{ uri: 'file:///new.ts', lineText: 'new line', startOffset: 0, endOffset: 3 }],
     displayReferences: [],
     focusedIndex: 1,
+    id: 2,
+    message: 'New message',
+    references: [{ endOffset: 3, lineText: 'new line', startOffset: 0, uri: 'file:///new.ts' }],
   }
 
   const result = RenderItems.renderItems(oldState, newState)
