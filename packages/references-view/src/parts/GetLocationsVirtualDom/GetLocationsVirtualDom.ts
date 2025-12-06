@@ -10,27 +10,27 @@ import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 export const getLocationsVirtualDom = (locations: readonly DisplayReference[], message: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
+      childCount: 2,
       className: 'Viewlet Locations',
       onMouseDown: DomEventListenerFunctions.HandleClickReference,
-      childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
+      childCount: 1,
       className: ClassNames.LocationsMessage,
       id: 'LocationsMessage',
       role: AriaRoles.Status,
-      childCount: 1,
+      type: VirtualDomElements.Div,
     },
     VirtualDomHelpers.text(message),
     {
-      type: VirtualDomElements.Div,
+      ariaDescribedBy: 'LocationsMessage',
+      ariaLabel: LocationStrings.locations(),
+      childCount: locations.length,
       className: ClassNames.LocationList,
       role: AriaRoles.Tree,
-      ariaLabel: LocationStrings.locations(),
       tabIndex: 0,
-      ariaDescribedBy: 'LocationsMessage',
-      childCount: locations.length,
+      type: VirtualDomElements.Div,
     },
     ...locations.flatMap(GetLocationVirtualDom.getLocationVirtualDom),
   ]

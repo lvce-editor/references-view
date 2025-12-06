@@ -4,7 +4,7 @@ import { getLabelDomHighlight } from './GetLabelDomHighlight.ts'
 import { getLabelDomNoHighlight } from './GetLabelDomNoHighlight.ts'
 
 export const getLabelDom = (location: DisplayReference): readonly VirtualDomNode[] => {
-  const { lineText, startOffset, endOffset } = location
+  const { endOffset, lineText, startOffset } = location
   if (startOffset === endOffset) {
     return getLabelDomNoHighlight(lineText)
   }

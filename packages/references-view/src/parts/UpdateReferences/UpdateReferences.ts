@@ -16,12 +16,12 @@ export const updateReferences = async (state: ReferencesState, uri: string, lang
   const message = GetReferencesMessage.getMessage(references.length, fileCount)
   return {
     ...state,
-    references,
     displayReferences,
+    languageId,
     message,
     offset,
+    references,
     uri,
-    languageId,
   }
 }
 

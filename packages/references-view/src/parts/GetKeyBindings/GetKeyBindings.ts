@@ -4,28 +4,28 @@ import * as WhenExpression from '../WhenExpression/WhenExpression.ts'
 export const getKeyBindings = (): readonly any[] => {
   return [
     {
-      key: KeyCode.DownArrow,
       command: 'References.focusNext',
+      key: KeyCode.DownArrow,
       when: WhenExpression.FocusLocationList,
     },
     {
-      key: KeyCode.UpArrow,
       command: 'References.focusPrevious',
+      key: KeyCode.UpArrow,
       when: WhenExpression.FocusLocationList,
     },
     {
-      key: KeyCode.Home,
       command: 'References.focusFirst',
+      key: KeyCode.Home,
       when: WhenExpression.FocusLocationList,
     },
     {
-      key: KeyCode.End,
       command: 'References.focusLast',
+      key: KeyCode.End,
       when: WhenExpression.FocusLocationList,
     },
     {
-      key: KeyCode.Enter,
       command: 'References.selectCurrent',
+      key: KeyCode.Enter,
       when: WhenExpression.FocusLocationList,
     },
   ]

@@ -7,102 +7,102 @@ import * as LocationType from '../src/parts/LocationType/LocationType.ts'
 
 test('getLocationVirtualDom with leaf type', () => {
   const location: DisplayReference = {
-    type: LocationType.Leaf,
-    lineText: 'const test = "value"',
-    index: 0,
-    startOffset: 6,
-    endOffset: 10,
     depth: 0,
+    endOffset: 10,
+    icon: 'file-icon.png',
+    index: 0,
+    lineText: 'const test = "value"',
+    name: 'test.ts',
     posInSet: 1,
     setSize: 1,
+    startOffset: 6,
+    type: LocationType.Leaf,
     uri: 'file:///test.ts',
-    name: 'test.ts',
-    icon: 'file-icon.png',
   }
 
   const result = GetLocationVirtualDom.getLocationVirtualDom(location)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 1,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
     paddingLeft: '2rem',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 })
 
 test('getLocationVirtualDom with collapsed type', () => {
   const location: DisplayReference = {
-    type: LocationType.Collapsed,
-    index: 0,
-    name: 'example.ts',
     depth: 0,
+    endOffset: undefined,
+    icon: 'file-icon.png',
+    index: 0,
+    lineText: '',
+    name: 'example.ts',
     posInSet: 1,
     setSize: 1,
-    uri: 'file:///example.ts',
-    lineText: '',
-    icon: 'file-icon.png',
     startOffset: undefined,
-    endOffset: undefined,
+    type: LocationType.Collapsed,
+    uri: 'file:///example.ts',
   }
 
   const result = GetLocationVirtualDom.getLocationVirtualDom(location)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
     ariaExpanded: false,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 1,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 })
 
 test('getLocationVirtualDom with expanded type', () => {
   const location: DisplayReference = {
-    type: LocationType.Expanded,
-    index: 0,
-    name: 'example.ts',
-    icon: 'file-icon.png',
     depth: 0,
+    endOffset: undefined,
+    icon: 'file-icon.png',
+    index: 0,
+    lineText: '',
+    name: 'example.ts',
     posInSet: 1,
     setSize: 1,
-    uri: 'file:///example.ts',
-    lineText: '',
     startOffset: undefined,
-    endOffset: undefined,
+    type: LocationType.Expanded,
+    uri: 'file:///example.ts',
   }
 
   const result = GetLocationVirtualDom.getLocationVirtualDom(location)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
     ariaExpanded: true,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 2,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
     paddingLeft: '1rem',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 })
 
 test('getLocationVirtualDom with unknown type', () => {
   const location: DisplayReference = {
-    type: 999,
-    index: 0,
-    name: 'unknown.ts',
     depth: 0,
+    endOffset: undefined,
+    icon: 'file-icon.png',
+    index: 0,
+    lineText: '',
+    name: 'unknown.ts',
     posInSet: 1,
     setSize: 1,
-    uri: 'file:///unknown.ts',
-    lineText: '',
-    icon: 'file-icon.png',
     startOffset: undefined,
-    endOffset: undefined,
+    type: 999,
+    uri: 'file:///unknown.ts',
   }
 
   const result = GetLocationVirtualDom.getLocationVirtualDom(location)

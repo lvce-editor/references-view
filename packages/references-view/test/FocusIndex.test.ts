@@ -7,8 +7,8 @@ import { focusIndex } from '../src/parts/FocusIndex/FocusIndex.ts'
 test('focusIndex should set focusedIndex to valid index', () => {
   const state: ReferencesState = createDefaultState()
   const displayReferences: readonly DisplayReference[] = [
-    { depth: 0, posInSet: 1, setSize: 2, type: 1, uri: '/test1.ts', name: 'test1.ts', lineText: '', icon: '', index: 0, startOffset: undefined, endOffset: undefined },
-    { depth: 0, posInSet: 2, setSize: 2, type: 1, uri: '/test2.ts', name: 'test2.ts', lineText: '', icon: '', index: 1, startOffset: undefined, endOffset: undefined },
+    { depth: 0, endOffset: undefined, icon: '', index: 0, lineText: '', name: 'test1.ts', posInSet: 1, setSize: 2, startOffset: undefined, type: 1, uri: '/test1.ts' },
+    { depth: 0, endOffset: undefined, icon: '', index: 1, lineText: '', name: 'test2.ts', posInSet: 2, setSize: 2, startOffset: undefined, type: 1, uri: '/test2.ts' },
   ]
   const stateWithRefs: ReferencesState = { ...state, displayReferences }
 
@@ -19,7 +19,7 @@ test('focusIndex should set focusedIndex to valid index', () => {
 test('focusIndex should not change state for invalid index', () => {
   const state: ReferencesState = createDefaultState()
   const displayReferences: readonly DisplayReference[] = [
-    { depth: 0, posInSet: 1, setSize: 1, type: 1, uri: '/test1.ts', name: 'test1.ts', lineText: '', icon: '', index: 0, startOffset: undefined, endOffset: undefined },
+    { depth: 0, endOffset: undefined, icon: '', index: 0, lineText: '', name: 'test1.ts', posInSet: 1, setSize: 1, startOffset: undefined, type: 1, uri: '/test1.ts' },
   ]
   const stateWithRefs: ReferencesState = { ...state, displayReferences }
 

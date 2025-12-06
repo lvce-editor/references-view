@@ -24,6 +24,7 @@ import * as SelectIndex from '../SelectIndex/SelectIndex.ts'
 
 export const commandMap = {
   'References.clear': WrapCommand.wrapCommand(clear),
+  'References.collapseAll': WrapCommand.wrapCommand(collapseAll),
   'References.create': Create.create,
   'References.diff2': Diff2.diff2,
   'References.dispose': Dispose.dispose,
@@ -39,7 +40,6 @@ export const commandMap = {
   'References.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'References.refresh': WrapCommand.wrapCommand(refresh),
   'References.render2': Render2.render2,
-  'References.collapseAll': WrapCommand.wrapCommand(collapseAll),
   'References.renderActions': RenderActions.renderActions,
   'References.renderEventListeners': RenderEventListeners.renderEventListeners,
   'References.restoreState': RestoreState.restoreState,

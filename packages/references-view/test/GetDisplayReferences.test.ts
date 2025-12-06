@@ -14,10 +14,10 @@ test('getDisplayReferences with empty references', () => {
 test('getDisplayReferences with single reference', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file.ts',
+      endColumnIndex: 13,
       lineText: 'const example = "test"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file.ts',
     },
   ]
 
@@ -30,47 +30,47 @@ test('getDisplayReferences with single reference', () => {
   // Check file header
   expect(result[0]).toEqual({
     depth: 1,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Expanded,
-    uri: '/path/to/file.ts',
-    name: 'file.ts',
-    lineText: '',
+    endOffset: 0,
     icon: '',
     index: 0,
+    lineText: '',
+    name: 'file.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 0,
-    endOffset: 0,
+    type: LocationType.Expanded,
+    uri: '/path/to/file.ts',
   })
 
   // Check leaf reference
   expect(result[1]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: 'const example = "test"',
+    endOffset: 13,
     icon: '',
     index: 1,
+    lineText: 'const example = "test"',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 6,
-    endOffset: 13,
+    type: LocationType.Leaf,
+    uri: '',
   })
 })
 
 test('getDisplayReferences with multiple references in same file', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file.ts',
+      endColumnIndex: 13,
       lineText: 'const example = "test"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file.ts',
     },
     {
-      uri: '/path/to/file.ts',
+      endColumnIndex: 13,
       lineText: 'const another = "value"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file.ts',
     },
   ]
 
@@ -83,62 +83,62 @@ test('getDisplayReferences with multiple references in same file', () => {
   // Check file header
   expect(result[0]).toEqual({
     depth: 1,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Expanded,
-    uri: '/path/to/file.ts',
-    name: 'file.ts',
-    lineText: '',
+    endOffset: 0,
     icon: '',
     index: 0,
+    lineText: '',
+    name: 'file.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 0,
-    endOffset: 0,
+    type: LocationType.Expanded,
+    uri: '/path/to/file.ts',
   })
 
   // Check first leaf reference
   expect(result[1]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: 'const example = "test"',
+    endOffset: 13,
     icon: '',
     index: 1,
+    lineText: 'const example = "test"',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 6,
-    endOffset: 13,
+    type: LocationType.Leaf,
+    uri: '',
   })
 
   // Check second leaf reference
   expect(result[2]).toEqual({
     depth: 2,
-    posInSet: 2,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: 'const another = "value"',
+    endOffset: 13,
     icon: '',
     index: 2,
+    lineText: 'const another = "value"',
+    name: '',
+    posInSet: 2,
+    setSize: 1,
     startOffset: 6,
-    endOffset: 13,
+    type: LocationType.Leaf,
+    uri: '',
   })
 })
 
 test('getDisplayReferences with references from different files', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file1.ts',
+      endColumnIndex: 13,
       lineText: 'const example = "test"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file1.ts',
     },
     {
-      uri: '/path/to/file2.ts',
+      endColumnIndex: 13,
       lineText: 'const another = "value"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file2.ts',
     },
   ]
 
@@ -151,71 +151,71 @@ test('getDisplayReferences with references from different files', () => {
   // Check first file header
   expect(result[0]).toEqual({
     depth: 1,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Expanded,
-    uri: '/path/to/file1.ts',
-    name: 'file1.ts',
-    lineText: '',
+    endOffset: 0,
     icon: '',
     index: 0,
+    lineText: '',
+    name: 'file1.ts',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 0,
-    endOffset: 0,
+    type: LocationType.Expanded,
+    uri: '/path/to/file1.ts',
   })
 
   // Check first leaf reference
   expect(result[1]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: 'const example = "test"',
+    endOffset: 13,
     icon: '',
     index: 1,
+    lineText: 'const example = "test"',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 6,
-    endOffset: 13,
+    type: LocationType.Leaf,
+    uri: '',
   })
 
   // Check second file header
   expect(result[2]).toEqual({
     depth: 1,
-    posInSet: 2,
-    setSize: 1,
-    type: LocationType.Expanded,
-    uri: '/path/to/file2.ts',
-    name: 'file2.ts',
-    lineText: '',
+    endOffset: 0,
     icon: '',
     index: 2,
+    lineText: '',
+    name: 'file2.ts',
+    posInSet: 2,
+    setSize: 1,
     startOffset: 0,
-    endOffset: 0,
+    type: LocationType.Expanded,
+    uri: '/path/to/file2.ts',
   })
 
   // Check second leaf reference
   expect(result[3]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: 'const another = "value"',
+    endOffset: 13,
     icon: '',
     index: 3,
+    lineText: 'const another = "value"',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 6,
-    endOffset: 13,
+    type: LocationType.Leaf,
+    uri: '',
   })
 })
 
 test('getDisplayReferences with startOffset and endOffset instead of column indices', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file.ts',
+      endOffset: 17,
       lineText: 'const example = "test"',
       startOffset: 10,
-      endOffset: 17,
+      uri: '/path/to/file.ts',
     },
   ]
 
@@ -225,26 +225,26 @@ test('getDisplayReferences with startOffset and endOffset instead of column indi
 
   expect(result[1]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: 'const example = "test"',
+    endOffset: 17,
     icon: '',
     index: 1,
+    lineText: 'const example = "test"',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 10,
-    endOffset: 17,
+    type: LocationType.Leaf,
+    uri: '',
   })
 })
 
 test('getDisplayReferences with empty lineText', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file.ts',
+      endColumnIndex: 0,
       lineText: '',
       startColumnIndex: 0,
-      endColumnIndex: 0,
+      uri: '/path/to/file.ts',
     },
   ]
 
@@ -254,25 +254,25 @@ test('getDisplayReferences with empty lineText', () => {
 
   expect(result[1]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: '',
+    endOffset: undefined,
     icon: '',
     index: 1,
+    lineText: '',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: undefined,
-    endOffset: undefined,
+    type: LocationType.Leaf,
+    uri: '',
   })
 })
 
 test('getDisplayReferences with missing lineText', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file.ts',
-      startColumnIndex: 6,
       endColumnIndex: 13,
+      startColumnIndex: 6,
+      uri: '/path/to/file.ts',
     },
   ]
 
@@ -282,26 +282,26 @@ test('getDisplayReferences with missing lineText', () => {
 
   expect(result[1]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: '',
+    endOffset: 13,
     icon: '',
     index: 1,
+    lineText: '',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 6,
-    endOffset: 13,
+    type: LocationType.Leaf,
+    uri: '',
   })
 })
 
 test('getDisplayReferences with file path without extension', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file',
+      endColumnIndex: 13,
       lineText: 'const example = "test"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file',
     },
   ]
 
@@ -311,26 +311,26 @@ test('getDisplayReferences with file path without extension', () => {
 
   expect(result[0]).toEqual({
     depth: 1,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Expanded,
-    uri: '/path/to/file',
-    name: 'file',
-    lineText: '',
+    endOffset: 0,
     icon: '',
     index: 0,
+    lineText: '',
+    name: 'file',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 0,
-    endOffset: 0,
+    type: LocationType.Expanded,
+    uri: '/path/to/file',
   })
 })
 
 test('getDisplayReferences with empty uri', () => {
   const references: readonly Reference[] = [
     {
-      uri: '',
+      endColumnIndex: 13,
       lineText: 'const example = "test"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '',
     },
   ]
 
@@ -340,44 +340,44 @@ test('getDisplayReferences with empty uri', () => {
 
   expect(result[0]).toEqual({
     depth: 2,
-    posInSet: 1,
-    setSize: 1,
-    type: LocationType.Leaf,
-    uri: '',
-    name: '',
-    lineText: 'const example = "test"',
+    endOffset: 13,
     icon: '',
     index: 0,
+    lineText: 'const example = "test"',
+    name: '',
+    posInSet: 1,
+    setSize: 1,
     startOffset: 6,
-    endOffset: 13,
+    type: LocationType.Leaf,
+    uri: '',
   })
 })
 
 test('getDisplayReferences with complex file structure', () => {
   const references: readonly Reference[] = [
     {
-      uri: '/path/to/file1.ts',
+      endColumnIndex: 13,
       lineText: 'const example = "test"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file1.ts',
     },
     {
-      uri: '/path/to/file1.ts',
+      endColumnIndex: 13,
       lineText: 'const another = "value"',
       startColumnIndex: 6,
-      endColumnIndex: 13,
+      uri: '/path/to/file1.ts',
     },
     {
-      uri: '/path/to/file2.ts',
+      endColumnIndex: 11,
       lineText: 'const third = "item"',
       startColumnIndex: 6,
-      endColumnIndex: 11,
+      uri: '/path/to/file2.ts',
     },
     {
-      uri: '/path/to/file1.ts',
+      endColumnIndex: 12,
       lineText: 'const fourth = "last"',
       startColumnIndex: 6,
-      endColumnIndex: 12,
+      uri: '/path/to/file1.ts',
     },
   ]
 

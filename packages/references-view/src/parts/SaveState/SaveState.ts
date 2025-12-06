@@ -3,12 +3,12 @@ import * as ReferencesStates from '../ReferencesStates/ReferencesStates.ts'
 
 export const saveState = (id: number): SavedState => {
   const { newState } = ReferencesStates.get(id)
-  const { message, focusedIndex, offset, uri, languageId } = newState
+  const { focusedIndex, languageId, message, offset, uri } = newState
   return {
-    message,
     focusedIndex,
+    languageId,
+    message,
     offset,
     uri,
-    languageId,
   }
 }

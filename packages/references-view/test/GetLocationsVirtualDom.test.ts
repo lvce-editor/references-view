@@ -14,31 +14,31 @@ test('getLocationsVirtualDom with empty locations', () => {
 
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Div,
+      childCount: 2,
       className: 'Viewlet Locations',
       onMouseDown: 'handleClickReference',
-      childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
+      childCount: 1,
       className: ClassNames.LocationsMessage,
       id: 'LocationsMessage',
       role: AriaRoles.Status,
-      childCount: 1,
-    },
-    {
-      type: VirtualDomElements.Text,
-      text: message,
-      childCount: 0,
-    },
-    {
       type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 0,
+      text: message,
+      type: VirtualDomElements.Text,
+    },
+    {
+      ariaDescribedBy: 'LocationsMessage',
+      ariaLabel: LocationStrings.locations(),
+      childCount: 0,
       className: ClassNames.LocationList,
       role: AriaRoles.Tree,
-      ariaLabel: LocationStrings.locations(),
       tabIndex: 0,
-      ariaDescribedBy: 'LocationsMessage',
-      childCount: 0,
+      type: VirtualDomElements.Div,
     },
   ])
 })
@@ -46,17 +46,17 @@ test('getLocationsVirtualDom with empty locations', () => {
 test('getLocationsVirtualDom with leaf location', () => {
   const locations: readonly DisplayReference[] = [
     {
-      type: LocationType.Leaf,
-      lineText: 'const example = "test"',
-      index: 0,
-      startOffset: 6,
-      endOffset: 13,
       depth: 0,
+      endOffset: 13,
+      icon: 'file-icon.png',
+      index: 0,
+      lineText: 'const example = "test"',
+      name: 'test.ts',
       posInSet: 1,
       setSize: 1,
+      startOffset: 6,
+      type: LocationType.Leaf,
       uri: 'file:///test.ts',
-      name: 'test.ts',
-      icon: 'file-icon.png',
     },
   ]
   const message = '1 result found'
@@ -64,92 +64,92 @@ test('getLocationsVirtualDom with leaf location', () => {
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
+    childCount: 2,
     className: 'Viewlet Locations',
     onMouseDown: 'handleClickReference',
-    childCount: 2,
+    type: VirtualDomElements.Div,
   })
 
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Div,
+    childCount: 1,
     className: ClassNames.LocationsMessage,
     id: 'LocationsMessage',
     role: AriaRoles.Status,
-    childCount: 1,
+    type: VirtualDomElements.Div,
   })
 
   expect(result[2]).toEqual({
-    type: VirtualDomElements.Text,
-    text: message,
     childCount: 0,
+    text: message,
+    type: VirtualDomElements.Text,
   })
 
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Div,
+    ariaDescribedBy: 'LocationsMessage',
+    ariaLabel: LocationStrings.locations(),
+    childCount: 1,
     className: ClassNames.LocationList,
     role: AriaRoles.Tree,
-    ariaLabel: LocationStrings.locations(),
     tabIndex: 0,
-    ariaDescribedBy: 'LocationsMessage',
-    childCount: 1,
+    type: VirtualDomElements.Div,
   })
 
   // Check the leaf location structure
   expect(result[4]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 1,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
     paddingLeft: '2rem',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.Label,
     childCount: 3,
+    className: ClassNames.Label,
+    type: VirtualDomElements.Div,
   })
 
   expect(result[6]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'const ',
     childCount: 0,
+    text: 'const ',
+    type: VirtualDomElements.Text,
   })
 
   expect(result[7]).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.Highlight,
     childCount: 1,
+    className: ClassNames.Highlight,
+    type: VirtualDomElements.Span,
   })
 
   expect(result[8]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'example',
     childCount: 0,
+    text: 'example',
+    type: VirtualDomElements.Text,
   })
 
   expect(result[9]).toEqual({
-    type: VirtualDomElements.Text,
-    text: ' = "test"',
     childCount: 0,
+    text: ' = "test"',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getLocationsVirtualDom with leaf location empty line', () => {
   const locations: readonly DisplayReference[] = [
     {
-      type: LocationType.Leaf,
-      lineText: '',
-      index: 0,
-      startOffset: 0,
-      endOffset: 0,
       depth: 0,
+      endOffset: 0,
+      icon: 'file-icon.png',
+      index: 0,
+      lineText: '',
+      name: 'test.ts',
       posInSet: 1,
       setSize: 1,
+      startOffset: 0,
+      type: LocationType.Leaf,
       uri: 'file:///test.ts',
-      name: 'test.ts',
-      icon: 'file-icon.png',
     },
   ]
   const message = '1 result found'
@@ -158,42 +158,42 @@ test('getLocationsVirtualDom with leaf location empty line', () => {
 
   // Check the leaf location structure for empty line
   expect(result[4]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 1,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
     paddingLeft: '2rem',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.Label,
     childCount: 1,
+    className: ClassNames.Label,
+    type: VirtualDomElements.Div,
   })
 
   expect(result[6]).toEqual({
-    type: VirtualDomElements.Text,
-    text: '(empty line)',
     childCount: 0,
+    text: '(empty line)',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getLocationsVirtualDom with collapsed location', () => {
   const locations: readonly DisplayReference[] = [
     {
-      type: LocationType.Collapsed,
-      index: 0,
-      name: 'example.ts',
       depth: 0,
+      endOffset: undefined,
+      icon: 'file-icon.png',
+      index: 0,
+      lineText: '',
+      name: 'example.ts',
       posInSet: 1,
       setSize: 1,
-      uri: 'file:///example.ts',
-      lineText: '',
-      icon: 'file-icon.png',
       startOffset: undefined,
-      endOffset: undefined,
+      type: LocationType.Collapsed,
+      uri: 'file:///example.ts',
     },
   ]
   const message = '1 file found'
@@ -202,36 +202,36 @@ test('getLocationsVirtualDom with collapsed location', () => {
 
   // Check the collapsed location structure
   expect(result[4]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
     ariaExpanded: false,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 1,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'example.ts',
     childCount: 0,
+    text: 'example.ts',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getLocationsVirtualDom with expanded location', () => {
   const locations: readonly DisplayReference[] = [
     {
-      type: LocationType.Expanded,
-      index: 0,
-      name: 'example.ts',
-      icon: 'file-icon.png',
       depth: 0,
+      endOffset: undefined,
+      icon: 'file-icon.png',
+      index: 0,
+      lineText: '',
+      name: 'example.ts',
       posInSet: 1,
       setSize: 1,
-      uri: 'file:///example.ts',
-      lineText: '',
       startOffset: undefined,
-      endOffset: undefined,
+      type: LocationType.Expanded,
+      uri: 'file:///example.ts',
     },
   ]
   const message = '1 file found'
@@ -240,69 +240,69 @@ test('getLocationsVirtualDom with expanded location', () => {
 
   // Check the expanded location structure
   expect(result[4]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.TreeItem,
     ariaExpanded: true,
-    id: 'Reference-0',
-    'data-index': 0,
-    role: 'treeitem',
     childCount: 2,
+    className: ClassNames.TreeItem,
+    'data-index': 0,
+    id: 'Reference-0',
     paddingLeft: '1rem',
+    role: 'treeitem',
+    type: VirtualDomElements.Div,
   })
 
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Img,
     className: ClassNames.FileIcon,
     src: 'file-icon.png',
+    type: VirtualDomElements.Img,
   })
 
   expect(result[6]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'example.ts',
     childCount: 0,
+    text: 'example.ts',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getLocationsVirtualDom with multiple locations', () => {
   const locations: readonly DisplayReference[] = [
     {
-      type: LocationType.Expanded,
+      depth: 0,
+      endOffset: undefined,
+      icon: 'file-icon.png',
       index: 0,
+      lineText: '',
       name: 'file1.ts',
-      icon: 'file-icon.png',
-      depth: 0,
       posInSet: 1,
       setSize: 1,
+      startOffset: undefined,
+      type: LocationType.Expanded,
       uri: 'file:///file1.ts',
-      lineText: '',
-      startOffset: undefined,
-      endOffset: undefined,
     },
     {
-      type: LocationType.Leaf,
-      lineText: 'const test = "value"',
-      index: 1,
-      startOffset: 6,
+      depth: 0,
       endOffset: 10,
-      depth: 0,
+      icon: 'file-icon.png',
+      index: 1,
+      lineText: 'const test = "value"',
+      name: 'test.ts',
       posInSet: 1,
       setSize: 1,
+      startOffset: 6,
+      type: LocationType.Leaf,
       uri: 'file:///test.ts',
-      name: 'test.ts',
-      icon: 'file-icon.png',
     },
     {
-      type: LocationType.Collapsed,
-      index: 2,
-      name: 'file2.ts',
       depth: 0,
+      endOffset: undefined,
+      icon: 'file-icon.png',
+      index: 2,
+      lineText: '',
+      name: 'file2.ts',
       posInSet: 1,
       setSize: 1,
-      uri: 'file:///file2.ts',
-      lineText: '',
-      icon: 'file-icon.png',
       startOffset: undefined,
-      endOffset: undefined,
+      type: LocationType.Collapsed,
+      uri: 'file:///file2.ts',
     },
   ]
   const message = '3 results found'
@@ -310,13 +310,13 @@ test('getLocationsVirtualDom with multiple locations', () => {
   const result = GetLocationsVirtualDom.getLocationsVirtualDom(locations, message)
 
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Div,
+    ariaDescribedBy: 'LocationsMessage',
+    ariaLabel: LocationStrings.locations(),
+    childCount: 3,
     className: ClassNames.LocationList,
     role: AriaRoles.Tree,
-    ariaLabel: LocationStrings.locations(),
     tabIndex: 0,
-    ariaDescribedBy: 'LocationsMessage',
-    childCount: 3,
+    type: VirtualDomElements.Div,
   })
 
   // Check that all locations are included
@@ -326,17 +326,17 @@ test('getLocationsVirtualDom with multiple locations', () => {
 test('getLocationsVirtualDom with unknown location type', () => {
   const locations: readonly DisplayReference[] = [
     {
-      type: 999, // Unknown type
-      index: 0,
-      name: 'unknown.ts',
       depth: 0,
+      endOffset: undefined,
+      icon: 'file-icon.png',
+      index: 0,
+      lineText: '',
+      name: 'unknown.ts',
       posInSet: 1,
       setSize: 1,
-      uri: 'file:///unknown.ts',
-      lineText: '',
-      icon: 'file-icon.png',
       startOffset: undefined,
-      endOffset: undefined,
+      type: 999, // Unknown type
+      uri: 'file:///unknown.ts',
     },
   ]
   const message = '1 result found'
@@ -345,13 +345,13 @@ test('getLocationsVirtualDom with unknown location type', () => {
 
   // Should only have the container structure, no location nodes
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Div,
+    ariaDescribedBy: 'LocationsMessage',
+    ariaLabel: LocationStrings.locations(),
+    childCount: 1,
     className: ClassNames.LocationList,
     role: AriaRoles.Tree,
-    ariaLabel: LocationStrings.locations(),
     tabIndex: 0,
-    ariaDescribedBy: 'LocationsMessage',
-    childCount: 1,
+    type: VirtualDomElements.Div,
   })
 
   // No additional nodes after the container

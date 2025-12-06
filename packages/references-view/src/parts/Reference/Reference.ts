@@ -1,8 +1,8 @@
 export interface Reference {
-  readonly uri: string
+  readonly endColumnIndex?: number
+  readonly endOffset?: number
   readonly lineText?: string
   readonly startColumnIndex?: number
-  readonly endColumnIndex?: number
   readonly startOffset?: number
-  readonly endOffset?: number
+  readonly uri: string
 }

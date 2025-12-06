@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'references.collapse-all'
 
-export const test: Test = async ({ Command, Extension, FileSystem, Main, Editor, Locator, expect }) => {
+export const test: Test = async ({ Command, Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
   const url = import.meta.resolve('../fixtures/sample.reference-provider-basic').toString()
   await Extension.addWebExtension(url)

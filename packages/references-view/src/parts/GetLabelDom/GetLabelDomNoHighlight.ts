@@ -6,9 +6,9 @@ import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 export const getLabelDomNoHighlight = (lineText: string | undefined): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Label,
       childCount: 1,
+      className: ClassNames.Label,
+      type: VirtualDomElements.Div,
     },
     VirtualDomHelpers.text(lineText || '(empty line)'),
   ]

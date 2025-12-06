@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'references.basic'
 
-export const test: Test = async ({ Extension, FileSystem, Main, Editor, Locator, expect }) => {
+export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
   const url = import.meta.resolve('../fixtures/sample.reference-provider-basic').toString()
   await Extension.addWebExtension(url)

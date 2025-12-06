@@ -7,22 +7,22 @@ import * as ViewletReferencesStrings from '../LocationStrings/LocationsStrings.t
 const getActionButtons = (): readonly any[] => {
   return [
     {
-      type: ActionType.Button,
-      id: ViewletReferencesStrings.refresh(),
-      icon: Icon.Refresh,
       command: 'refresh',
+      icon: Icon.Refresh,
+      id: ViewletReferencesStrings.refresh(),
+      type: ActionType.Button,
     },
     {
-      type: ActionType.Button,
-      id: ViewletReferencesStrings.clear(),
-      icon: Icon.ClearAll,
       command: 'clear',
+      icon: Icon.ClearAll,
+      id: ViewletReferencesStrings.clear(),
+      type: ActionType.Button,
     },
     {
-      type: ActionType.Button,
-      id: ViewletReferencesStrings.collapseAll(),
-      icon: Icon.CollapseAll,
       command: 'collapseAll',
+      icon: Icon.CollapseAll,
+      id: ViewletReferencesStrings.collapseAll(),
+      type: ActionType.Button,
     },
   ]
 }
@@ -32,9 +32,9 @@ export const renderActions = (): readonly any[] => {
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: 'Actions',
       childCount: buttons.length,
+      className: 'Actions',
+      type: VirtualDomElements.Div,
     },
     ...buttons.flatMap(getActionButtonVirtualDom),
   ]

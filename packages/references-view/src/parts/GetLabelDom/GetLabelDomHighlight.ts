@@ -9,15 +9,15 @@ export const getLabelDomHighlight = (lineText: string, startOffset: number, endO
   const end = lineText.slice(endOffset)
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Label,
       childCount: 3,
+      className: ClassNames.Label,
+      type: VirtualDomElements.Div,
     },
     VirtualDomHelpers.text(before),
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.Highlight,
       childCount: 1,
+      className: ClassNames.Highlight,
+      type: VirtualDomElements.Span,
     },
     VirtualDomHelpers.text(middle),
     VirtualDomHelpers.text(end),

@@ -5,22 +5,22 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getExpandedVirtualDom = (location: DisplayReference): readonly VirtualDomNode[] => {
-  const { index, name, icon } = location
+  const { icon, index, name } = location
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.TreeItem,
       ariaExpanded: true,
-      id: `Reference-${index}`,
-      'data-index': index,
-      role: 'treeitem',
       childCount: 2,
+      className: ClassNames.TreeItem,
+      'data-index': index,
+      id: `Reference-${index}`,
       paddingLeft: '1rem',
+      role: 'treeitem',
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Img,
       className: ClassNames.FileIcon,
       src: icon,
+      type: VirtualDomElements.Img,
     },
     VirtualDomHelpers.text(name),
   ]

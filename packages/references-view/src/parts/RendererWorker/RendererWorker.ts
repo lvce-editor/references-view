@@ -1,4 +1,4 @@
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 
-export const { set, activateByEvent, sendMessagePortToEditorWorker, getIcons, getActiveEditorId, sendMessagePortToExtensionHostWorker, readFile, openUri } =
+export const { activateByEvent, getActiveEditorId, getIcons, openUri, readFile, sendMessagePortToEditorWorker, sendMessagePortToExtensionHostWorker, set } =
   RendererWorker
