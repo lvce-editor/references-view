@@ -17,6 +17,7 @@ export const loadContent = async (state: ReferencesState, savedState: unknown): 
     // TODO send error to error worker
     return {
       ...state,
+      initial: false,
       message: `${error}`,
     }
   }

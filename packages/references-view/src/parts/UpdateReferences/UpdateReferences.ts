@@ -18,6 +18,7 @@ export const updateReferences = async (state: ReferencesState, uri: string, lang
   return {
     ...state,
     displayReferences,
+    initial: false,
     languageId,
     message,
     offset,
@@ -32,6 +33,7 @@ export const getAndUpdateReferences = async (state: ReferencesState): Promise<Re
   if (editorId === -1) {
     return {
       ...state,
+      initial: false,
       message: 'No Editor found',
     }
   }
