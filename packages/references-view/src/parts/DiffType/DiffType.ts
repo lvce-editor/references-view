@@ -7,3 +7,4 @@ export const RenderExcludeValue = 6
 export const RenderFocusContext = 7
 export const RenderSelection = 8
 export const RenderPauseOnExceptions = 9
+export const RenderIncremental = 10
