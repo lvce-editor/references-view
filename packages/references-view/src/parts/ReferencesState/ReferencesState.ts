@@ -13,4 +13,6 @@ export interface ReferencesState {
   readonly offset: number
   readonly references: readonly Reference[]
   readonly uri: string
+  readonly assetDir: string
+  readonly platform: number
 }

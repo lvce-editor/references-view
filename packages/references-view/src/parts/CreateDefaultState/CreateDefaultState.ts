@@ -12,6 +12,8 @@ export const createDefaultState = (uid = 0): ReferencesState => {
     offset: -1,
     references: [],
     uri: '',
+    assetDir: '',
+    platform: 0,
   }
   return state
 }
