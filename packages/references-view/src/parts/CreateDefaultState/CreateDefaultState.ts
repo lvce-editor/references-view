@@ -8,6 +8,7 @@ export const createDefaultState = (uid = 0): ReferencesState => {
     fileIconCache: {},
     focusedIndex: -1,
     id: uid,
+    initial: false,
     languageId: '',
     message: '',
     offset: -1,

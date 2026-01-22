@@ -9,6 +9,7 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     fileIconCache: {},
     focusedIndex: -1,
     id,
+    initial: true,
     languageId: '',
     message: '',
     offset: -1,
