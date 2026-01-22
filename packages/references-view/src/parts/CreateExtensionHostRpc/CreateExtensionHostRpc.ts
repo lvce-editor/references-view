@@ -1,10 +1,10 @@
-import { type Rpc, TransferMessagePortRpcParent } from '@lvce-editor/rpc'
+import { type Rpc, LazyTransferMessagePortRpcParent } from '@lvce-editor/rpc'
 import { VError } from '@lvce-editor/verror'
 import * as SendMessagePortToExtensionHostWorker from '../SendMessagePortToExtensionHostWorker/SendMessagePortToExtensionHostWorker.ts'
 
 export const createExtensionHostRpc = async (): Promise<Rpc> => {
   try {
-    const rpc = await TransferMessagePortRpcParent.create({
+    const rpc = await LazyTransferMessagePortRpcParent.create({
       commandMap: {},
       send: SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker,
     })

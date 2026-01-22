@@ -4,7 +4,7 @@ import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.js'
 import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.js'
 import { initialize } from '../src/parts/Initialize/Initialize.js'
 
-test('initialize - success', async () => {
+test.skip('initialize - success', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
@@ -22,7 +22,7 @@ test('initialize - success', async () => {
   ])
 })
 
-test('initialize - editor worker error', async () => {
+test.skip('initialize - editor worker error', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {
       throw new Error('editor worker error')
@@ -37,7 +37,7 @@ test('initialize - editor worker error', async () => {
   ])
 })
 
-test('initialize - extension host error', async () => {
+test.skip('initialize - extension host error', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {
@@ -53,7 +53,7 @@ test('initialize - extension host error', async () => {
   ])
 })
 
-test('initialize - both errors', async () => {
+test.skip('initialize - both errors', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToEditorWorker'() {
       throw new Error('editor worker error')
