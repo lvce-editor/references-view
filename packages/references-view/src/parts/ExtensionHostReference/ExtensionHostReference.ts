@@ -5,10 +5,10 @@ import * as ExtensionHostCommandType from '../ExtensionHostCommandType/Extension
 
 export const executeReferenceProvider = async (editorId: number, offset: number, assetDir: string, platform: number): Promise<readonly any[]> => {
   const result = await ExecuteProvider.executeProvider({
+    assetDir,
     event: ExtensionHostActivationEvent.OnReferences,
     method: ExtensionHostCommandType.ReferenceExecuteReferenceProvider,
     params: [editorId, offset],
-    assetDir,
     platform,
   })
   Assert.array(result)
@@ -24,10 +24,10 @@ export const executeReferenceProvider2 = async (
   platform: number,
 ): Promise<readonly any[]> => {
   const result = await ExecuteProvider.executeProvider({
+    assetDir,
     event: ExtensionHostActivationEvent.OnReferences,
     method: ExtensionHostCommandType.ReferenceExecuteReferenceProvider2,
     params: [uri, languageId, offset, position],
-    assetDir,
     platform,
   })
   Assert.array(result)
@@ -36,10 +36,10 @@ export const executeReferenceProvider2 = async (
 
 export const executeFileReferenceProvider = (id: number, languageId: string, assetDir: string, platform: number): Promise<readonly any[]> => {
   return ExecuteProvider.executeProvider({
+    assetDir,
     event: `onReferences:${languageId}`,
     method: ExtensionHostCommandType.ReferenceExecuteFileReferenceProvider,
-    assetDir,
-    platform,
     params: [id],
+    platform,
   })
 }

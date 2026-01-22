@@ -2,11 +2,11 @@ import * as ExtensionHost from '../ExtensionHost/ExtensionHost.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 export const executeProvider = async ({
+  assetDir,
   event,
   method,
   params,
   platform,
-  assetDir,
 }: {
   event: string
   method: string

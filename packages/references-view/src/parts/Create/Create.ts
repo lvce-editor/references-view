@@ -3,6 +3,7 @@ import * as ReferencesStates from '../ReferencesStates/ReferencesStates.ts'
 
 export const create = (id: number, uri: string, x: number, y: number, width: number, height: number, assetDir: string, platform: number): void => {
   const state: ReferencesState = {
+    assetDir,
     collapsedUris: [],
     displayReferences: [],
     fileIconCache: {},
@@ -11,10 +12,9 @@ export const create = (id: number, uri: string, x: number, y: number, width: num
     languageId: '',
     message: '',
     offset: -1,
+    platform,
     references: [],
     uri: '',
-    assetDir,
-    platform,
   }
   ReferencesStates.set(id, state, state)
 }
