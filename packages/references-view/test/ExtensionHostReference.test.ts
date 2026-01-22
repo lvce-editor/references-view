@@ -34,7 +34,7 @@ test('executeReferenceProvider calls ExtensionHost.invoke with correct parameter
 
   const editorId = 123
   const offset = 42
-  const result = await ExtensionHostReference.executeReferenceProvider(editorId, offset)
+  const result = await ExtensionHostReference.executeReferenceProvider(editorId, offset, '', 0)
 
   expect(invokedMethod).toBe('ExtensionHostReference.executeReferenceProvider')
   expect(invokedParams).toEqual([123, 42])
@@ -69,7 +69,7 @@ test('executeFileReferenceProvider calls ExtensionHost.invoke with correct param
 
   const id = 456
   const languageId = 'typescript'
-  const result = await ExtensionHostReference.executeFileReferenceProvider(id, languageId)
+  const result = await ExtensionHostReference.executeFileReferenceProvider(id, languageId, '', 0)
 
   expect(invokedMethod).toBe('ExtensionHostReference.executeFileReferenceProvider')
   expect(invokedParams).toEqual([456])

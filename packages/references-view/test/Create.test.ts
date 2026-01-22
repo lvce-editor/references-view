@@ -9,7 +9,7 @@ test('create - should initialize a new references state', () => {
   const y = 0
   const width = 100
   const height = 100
-  Create.create(id, uri, x, y, width, height)
+  Create.create(id, uri, x, y, width, height, '', 0)
   const state = ReferencesStates.get(id)
   expect(state).toBeDefined()
 })
