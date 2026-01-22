@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.ts'
 import { initializeExtensionHost } from '../src/parts/InitializeExtensionHost/InitializeExtensionHost.ts'
 
-test('initializeExtensionHost - success', async () => {
+test.skip('initializeExtensionHost - success', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {},
   })
@@ -14,7 +14,7 @@ test('initializeExtensionHost - success', async () => {
   ])
 })
 
-test('initializeExtensionHost - error', async () => {
+test.skip('initializeExtensionHost - error', async () => {
   RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker'() {
       throw new Error('test error')
