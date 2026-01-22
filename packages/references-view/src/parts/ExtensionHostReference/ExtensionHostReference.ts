@@ -3,30 +3,43 @@ import * as ExecuteProvider from '../ExecuteProvider/ExecuteProvider.ts'
 import * as ExtensionHostActivationEvent from '../ExtensionHostActivationEvent/ExtensionHostActivationEvent.ts'
 import * as ExtensionHostCommandType from '../ExtensionHostCommandType/ExtensionHostCommandType.ts'
 
-export const executeReferenceProvider = async (editorId: number, offset: number): Promise<readonly any[]> => {
+export const executeReferenceProvider = async (editorId: number, offset: number, assetDir: string, platform: number): Promise<readonly any[]> => {
   const result = await ExecuteProvider.executeProvider({
+    assetDir,
     event: ExtensionHostActivationEvent.OnReferences,
     method: ExtensionHostCommandType.ReferenceExecuteReferenceProvider,
     params: [editorId, offset],
+    platform,
   })
   Assert.array(result)
   return result
 }
 
-export const executeReferenceProvider2 = async (uri: string, languageId: string, offset: number, position: any): Promise<readonly any[]> => {
+export const executeReferenceProvider2 = async (
+  uri: string,
+  languageId: string,
+  offset: number,
+  position: any,
+  assetDir: string,
+  platform: number,
+): Promise<readonly any[]> => {
   const result = await ExecuteProvider.executeProvider({
+    assetDir,
     event: ExtensionHostActivationEvent.OnReferences,
     method: ExtensionHostCommandType.ReferenceExecuteReferenceProvider2,
     params: [uri, languageId, offset, position],
+    platform,
   })
   Assert.array(result)
   return result
 }
 
-export const executeFileReferenceProvider = (id: number, languageId: string): Promise<readonly any[]> => {
+export const executeFileReferenceProvider = (id: number, languageId: string, assetDir: string, platform: number): Promise<readonly any[]> => {
   return ExecuteProvider.executeProvider({
+    assetDir,
     event: `onReferences:${languageId}`,
     method: ExtensionHostCommandType.ReferenceExecuteFileReferenceProvider,
     params: [id],
+    platform,
   })
 }
