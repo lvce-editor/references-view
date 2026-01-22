@@ -9,6 +9,7 @@ export interface ReferencesState {
   readonly fileIconCache: FileIconCache
   readonly focusedIndex: number
   readonly id: number
+  readonly initial: boolean
   readonly languageId: string
   readonly message: string
   readonly offset: number
