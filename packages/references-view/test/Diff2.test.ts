@@ -23,7 +23,7 @@ test('diff2 returns diff type when states are different', () => {
 
   const result: readonly unknown[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([DiffType.RenderItems])
+  expect(result).toEqual([DiffType.RenderIncremental])
 })
 
 test('diff2 uses states from ReferencesStates', () => {
@@ -38,5 +38,5 @@ test('diff2 uses states from ReferencesStates', () => {
 
   const result: readonly unknown[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([DiffType.RenderItems])
+  expect(result).toEqual([DiffType.RenderIncremental])
 })
