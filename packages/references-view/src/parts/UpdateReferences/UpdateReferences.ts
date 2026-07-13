@@ -11,8 +11,8 @@ export const updateReferences = async (state: ReferencesState, uri: string, lang
   const { assetDir, platform } = state
   const references = await References.getReferences2(uri, languageId, offset, position, assetDir, platform)
   const icons = await requestFileIcons(references)
-  const collapseduris: readonly string[] = []
-  const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons, collapseduris)
+  const collapsedUris: readonly string[] = []
+  const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons, collapsedUris)
   const fileCount = GetReferencesFileCount.getFileCount(references)
   const message = GetReferencesMessage.getMessage(references.length, fileCount)
   return {

@@ -30,12 +30,25 @@ export default [
       '@typescript-eslint/prefer-regexp-exec': 'off',
       '@typescript-eslint/only-throw-error': 'off',
       'no-restricted-syntax': 'off',
+      'unicorn/prefer-number-coercion': 'off',
+    },
+  },
+  {
+    files: ['packages/e2e/**/*.ts'],
+    rules: {
+      'e2e/prefer-filesystem-set-files': 'off',
+      'unicorn/no-useless-coercion': 'off',
     },
   },
   {
     files: ['**/*.test.ts'],
     rules: {
+      '@cspell/spellchecker': 'off',
       '@typescript-eslint/no-empty-function': 'off',
+      'rpc/prefer-using-mock-rpc': 'off',
+      'sonarjs/assertions-in-tests': 'off',
+      'sonarjs/function-return-type': 'off',
+      'sonarjs/prefer-specific-assertions': 'off',
     },
   },
 ]
