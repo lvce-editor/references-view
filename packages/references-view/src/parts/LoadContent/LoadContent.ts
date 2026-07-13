@@ -18,7 +18,7 @@ export const loadContent = async (state: ReferencesState, savedState: unknown): 
     return {
       ...state,
       initial: false,
-      message: `${error}`,
+      message: String(error),
     }
   }
 }
