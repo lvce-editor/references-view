@@ -3,6 +3,18 @@ import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesSta
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
 
+test('renderItems returns an empty dom for the initial state', () => {
+  const oldState: ReferencesState = createDefaultState(1)
+  const newState: ReferencesState = {
+    ...createDefaultState(2),
+    initial: true,
+  }
+
+  const result = RenderItems.renderItems(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.setDom2', 2, []])
+})
+
 test('renderItems returns correct ViewletCommand with empty state', () => {
   const oldState: ReferencesState = createDefaultState(1)
   const newState: ReferencesState = createDefaultState(2)

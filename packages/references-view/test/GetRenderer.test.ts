@@ -1,12 +1,19 @@
 import { test, expect } from '@jest/globals'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import * as GetRenderer from '../src/parts/GetRenderer/GetRenderer.ts'
+import { renderIncremental } from '../src/parts/RenderIncremental/RenderIncremental.ts'
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
 
 test('getRenderer returns renderItems for RenderItems diff type', () => {
   const renderer = GetRenderer.getRenderer(DiffType.RenderItems)
 
   expect(renderer).toBe(RenderItems.renderItems)
+})
+
+test('getRenderer returns renderIncremental for RenderIncremental diff type', () => {
+  const renderer = GetRenderer.getRenderer(DiffType.RenderIncremental)
+
+  expect(renderer).toBe(renderIncremental)
 })
 
 test('getRenderer throws error for unknown diff type', () => {
