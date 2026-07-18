@@ -22,6 +22,9 @@ const referenceProvider = {
     if (uri.endsWith('/highlight.xyz')) {
       return [createReference(uri, 0, 6, 12)]
     }
+    if (uri.endsWith('/empty-line.xyz')) {
+      return [createReference(uri, 1)]
+    }
     return [createReference(uri, 0)]
   },
 }

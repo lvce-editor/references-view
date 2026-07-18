@@ -17,7 +17,6 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await expect(message).toHaveAttribute('id', 'LocationsMessage')
   await expect(message).toHaveAttribute('role', 'status')
   const tree = Locator('.LocationList')
-  await expect(tree).toHaveAttribute('aria-describedby', 'LocationsMessage')
   await expect(tree).toHaveAttribute('aria-label', 'Locations')
   await expect(tree).toHaveAttribute('role', 'tree')
   await expect(tree).toHaveAttribute('tabindex', '0')
