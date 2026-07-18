@@ -86,3 +86,27 @@ test('restoreState should return RestoredState with focusedIndex 0', () => {
     uri: '',
   })
 })
+
+test('restoreState should restore all supported saved state properties', () => {
+  const position = {
+    columnIndex: 4,
+    rowIndex: 2,
+  }
+  const input: unknown = {
+    focusedIndex: 3,
+    language: 'typescript',
+    offset: 24,
+    position,
+    uri: 'file:///test.ts',
+  }
+
+  const result = restoreState(input)
+
+  expect(result).toEqual({
+    focusedIndex: 3,
+    languageId: 'typescript',
+    offset: 24,
+    position,
+    uri: 'file:///test.ts',
+  })
+})
