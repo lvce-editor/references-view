@@ -4,7 +4,7 @@ export const name = 'references.empty-line'
 
 export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
-  const url = import.meta.resolve('../fixtures/sample.reference-provider-advanced').toString()
+  const url = import.meta.resolve('../.tmp/sample.reference-provider-advanced').toString()
   await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(`${tmpDir}/empty-line.xyz`, 'const value = 1\n\n')

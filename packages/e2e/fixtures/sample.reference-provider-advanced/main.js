@@ -1,3 +1,7 @@
+import { activate, registerReferenceProvider } from '@lvce-editor/api'
+
+await activate()
+
 const createReference = (uri, startRowIndex, startColumnIndex = 0, endColumnIndex = startColumnIndex) => {
   return {
     endColumnIndex,
@@ -9,8 +13,9 @@ const createReference = (uri, startRowIndex, startColumnIndex = 0, endColumnInde
 }
 
 const referenceProvider = {
+  id: 'sample.reference-provider-advanced',
   languageId: 'xyz',
-  provideReferences2(textDocument) {
+  provideReferences(textDocument) {
     const { uri } = textDocument
     if (uri.endsWith('/multiple-results.xyz')) {
       return [createReference(uri, 0), createReference(uri, 1)]
@@ -29,6 +34,4 @@ const referenceProvider = {
   },
 }
 
-export const activate = () => {
-  vscode.registerReferenceProvider(referenceProvider)
-}
+registerReferenceProvider(referenceProvider)

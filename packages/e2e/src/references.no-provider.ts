@@ -24,7 +24,8 @@ add(1,2)
   await Editor.findAllReferences()
 
   // assert
-  const viewletLocations = Locator('.Viewlet.Error')
+  const viewletLocations = Locator('.Locations')
   await expect(viewletLocations).toBeVisible()
-  await expect(viewletLocations).toHaveText(`Error: Cannot read properties of undefined (reading 'provideReferences2')`)
+  const viewletReferencesMessage = Locator('.LocationsMessage')
+  await expect(viewletReferencesMessage).toHaveText('No Results')
 }

@@ -1,12 +1,12 @@
 import { type Rpc, LazyTransferMessagePortRpcParent } from '@lvce-editor/rpc'
 import { VError } from '@lvce-editor/verror'
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 
 export const createExtensionManagementWorkerRpc = async (): Promise<Rpc> => {
   try {
     const rpc = await LazyTransferMessagePortRpcParent.create({
       commandMap: {},
-      send: (port) => RendererWorker.sendMessagePortToExtensionManagementWorker(port, 0),
+      send: (port) => EditorWorker.sendMessagePortToExtensionManagementWorker(port),
     })
     return rpc
   } catch (error) {
