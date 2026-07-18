@@ -238,6 +238,67 @@ test('getDisplayReferences with startOffset and endOffset instead of column indi
   })
 })
 
+test('getDisplayReferences with fallback values in a subsequent reference', () => {
+  const references: readonly Reference[] = [
+    {
+      endColumnIndex: 13,
+      lineText: 'const example = "test"',
+      startColumnIndex: 6,
+      uri: '/path/to/file.ts',
+    },
+    {
+      endOffset: 17,
+      startOffset: 10,
+      uri: '/path/to/file.ts',
+    },
+  ]
+
+  const result = GetDisplayReferences.getDisplayReferences(references, ['', ''], [])
+
+  expect(result[2]).toEqual({
+    depth: 2,
+    endOffset: 17,
+    icon: '',
+    index: 2,
+    lineText: '',
+    name: '',
+    posInSet: 2,
+    setSize: 1,
+    startOffset: 10,
+    type: LocationType.Leaf,
+    uri: '',
+  })
+})
+
+test('getDisplayReferences with collapsed uri', () => {
+  const references: readonly Reference[] = [
+    {
+      endColumnIndex: 13,
+      lineText: 'const example = "test"',
+      startColumnIndex: 6,
+      uri: '/path/to/file.ts',
+    },
+  ]
+
+  const result = GetDisplayReferences.getDisplayReferences(references, ['icon-file'], ['/path/to/file.ts'])
+
+  expect(result).toEqual([
+    {
+      depth: 1,
+      endOffset: 0,
+      icon: 'icon-file',
+      index: 0,
+      lineText: '',
+      name: 'file.ts',
+      posInSet: 1,
+      setSize: 1,
+      startOffset: 0,
+      type: LocationType.Expanded,
+      uri: '/path/to/file.ts',
+    },
+  ])
+})
+
 test('getDisplayReferences with empty lineText', () => {
   const references: readonly Reference[] = [
     {

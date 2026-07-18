@@ -5,11 +5,12 @@ import { selectIndexExpanded } from '../SelectIndexExpanded/SelectIndexExpanded.
 import { selectIndexLead } from '../SelectIndexLead/SelectIndexLead.ts'
 
 export const selectIndex = async (state: ReferencesState, index: number): Promise<ReferencesState> => {
-  if (index < 0 || index >= state.displayReferences.length) {
+  const { displayReferences } = state
+  if (index < 0 || index >= displayReferences.length) {
     return state
   }
 
-  const displayReference = state.displayReferences[index]
+  const displayReference = displayReferences[index]
   switch (displayReference.type) {
     case LocationType.Collapsed:
       return selectIndexCollapsed(state, index)
