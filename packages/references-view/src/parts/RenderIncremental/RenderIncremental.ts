@@ -4,7 +4,7 @@ import type { IViewletCommand } from '../ViewletCommand/ViewletCommand.ts'
 import { renderItems } from '../RenderItems/RenderItems.ts'
 
 export const renderIncremental = (oldState: ReferencesState, newState: ReferencesState): IViewletCommand => {
-  if (oldState.initial) {
+  if (oldState.initial || oldState.displayReferences.length !== newState.displayReferences.length) {
     return renderItems(oldState, newState)
   }
   const oldDom = renderItems(oldState, oldState)[2]
