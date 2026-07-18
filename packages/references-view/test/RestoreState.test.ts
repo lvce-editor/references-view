@@ -110,3 +110,23 @@ test('restoreState should restore all supported saved state properties', () => {
     uri: 'file:///test.ts',
   })
 })
+
+test('restoreState should use defaults for saved state properties with invalid types', () => {
+  const input: unknown = {
+    focusedIndex: '3',
+    language: 1,
+    offset: '24',
+    position: '2:4',
+    uri: 1,
+  }
+
+  const result = restoreState(input)
+
+  expect(result).toEqual({
+    focusedIndex: -1,
+    languageId: '',
+    offset: -1,
+    position: {},
+    uri: '',
+  })
+})
