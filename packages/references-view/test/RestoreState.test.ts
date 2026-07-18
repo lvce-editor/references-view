@@ -87,6 +87,26 @@ test('restoreState should return RestoredState with focusedIndex 0', () => {
   })
 })
 
+test('restoreState should use defaults for properties with invalid types', () => {
+  const input: unknown = {
+    focusedIndex: '5',
+    language: 42,
+    offset: '24',
+    position: '2:4',
+    uri: 42,
+  }
+
+  const result = restoreState(input)
+
+  expect(result).toEqual({
+    focusedIndex: -1,
+    languageId: '',
+    offset: -1,
+    position: {},
+    uri: '',
+  })
+})
+
 test('restoreState should restore all supported saved state properties', () => {
   const position = {
     columnIndex: 4,
