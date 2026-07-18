@@ -29,7 +29,5 @@ add(1,2)
   const viewletError = Locator('.Viewlet.Error')
 
   await expect(viewletError).toBeVisible()
-  await expect(viewletError).toHaveText(
-    `Error: Failed to activate extension sample.reference-provider-error-main-not-found: Failed to import ${url}/not-found.js: Not found (404)`,
-  ) // TODO
+  await expect(viewletError).toHaveText('Error: Failed to start Extension API: sample.reference-provider-error-main-not-found Worker: Worker Launch Error') // TODO
 }

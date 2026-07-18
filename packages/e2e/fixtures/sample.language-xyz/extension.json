@@ -1,0 +1,12 @@
+{
+  "id": "sample.language-xyz",
+  "browser": "main.js",
+  "isolated": true,
+  "activation": ["onReferences:xyz"],
+  "languages": [
+    {
+      "id": "xyz",
+      "extensions": [".xyz"]
+    }
+  ]
+}

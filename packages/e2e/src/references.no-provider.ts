@@ -2,8 +2,10 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'references.no-provider'
 
-export const test: Test = async ({ Editor, expect, FileSystem, Locator, Main }) => {
+export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
+  const url = import.meta.resolve('../.tmp/sample.language-xyz').toString()
+  await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
     `${tmpDir}/add.xyz`,
@@ -24,8 +26,7 @@ add(1,2)
   await Editor.findAllReferences()
 
   // assert
-  const viewletLocations = Locator('.Locations')
-  await expect(viewletLocations).toBeVisible()
-  const viewletReferencesMessage = Locator('.LocationsMessage')
-  await expect(viewletReferencesMessage).toHaveText('No Results')
+  const viewletError = Locator('.Viewlet.Error')
+  await expect(viewletError).toBeVisible()
+  await expect(viewletError).toHaveText('Error: No reference provider found for xyz')
 }

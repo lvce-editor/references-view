@@ -27,6 +27,7 @@ const prepareFixture = async (name, bundle = true) => {
 
 await rm(outputRoot, { force: true, recursive: true })
 await Promise.all([
+  prepareFixture('sample.language-xyz'),
   prepareFixture('sample.reference-provider-advanced'),
   prepareFixture('sample.reference-provider-basic'),
   prepareFixture('sample.reference-provider-error'),
