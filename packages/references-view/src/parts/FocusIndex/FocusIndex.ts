@@ -1,7 +1,8 @@
 import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
 
 export const focusIndex = (state: ReferencesState, index: number): ReferencesState => {
-  if (index < -1 || index >= state.displayReferences.length) {
+  const { displayReferences } = state
+  if (index < -1 || index >= displayReferences.length) {
     return state
   }
   return {
