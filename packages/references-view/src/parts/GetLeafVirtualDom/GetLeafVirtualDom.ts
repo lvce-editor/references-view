@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplayReference } from '../DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetLabelDom from '../GetLabelDom/GetLabelDom.ts'
@@ -13,7 +13,7 @@ export const getLeafVirtualDom = (location: DisplayReference): readonly VirtualD
       'data-index': index,
       id: `Reference-${index}`,
       paddingLeft: '2rem',
-      role: 'treeitem',
+      role: AriaRoles.TreeItem,
       type: VirtualDomElements.Div,
     },
     ...GetLabelDom.getLabelDom(location),

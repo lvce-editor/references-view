@@ -1,7 +1,8 @@
-import config from '@lvce-editor/eslint-config'
+import * as config from '@lvce-editor/eslint-config'
 
 export default [
-  ...config,
+  ...config.default,
+  ...config.recommendedVirtualDom,
   {
     files: ['**/*.ts'],
     rules: {
@@ -49,6 +50,9 @@ export default [
       'sonarjs/assertions-in-tests': 'off',
       'sonarjs/function-return-type': 'off',
       'sonarjs/prefer-specific-assertions': 'off',
+      'virtual-dom/no-inline-event-handlers': 'off',
+      'virtual-dom/prefer-constants': 'off',
+      'virtual-dom/prefer-merge-class-names': 'off',
     },
   },
 ]

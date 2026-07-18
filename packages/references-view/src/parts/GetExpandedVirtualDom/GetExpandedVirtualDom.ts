@@ -1,5 +1,5 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { DisplayReference } from '../DisplayReference/DisplayReference.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
@@ -14,7 +14,7 @@ export const getExpandedVirtualDom = (location: DisplayReference): readonly Virt
       'data-index': index,
       id: `Reference-${index}`,
       paddingLeft: '1rem',
-      role: 'treeitem',
+      role: AriaRoles.TreeItem,
       type: VirtualDomElements.Div,
     },
     {

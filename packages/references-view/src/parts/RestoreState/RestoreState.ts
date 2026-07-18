@@ -7,35 +7,50 @@ export interface RestoredState {
 }
 
 const restoreFocusedIndex = (state: unknown): number => {
-  if (state && typeof state === 'object' && 'focusedIndex' in state && typeof state.focusedIndex === 'number') {
-    return state.focusedIndex
+  if (state && typeof state === 'object' && 'focusedIndex' in state) {
+    const { focusedIndex } = state
+    if (typeof focusedIndex === 'number') {
+      return focusedIndex
+    }
   }
   return -1
 }
 
 const restoreOffset = (state: unknown): number => {
-  if (state && typeof state === 'object' && 'offset' in state && typeof state.offset === 'number') {
-    return state.offset
+  if (state && typeof state === 'object' && 'offset' in state) {
+    const { offset } = state
+    if (typeof offset === 'number') {
+      return offset
+    }
   }
   return -1
 }
 const restoreUri = (state: unknown): string => {
-  if (state && typeof state === 'object' && 'uri' in state && typeof state.uri === 'string') {
-    return state.uri
+  if (state && typeof state === 'object' && 'uri' in state) {
+    const { uri } = state
+    if (typeof uri === 'string') {
+      return uri
+    }
   }
   return ''
 }
 
 const restoreLanguageId = (state: unknown): string => {
-  if (state && typeof state === 'object' && 'language' in state && typeof state.language === 'string') {
-    return state.language
+  if (state && typeof state === 'object' && 'language' in state) {
+    const { language } = state
+    if (typeof language === 'string') {
+      return language
+    }
   }
   return ''
 }
 
 const restorePosition = (state: unknown): any => {
-  if (state && typeof state === 'object' && 'position' in state && typeof state.position === 'object') {
-    return state.position
+  if (state && typeof state === 'object' && 'position' in state) {
+    const { position } = state
+    if (typeof position === 'object') {
+      return position
+    }
   }
   return {}
 }
