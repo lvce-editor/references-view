@@ -1,5 +1,5 @@
 {
-  "id": "sample.reference-provider-no-results",
+  "id": "sample.language-xyz",
   "browser": "main.js",
   "isolated": true,
   "activation": ["onReferences:xyz"],

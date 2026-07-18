@@ -4,7 +4,7 @@ export const name = 'references.file-label'
 
 export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
-  const url = import.meta.resolve('../fixtures/sample.reference-provider-advanced').toString()
+  const url = import.meta.resolve('../.tmp/sample.reference-provider-advanced').toString()
   await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(`${tmpDir}/descriptive-reference-name.xyz`, 'const value = 1\n')

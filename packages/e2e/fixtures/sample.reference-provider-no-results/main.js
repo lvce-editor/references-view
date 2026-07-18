@@ -1,10 +1,16 @@
-const referenceProvider = {
-  languageId: 'xyz',
-  provideReferences2(textDocument, offset) {
-    return []
-  },
+import { activate, registerReferenceProvider } from '@lvce-editor/api'
+
+await activate()
+
+const provideReferences = (textDocument, offset) => {
+  return []
 }
 
-export const activate = () => {
-  vscode.registerReferenceProvider(referenceProvider)
+const referenceProvider = {
+  id: 'sample.reference-provider-no-results',
+  languageId: 'xyz',
+  provideReferences,
+  provideReferences2: provideReferences,
 }
+
+registerReferenceProvider(referenceProvider)

@@ -1,5 +1,9 @@
-import * as ExtensionHost from '../ExtensionHost/ExtensionHost.ts'
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import * as ExtensionManagementWorker from '../ExtensionManagementWorker/ExtensionManagementWorker.ts'
+
+interface LanguageProviderResult {
+  readonly found: boolean
+  readonly result?: unknown
+}
 
 export const executeProvider = async ({
   assetDir,
@@ -7,15 +11,30 @@ export const executeProvider = async ({
   method,
   params,
   platform,
+  textDocument,
 }: {
   event: string
   method: string
   params: readonly any[]
   platform: number
   assetDir: string
+  textDocument: {
+    readonly languageId: string
+    readonly uri: string
+  }
 }): Promise<any> => {
-  await RendererWorker.activateByEvent(event, assetDir, platform)
-  // @ts-ignore
-  const result = await ExtensionHost.invoke(method, ...params)
-  return result
+  const activationResult = (await ExtensionManagementWorker.invoke('Extensions.activateByEvent', event, assetDir, platform)) as {
+    readonly error?: Error
+  }
+  if (activationResult.error) {
+    throw activationResult.error
+  }
+  const providerResult = (await ExtensionManagementWorker.invoke(
+    'Extensions.executeLanguageProvider',
+    'reference',
+    method,
+    textDocument,
+    ...params,
+  )) as LanguageProviderResult
+  return providerResult.found ? providerResult.result : []
 }

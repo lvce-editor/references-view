@@ -4,7 +4,7 @@ export const name = 'references.basic'
 
 export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
-  const url = import.meta.resolve('../fixtures/sample.reference-provider-basic').toString()
+  const url = import.meta.resolve('../.tmp/sample.reference-provider-basic').toString()
   await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(

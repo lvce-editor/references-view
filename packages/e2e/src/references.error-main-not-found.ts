@@ -4,7 +4,7 @@ export const name = 'references.error-main-not-found'
 
 export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
-  const url = import.meta.resolve('../fixtures/sample.reference-provider-error-main-not-found').toString()
+  const url = import.meta.resolve('../.tmp/sample.reference-provider-error-main-not-found').toString()
   await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
@@ -29,7 +29,5 @@ add(1,2)
   const viewletError = Locator('.Viewlet.Error')
 
   await expect(viewletError).toBeVisible()
-  await expect(viewletError).toHaveText(
-    `Error: Failed to activate extension sample.reference-provider-error-main-not-found: Failed to import ${url}/not-found.js: Not found (404)`,
-  ) // TODO
+  await expect(viewletError).toHaveText('Error: Failed to start Extension API: sample.reference-provider-error-main-not-found Worker: Worker Launch Error') // TODO
 }
