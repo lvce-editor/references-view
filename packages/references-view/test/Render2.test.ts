@@ -7,6 +7,25 @@ import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesState
 import * as Render2 from '../src/parts/Render2/Render2.ts'
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
 
+test('render2 mounts the initial dom', () => {
+  const uid = 41
+  const oldState: ReferencesState = {
+    ...createDefaultState(),
+    id: uid,
+    initial: true,
+  }
+  const newState: ReferencesState = {
+    ...oldState,
+    initial: false,
+    message: 'No Results',
+  }
+  ReferencesStates.set(uid, oldState, newState)
+  const diffResult = [DiffType.RenderIncremental]
+  const result = Render2.render2(uid, diffResult)
+  const expectedDom = RenderItems.renderItems(oldState, newState)[2]
+  expect(result).toEqual([['Viewlet.setDom2', newState.id, expectedDom]])
+})
+
 test('render2 returns patches for RenderIncremental diff', () => {
   const uid = 42
   const oldState: ReferencesState = {
