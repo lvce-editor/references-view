@@ -1,3 +1,0 @@
-export const ReferenceExecuteFileReferenceProvider = 'ExtensionHostReference.executeFileReferenceProvider'
-export const ReferenceExecuteReferenceProvider = 'ExtensionHostReference.executeReferenceProvider'
-export const ReferenceExecuteReferenceProvider2 = 'ExtensionHostReference.executeReferenceProvider2'

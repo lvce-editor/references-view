@@ -3,7 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import type { ReferencesState } from '../src/parts/ReferencesState/ReferencesState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.ts'
-import * as ExtensionHost from '../src/parts/ExtensionHost/ExtensionHost.ts'
+import * as ExtensionManagementWorker from '../src/parts/ExtensionManagementWorker/ExtensionManagementWorker.ts'
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
@@ -19,17 +19,11 @@ test('loadContent - loads references and updates state', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return
+      if (method === 'Extensions.activateByEvent') {
+        return { error: undefined, hasActivatedExtensions: true }
       }
-      if (method === 'ExtensionHost.executeProvider') {
-        return mockReferences
-      }
-      if (method === 'ExtensionHostReference.executeReferenceProvider') {
-        return mockReferences
-      }
-      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
-        return mockReferences
+      if (method === 'Extensions.executeLanguageProvider') {
+        return { found: true, result: mockReferences }
       }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
@@ -59,7 +53,7 @@ test('loadContent - loads references and updates state', async () => {
     },
   })
   RendererWorker.set(mockRpc)
-  ExtensionHost.set(mockRpc)
+  ExtensionManagementWorker.set(mockRpc)
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(1)
@@ -106,17 +100,11 @@ test('loadContent - handles empty references', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return
+      if (method === 'Extensions.activateByEvent') {
+        return { error: undefined, hasActivatedExtensions: true }
       }
-      if (method === 'ExtensionHost.executeProvider') {
-        return []
-      }
-      if (method === 'ExtensionHostReference.executeReferenceProvider') {
-        return []
-      }
-      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
-        return []
+      if (method === 'Extensions.executeLanguageProvider') {
+        return { found: true, result: [] }
       }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
@@ -146,7 +134,7 @@ test('loadContent - handles empty references', async () => {
     },
   })
   RendererWorker.set(mockRpc)
-  ExtensionHost.set(mockRpc)
+  ExtensionManagementWorker.set(mockRpc)
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(2)
@@ -169,17 +157,11 @@ test('loadContent - preserves existing state properties', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return
+      if (method === 'Extensions.activateByEvent') {
+        return { error: undefined, hasActivatedExtensions: true }
       }
-      if (method === 'ExtensionHost.executeProvider') {
-        return mockReferences
-      }
-      if (method === 'ExtensionHostReference.executeReferenceProvider') {
-        return mockReferences
-      }
-      if (method === 'ExtensionHostReference.executeReferenceProvider2') {
-        return mockReferences
+      if (method === 'Extensions.executeLanguageProvider') {
+        return { found: true, result: mockReferences }
       }
       if (method === 'GetActiveEditor.getActiveEditorId') {
         return 1
@@ -209,7 +191,7 @@ test('loadContent - preserves existing state properties', async () => {
     },
   })
   RendererWorker.set(mockRpc)
-  ExtensionHost.set(mockRpc)
+  ExtensionManagementWorker.set(mockRpc)
   EditorWorker.set(mockRpc)
 
   const initialState: ReferencesState = createDefaultState(3)
@@ -236,4 +218,64 @@ test('loadContent - preserves existing state properties', async () => {
   expect(Array.isArray(result.displayReferences)).toBe(true)
   expect(result.displayReferences.length).toBeGreaterThanOrEqual(mockReferences.length)
   expect(typeof result.message).toBe('string')
+})
+
+test('loadContent - restores references for a saved file', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'Extensions.activateByEvent') {
+        return { error: undefined, hasActivatedExtensions: true }
+      }
+      if (method === 'Extensions.executeLanguageProvider') {
+        return { found: true, result: [] }
+      }
+      if (method === 'IconTheme.getIcons') {
+        return []
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
+  ExtensionManagementWorker.set(mockRpc)
+
+  const result = await LoadContent.loadContent(createDefaultState(4), {
+    language: 'typescript',
+    offset: 3,
+    position: {
+      columnIndex: 3,
+      rowIndex: 0,
+    },
+    uri: 'file:///test.ts',
+  })
+
+  expect(result).toMatchObject({
+    id: 4,
+    languageId: 'typescript',
+    message: 'No Results',
+    offset: 3,
+    references: [],
+    uri: 'file:///test.ts',
+  })
+})
+
+test('loadContent - reports when there is no active editor', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'GetActiveEditor.getActiveEditorId') {
+        return -1
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
+
+  const result = await LoadContent.loadContent(createDefaultState(5), {})
+
+  expect(result).toMatchObject({
+    id: 5,
+    initial: false,
+    message: 'No Editor found',
+  })
 })

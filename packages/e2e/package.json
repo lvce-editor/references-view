@@ -5,11 +5,14 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "e2e": "test-with-playwright --only-extension=. --test-path=.",
-    "e2e:headless": "test-with-playwright --only-extension=. --test-path=. --headless",
+    "e2e": "npm run e2e:prepare && test-with-playwright --only-extension=. --test-path=.",
+    "e2e:headless": "npm run e2e:prepare && test-with-playwright --only-extension=. --test-path=. --headless",
+    "e2e:prepare": "node ./scripts/prepare-extension.js",
     "type-check": "tsc"
   },
   "devDependencies": {
-    "@lvce-editor/test-with-playwright": "^12.1.0"
+    "@lvce-editor/api": "^8.49.0",
+    "@lvce-editor/test-with-playwright": "^12.1.0",
+    "esbuild": "^0.28.1"
   }
 }

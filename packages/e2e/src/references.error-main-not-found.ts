@@ -4,7 +4,7 @@ export const name = 'references.error-main-not-found'
 
 export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
-  const url = import.meta.resolve('../fixtures/sample.reference-provider-error-main-not-found').toString()
+  const url = import.meta.resolve('../.tmp/sample.reference-provider-error-main-not-found').toString()
   await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(

@@ -1,6 +1,8 @@
 {
+  "id": "sample.reference-provider-basic",
   "browser": "main.js",
-  "activation": ["onReferences:xyz", "onReferences"],
+  "isolated": true,
+  "activation": ["onReferences:xyz"],
   "languages": [
     {
       "id": "xyz",
