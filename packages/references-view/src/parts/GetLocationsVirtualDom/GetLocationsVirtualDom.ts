@@ -8,21 +8,25 @@ import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as TabIndex from '../TabIndex/TabIndex.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const locationsNode: VirtualDomNode = {
+  childCount: 2,
+  className: mergeClassNames('Viewlet', 'Locations'),
+  onMouseDown: DomEventListenerFunctions.HandleClickReference,
+  type: VirtualDomElements.Div,
+}
+
+const locationsMessageNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.LocationsMessage,
+  id: 'LocationsMessage',
+  role: AriaRoles.Status,
+  type: VirtualDomElements.Div,
+}
+
 export const getLocationsVirtualDom = (locations: readonly DisplayReference[], message: string): readonly VirtualDomNode[] => {
   return [
-    {
-      childCount: 2,
-      className: mergeClassNames('Viewlet', 'Locations'),
-      onMouseDown: DomEventListenerFunctions.HandleClickReference,
-      type: VirtualDomElements.Div,
-    },
-    {
-      childCount: 1,
-      className: ClassNames.LocationsMessage,
-      id: 'LocationsMessage',
-      role: AriaRoles.Status,
-      type: VirtualDomElements.Div,
-    },
+    locationsNode,
+    locationsMessageNode,
     VirtualDomHelpers.text(message),
     {
       ariaDescribedBy: 'LocationsMessage',
