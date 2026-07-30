@@ -1,0 +1,26 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "project": ["*.js"]
+    },
+    "packages/build": {
+      "entry": ["src/build.js", "src/build-static.js", "src/computeNodeModulesCacheKey.js", "src/dev.js", "src/measureMemory.ts"],
+      "project": ["src/**/*.{js,ts}"],
+      "ignoreDependencies": ["@lvce-editor/shared-process", "esbuild", "playwright"]
+    },
+    "packages/e2e": {
+      "entry": ["scripts/*.js", "src/**/*.ts", "fixtures/**/main.js"],
+      "project": ["scripts/*.js", "src/**/*.ts", "fixtures/**/*.js"]
+    },
+    "packages/references-view": {
+      "entry": ["src/referencesViewWorkerMain.ts", "test/**/*.test.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts"]
+    },
+    "packages/server": {
+      "entry": ["src/postinstall.js"],
+      "project": ["src/**/*.js"],
+      "ignoreDependencies": ["@lvce-editor/server"]
+    }
+  }
+}
