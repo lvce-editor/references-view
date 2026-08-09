@@ -47,6 +47,7 @@ export default defineConfig([
     rules: {
       '@cspell/spellchecker': 'off',
       '@typescript-eslint/no-empty-function': 'off',
+      'jest/no-disabled-tests': 'off',
       'rpc/prefer-using-mock-rpc': 'off',
       'sonarjs/assertions-in-tests': 'off',
       'sonarjs/function-return-type': 'off',
