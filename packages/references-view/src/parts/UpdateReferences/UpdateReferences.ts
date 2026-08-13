@@ -7,9 +7,16 @@ import * as References from '../References/References.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 import { requestFileIcons } from '../RequestFileIcons/RequestFileIcons.ts'
 
-export const updateReferences = async (state: ReferencesState, uri: string, languageId: string, offset: number, position: any): Promise<ReferencesState> => {
+export const updateReferences = async (
+  state: ReferencesState,
+  uri: string,
+  languageId: string,
+  text: string,
+  offset: number,
+  position: any,
+): Promise<ReferencesState> => {
   const { assetDir, platform } = state
-  const references = await References.getReferences2(uri, languageId, offset, position, assetDir, platform)
+  const references = await References.getReferences2(uri, languageId, text, offset, position, assetDir, platform)
   const icons = await requestFileIcons(references)
   const collapsedUris: readonly string[] = []
   const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons, collapsedUris)
@@ -39,7 +46,8 @@ export const getAndUpdateReferences = async (state: ReferencesState): Promise<Re
   }
   const uri = await EditorWorker.getUri(editorId)
   const languageId = await EditorWorker.getLanguageId(editorId)
+  const text = await EditorWorker.getText(editorId)
   const offset = await EditorWorker.getOffsetAtCursor(editorId)
   const position = await EditorWorker.getPositionAtCursor(editorId)
-  return updateReferences(state, uri, languageId, offset, position)
+  return updateReferences(state, uri, languageId, text, offset, position)
 }

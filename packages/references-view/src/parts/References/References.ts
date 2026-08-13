@@ -5,12 +5,13 @@ import * as GetReferencesWithPreview from '../GetReferencesWithPreview/GetRefere
 export const getReferences2 = async (
   uri: string,
   languageId: string,
+  text: string,
   offset: number,
   position: any,
   assetDir: string,
   platform: number,
 ): Promise<readonly Reference[]> => {
-  const references = await ExtensionManagementReference.executeReferenceProvider2(uri, languageId, offset, position, assetDir, platform)
+  const references = await ExtensionManagementReference.executeReferenceProvider2(uri, languageId, text, offset, position, assetDir, platform)
   const withPreview = await GetReferencesWithPreview.getReferencesWithPreview(references)
   return withPreview
 }

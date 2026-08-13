@@ -20,6 +20,7 @@ export const executeProvider = async ({
   assetDir: string
   textDocument: {
     readonly languageId: string
+    readonly text: string
     readonly uri: string
   }
 }): Promise<any> => {

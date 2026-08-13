@@ -1,4 +1,5 @@
 import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
+import * as FileSystem from '../FileSystem/FileSystem.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
 import { getAndUpdateReferences, updateReferences } from '../UpdateReferences/UpdateReferences.ts'
 
@@ -10,7 +11,8 @@ export const loadContent = async (state: ReferencesState, savedState: unknown): 
   try {
     const { languageId, offset, position, uri } = restoreState(savedState)
     if (uri && !isMemory(uri)) {
-      return updateReferences(state, uri, languageId, offset, position)
+      const text = await FileSystem.readFile(uri)
+      return updateReferences(state, uri, languageId, text, offset, position)
     }
     return getAndUpdateReferences(state)
   } catch (error) {
