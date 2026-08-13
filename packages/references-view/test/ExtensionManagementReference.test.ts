@@ -31,7 +31,7 @@ test('executeReferenceProvider2 activates and queries references through extensi
     columnIndex: 2,
     rowIndex: 1,
   }
-  const result = await ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', 42, position, '/assets', 2)
+  const result = await ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', 'const value = 1', 42, position, '/assets', 2)
 
   expect(invocations).toEqual([
     ['Extensions.activateByEvent', 'onReferences:typescript', '/assets', 2],
@@ -41,6 +41,7 @@ test('executeReferenceProvider2 activates and queries references through extensi
       'provideReferences',
       {
         languageId: 'typescript',
+        text: 'const value = 1',
         uri: 'file:///test.ts',
       },
       42,
@@ -70,7 +71,7 @@ test('executeReferenceProvider2 returns an empty array when no isolated provider
   })
   ExtensionManagementWorker.set(mockRpc)
 
-  await expect(ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', 0, {}, '/assets', 2)).resolves.toEqual([])
+  await expect(ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', '', 0, {}, '/assets', 2)).resolves.toEqual([])
 })
 
 test('executeReferenceProvider2 propagates activation errors', async () => {
@@ -88,7 +89,7 @@ test('executeReferenceProvider2 propagates activation errors', async () => {
   })
   ExtensionManagementWorker.set(mockRpc)
 
-  await expect(ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', 0, {}, '/assets', 2)).rejects.toThrow(
+  await expect(ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', '', 0, {}, '/assets', 2)).rejects.toThrow(
     'Failed to activate reference extension',
   )
 })

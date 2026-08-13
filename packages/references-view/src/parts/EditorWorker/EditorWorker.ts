@@ -12,3 +12,7 @@ export const { dispose, getLanguageId, getOffsetAtCursor, getUri, sendMessagePor
 export const getPositionAtCursor = (editorId: number): Promise<PositionAtCursor> => {
   return EditorWorker.getPositionAtCursor(editorId)
 }
+
+export const getText = (editorId: number): Promise<string> => {
+  return EditorWorker.invoke('Editor.getText', editorId)
+}

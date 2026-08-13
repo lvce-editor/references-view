@@ -43,6 +43,9 @@ test('loadContent - loads references and updates state', async () => {
       if (method === 'Editor.getLanguageId') {
         return 'test'
       }
+      if (method === 'Editor.getText') {
+        return 'const value = 1'
+      }
       if (method === 'Editor.getPositionAtCursor') {
         return {
           columnIndex: 0,
@@ -124,6 +127,9 @@ test('loadContent - handles empty references', async () => {
       if (method === 'Editor.getLanguageId') {
         return 'test'
       }
+      if (method === 'Editor.getText') {
+        return ''
+      }
       if (method === 'Editor.getPositionAtCursor') {
         return {
           columnIndex: 0,
@@ -181,6 +187,9 @@ test('loadContent - preserves existing state properties', async () => {
       if (method === 'Editor.getLanguageId') {
         return 'test'
       }
+      if (method === 'Editor.getText') {
+        return 'const value = 1'
+      }
       if (method === 'Editor.getPositionAtCursor') {
         return {
           columnIndex: 0,
@@ -232,6 +241,9 @@ test('loadContent - restores references for a saved file', async () => {
       }
       if (method === 'IconTheme.getIcons') {
         return []
+      }
+      if (method === 'FileSystem.readFile') {
+        return 'const value = 1'
       }
       throw new Error(`unexpected method ${method}`)
     },

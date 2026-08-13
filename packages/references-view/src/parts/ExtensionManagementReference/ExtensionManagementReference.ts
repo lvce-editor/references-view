@@ -4,6 +4,7 @@ import * as ExecuteProvider from '../ExecuteProvider/ExecuteProvider.ts'
 export const executeReferenceProvider2 = async (
   uri: string,
   languageId: string,
+  text: string,
   offset: number,
   position: any,
   assetDir: string,
@@ -17,6 +18,7 @@ export const executeReferenceProvider2 = async (
     platform,
     textDocument: {
       languageId,
+      text,
       uri,
     },
   })
