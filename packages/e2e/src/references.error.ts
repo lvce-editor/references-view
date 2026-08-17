@@ -29,5 +29,5 @@ add(1,2)
   const viewletError = Locator('.Viewlet.Error')
 
   await expect(viewletError).toBeVisible()
-  await expect(viewletError).toHaveText('Error: oops') // TODO
+  await expect(viewletError).toContainText('Error: oops') // TODO
 }

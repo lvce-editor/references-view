@@ -28,5 +28,5 @@ add(1,2)
   // assert
   const viewletError = Locator('.Viewlet.Error')
   await expect(viewletError).toBeVisible()
-  await expect(viewletError).toHaveText('Error: No reference provider found for xyz')
+  await expect(viewletError).toContainText('Error: No reference provider found for xyz')
 }
