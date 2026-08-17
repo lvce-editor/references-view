@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@lvce-editor/api": "^8.49.0",
-    "@lvce-editor/test-with-playwright": "^12.1.0",
+    "@lvce-editor/test-with-playwright": "^22.23.0",
     "esbuild": "^0.28.1"
   }
 }
