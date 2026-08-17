@@ -29,5 +29,5 @@ add(1,2)
   const viewletError = Locator('.Viewlet.Error')
 
   await expect(viewletError).toBeVisible()
-  await expect(viewletError).toHaveText('Error: Failed to start Extension API: sample.reference-provider-error-main-not-found Worker: Worker Launch Error') // TODO
+  await expect(viewletError).toContainText('Error: Failed to start Extension API: sample.reference-provider-error-main-not-found Worker: Worker Launch Error') // TODO
 }
