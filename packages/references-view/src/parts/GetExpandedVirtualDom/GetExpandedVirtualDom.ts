@@ -6,10 +6,19 @@ import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getExpandedVirtualDom = (location: DisplayReference): readonly VirtualDomNode[] => {
   const { icon, index, name } = location
+  const fileIconDom: readonly VirtualDomNode[] = icon
+    ? [
+        {
+          className: ClassNames.FileIcon,
+          src: icon,
+          type: VirtualDomElements.Img,
+        },
+      ]
+    : []
   return [
     {
       ariaExpanded: true,
-      childCount: 2,
+      childCount: 1 + fileIconDom.length,
       className: ClassNames.TreeItem,
       'data-index': index,
       id: `Reference-${index}`,
@@ -17,11 +26,7 @@ export const getExpandedVirtualDom = (location: DisplayReference): readonly Virt
       role: AriaRoles.TreeItem,
       type: VirtualDomElements.Div,
     },
-    {
-      className: ClassNames.FileIcon,
-      src: icon,
-      type: VirtualDomElements.Img,
-    },
+    ...fileIconDom,
     VirtualDomHelpers.text(name),
   ]
 }

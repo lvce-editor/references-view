@@ -45,3 +45,25 @@ test('getExpandedVirtualDom', () => {
     },
   ])
 })
+
+test('getExpandedVirtualDom does not render an empty file icon', () => {
+  const location: DisplayReference = {
+    depth: 0,
+    endOffset: undefined,
+    icon: '',
+    index: 0,
+    lineText: '',
+    name: 'example.ts',
+    posInSet: 1,
+    setSize: 1,
+    startOffset: undefined,
+    type: LocationType.Expanded,
+    uri: 'file:///example.ts',
+  }
+
+  const result = GetExpandedVirtualDom.getExpandedVirtualDom(location)
+
+  expect(result[0].childCount).toBe(1)
+  expect(result).toHaveLength(2)
+  expect(result.some((node) => node.className === ClassNames.FileIcon)).toBe(false)
+})
