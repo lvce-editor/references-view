@@ -21,11 +21,13 @@ export const loadContent = async (state: ReferencesState, savedState: unknown): 
     }
     return await getAndUpdateReferences(state)
   } catch (error) {
-    // TODO send error to error worker
+    if (!isNoReferenceProviderError(error)) {
+      throw error instanceof Error ? error : new Error(String(error))
+    }
     return {
       ...state,
       initial: false,
-      message: isNoReferenceProviderError(error) ? LocationStrings.noReferenceProviderRegistered() : String(error),
+      message: LocationStrings.noReferenceProviderRegistered(),
     }
   }
 }

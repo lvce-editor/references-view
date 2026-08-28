@@ -251,6 +251,47 @@ test('loadContent - explains a legacy no reference provider error', async () => 
   })
 })
 
+test('loadContent - preserves other provider errors', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'Extensions.activateByEvent') {
+        return {
+          error: new Error('Failed to activate reference provider'),
+          hasActivatedExtensions: false,
+        }
+      }
+      if (method === 'GetActiveEditor.getActiveEditorId') {
+        return 1
+      }
+      if (method === 'Editor.getOffsetAtCursor') {
+        return 0
+      }
+      if (method === 'Editor.getUri') {
+        return ''
+      }
+      if (method === 'Editor.getLanguageId') {
+        return 'test'
+      }
+      if (method === 'Editor.getText') {
+        return ''
+      }
+      if (method === 'Editor.getPositionAtCursor') {
+        return {
+          columnIndex: 0,
+          rowIndex: 0,
+        }
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
+  ExtensionManagementWorker.set(mockRpc)
+  EditorWorker.set(mockRpc)
+
+  await expect(LoadContent.loadContent(createDefaultState(3), {})).rejects.toThrow('Failed to activate reference provider')
+})
+
 test('loadContent - preserves existing state properties', async () => {
   const mockReferences: readonly {
     readonly uri: string
