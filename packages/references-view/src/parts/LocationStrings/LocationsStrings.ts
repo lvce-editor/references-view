@@ -5,6 +5,10 @@ export const noResults = (): string => {
   return I18nString.i18nString(UiStrings.NoResults)
 }
 
+export const noReferenceProviderRegistered = (): string => {
+  return I18nString.i18nString(UiStrings.NoReferenceProviderRegistered)
+}
+
 export const oneResultInOneFile = (): string => {
   return I18nString.i18nString(UiStrings.OneResultInOneFile)
 }

@@ -26,7 +26,8 @@ add(1,2)
   await Editor.findAllReferences()
 
   // assert
-  const viewletError = Locator('.Viewlet.Error')
-  await expect(viewletError).toBeVisible()
-  await expect(viewletError).toContainText('Error: No reference provider found for xyz')
+  const viewletLocations = Locator('.Locations')
+  await expect(viewletLocations).toBeVisible()
+  const viewletReferencesMessage = Locator('.LocationsMessage')
+  await expect(viewletReferencesMessage).toHaveText('No Result (no reference provider registered)')
 }

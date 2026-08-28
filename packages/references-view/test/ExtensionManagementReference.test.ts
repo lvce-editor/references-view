@@ -48,10 +48,13 @@ test('executeReferenceProvider2 activates and queries references through extensi
       position,
     ],
   ])
-  expect(result).toEqual([{ id: 1, ref: 'abc' }])
+  expect(result).toEqual({
+    found: true,
+    references: [{ id: 1, ref: 'abc' }],
+  })
 })
 
-test('executeReferenceProvider2 returns an empty array when no isolated provider is found', async () => {
+test('executeReferenceProvider2 reports when no isolated provider is found', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
@@ -71,7 +74,10 @@ test('executeReferenceProvider2 returns an empty array when no isolated provider
   })
   ExtensionManagementWorker.set(mockRpc)
 
-  await expect(ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', '', 0, {}, '/assets', 2)).resolves.toEqual([])
+  await expect(ExtensionManagementReference.executeReferenceProvider2('file:///test.ts', 'typescript', '', 0, {}, '/assets', 2)).resolves.toEqual({
+    found: false,
+    references: [],
+  })
 })
 
 test('executeReferenceProvider2 propagates activation errors', async () => {
