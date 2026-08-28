@@ -1,6 +1,6 @@
 import * as ExtensionManagementWorker from '../ExtensionManagementWorker/ExtensionManagementWorker.ts'
 
-interface LanguageProviderResult {
+export interface LanguageProviderResult {
   readonly found: boolean
   readonly result?: unknown
 }
@@ -23,7 +23,7 @@ export const executeProvider = async ({
     readonly text: string
     readonly uri: string
   }
-}): Promise<any> => {
+}): Promise<LanguageProviderResult> => {
   const activationResult = (await ExtensionManagementWorker.invoke('Extensions.activateByEvent', event, assetDir, platform)) as {
     readonly error?: Error
   }
@@ -37,5 +37,5 @@ export const executeProvider = async ({
     textDocument,
     ...params,
   )) as LanguageProviderResult
-  return providerResult.found ? providerResult.result : []
+  return providerResult
 }

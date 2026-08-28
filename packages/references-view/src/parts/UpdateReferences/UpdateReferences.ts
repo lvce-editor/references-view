@@ -3,6 +3,7 @@ import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 import * as GetDisplayReferences from '../GetDisplayReferences/GetDisplayReferences.ts'
 import * as GetReferencesFileCount from '../GetReferencesFileCount/GetReferencesFileCount.ts'
 import * as GetReferencesMessage from '../GetReferencesMessage/GetReferencesMessage.ts'
+import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import * as References from '../References/References.ts'
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 import { requestFileIcons } from '../RequestFileIcons/RequestFileIcons.ts'
@@ -16,12 +17,13 @@ export const updateReferences = async (
   position: any,
 ): Promise<ReferencesState> => {
   const { assetDir, platform } = state
-  const references = await References.getReferences2(uri, languageId, text, offset, position, assetDir, platform)
+  const providerResult = await References.getReferences2(uri, languageId, text, offset, position, assetDir, platform)
+  const { references } = providerResult
   const icons = await requestFileIcons(references)
   const collapsedUris: readonly string[] = []
   const displayReferences = GetDisplayReferences.getDisplayReferences(references, icons, collapsedUris)
   const fileCount = GetReferencesFileCount.getFileCount(references)
-  const message = GetReferencesMessage.getMessage(references.length, fileCount)
+  const message = providerResult.found ? GetReferencesMessage.getMessage(references.length, fileCount) : LocationStrings.noReferenceProviderRegistered()
   return {
     ...state,
     displayReferences,
