@@ -15,5 +15,6 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   // assert
   const fileItem = Locator('.LocationList .TreeItem').nth(0)
   await expect(fileItem).toHaveText('descriptive-reference-name.xyz')
-  await expect(fileItem.locator('.FileIcon')).toHaveCount(1)
+  const fileIcon = fileItem.locator('.FileIcon')
+  await expect(fileIcon).toHaveCount(1)
 }

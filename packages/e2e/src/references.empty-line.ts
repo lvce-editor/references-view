@@ -15,5 +15,6 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   // assert
   const label = Locator('.LocationList .Label')
   await expect(label).toHaveText('(empty line)')
-  await expect(label.locator('.Highlight')).toHaveCount(0)
+  const highlights = label.locator('.Highlight')
+  await expect(highlights).toHaveCount(0)
 }
