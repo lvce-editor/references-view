@@ -36,6 +36,21 @@ export const updateReferences = async (
   }
 }
 
+export const updateImplementations = async (state: ReferencesState, implementations: readonly any[]): Promise<ReferencesState> => {
+  const icons = await requestFileIcons(implementations)
+  const collapsedUris: readonly string[] = []
+  const displayReferences = GetDisplayReferences.getDisplayReferences(implementations, icons, collapsedUris)
+  const fileCount = GetReferencesFileCount.getFileCount(implementations)
+  const message = implementations.length === 0 ? LocationStrings.noImplementationsFound() : GetReferencesMessage.getMessage(implementations.length, fileCount)
+  return {
+    ...state,
+    displayReferences,
+    initial: false,
+    message,
+    references: implementations,
+  }
+}
+
 export const getAndUpdateReferences = async (state: ReferencesState): Promise<ReferencesState> => {
   // TODO need to wait for editor
   const editorId = await RendererWorker.getActiveEditorId()
