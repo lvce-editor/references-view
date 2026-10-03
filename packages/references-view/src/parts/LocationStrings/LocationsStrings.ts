@@ -9,6 +9,10 @@ export const noReferenceProviderRegistered = (): string => {
   return I18nString.i18nString(UiStrings.NoReferenceProviderRegistered)
 }
 
+export const noImplementationsFound = (): string => {
+  return I18nString.i18nString(UiStrings.NoImplementationsFound)
+}
+
 export const oneResultInOneFile = (): string => {
   return I18nString.i18nString(UiStrings.OneResultInOneFile)
 }

@@ -12,7 +12,14 @@ const isNoReferenceProviderError = (error: unknown): boolean => {
   return String(error).includes('No reference provider found')
 }
 
-export const loadContent = async (state: ReferencesState, savedState: unknown): Promise<ReferencesState> => {
+export const loadContent = async (state: ReferencesState, savedState: unknown, locationType = 'references'): Promise<ReferencesState> => {
+  if (locationType === 'implementations') {
+    return {
+      ...state,
+      initial: false,
+      message: LocationStrings.noImplementationsFound(),
+    }
+  }
   try {
     const { languageId, offset, position, uri } = restoreState(savedState)
     if (uri && !isMemory(uri)) {

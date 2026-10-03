@@ -1,5 +1,6 @@
 export const NoResults = 'No Results'
 export const NoReferenceProviderRegistered = 'No Result (no reference provider registered)'
+export const NoImplementationsFound = 'No implementations found'
 export const OneResultInOneFile = '1 result in 1 file'
 export const ManyResultsInOneFile = '{PH1} results in 1 file'
 export const ManyResultsInManyFiles = '{PH1} results in {PH2} files'
