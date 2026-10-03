@@ -154,6 +154,61 @@ test('loadContent - handles empty references', async () => {
   expect(result.focusedIndex).toBe(-1)
 })
 
+test('loadContent - reports no implementations when none are provided', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'IconTheme.getIcons') {
+        return []
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
+
+  const result = await LoadContent.loadContent(createDefaultState(20), {}, 'implementations', [])
+
+  expect(result).toMatchObject({
+    displayReferences: [],
+    initial: false,
+    message: 'No implementations found',
+    references: [],
+  })
+})
+
+test('loadContent - displays implementation provider results', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'IconTheme.getIcons') {
+        return ['typescript-icon']
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
+
+  const implementations = [
+    {
+      endOffset: 0,
+      lineText: 'class ExampleImplementation {}',
+      startOffset: 0,
+      uri: 'file:///example.ts',
+    },
+  ]
+  const result = await LoadContent.loadContent(createDefaultState(21), {}, 'implementations', implementations)
+
+  expect(result).toMatchObject({
+    displayReferences: [
+      { depth: 1, name: 'example.ts', uri: 'file:///example.ts' },
+      { depth: 2, lineText: 'class ExampleImplementation {}' },
+    ],
+    initial: false,
+    message: '1 result in 1 file',
+    references: implementations,
+  })
+})
+
 test('loadContent - explains when no reference provider is registered', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},

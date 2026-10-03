@@ -2,7 +2,7 @@ import type { ReferencesState } from '../ReferencesState/ReferencesState.ts'
 import * as FileSystem from '../FileSystem/FileSystem.ts'
 import * as LocationStrings from '../LocationStrings/LocationsStrings.ts'
 import { restoreState } from '../RestoreState/RestoreState.ts'
-import { getAndUpdateReferences, updateReferences } from '../UpdateReferences/UpdateReferences.ts'
+import { getAndUpdateReferences, updateImplementations, updateReferences } from '../UpdateReferences/UpdateReferences.ts'
 
 const isMemory = (uri: string): boolean => {
   return uri.startsWith('memfs://')
@@ -12,13 +12,14 @@ const isNoReferenceProviderError = (error: unknown): boolean => {
   return String(error).includes('No reference provider found')
 }
 
-export const loadContent = async (state: ReferencesState, savedState: unknown, locationType = 'references'): Promise<ReferencesState> => {
+export const loadContent = async (
+  state: ReferencesState,
+  savedState: unknown,
+  locationType = 'references',
+  implementations: readonly any[] = [],
+): Promise<ReferencesState> => {
   if (locationType === 'implementations') {
-    return {
-      ...state,
-      initial: false,
-      message: LocationStrings.noImplementationsFound(),
-    }
+    return updateImplementations(state, implementations)
   }
   try {
     const { languageId, offset, position, uri } = restoreState(savedState)
