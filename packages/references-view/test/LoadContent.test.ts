@@ -496,6 +496,33 @@ test('loadContent - explains unsupported builtin views without reading or reques
   expect(result.displayReferences).toEqual([])
 })
 
+test('loadContent - uses the active builtin URI when there is no text editor', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'GetActiveEditor.getActiveEditorId') {
+        return -1
+      }
+      if (method === 'GetActiveEditor.getActiveUri') {
+        return 'process-explorer://'
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
+
+  const result = await LoadContent.loadContent(createDefaultState(6), {})
+
+  expect(result).toMatchObject({
+    id: 6,
+    initial: false,
+    message: "Find file references isn't supported for Process Explorer.",
+    references: [],
+    uri: 'process-explorer://',
+  })
+  expect(result.displayReferences).toEqual([])
+})
+
 test('loadContent - reports when there is no active editor', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
