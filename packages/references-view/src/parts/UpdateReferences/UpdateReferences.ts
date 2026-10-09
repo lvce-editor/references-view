@@ -16,6 +16,19 @@ export const updateReferences = async (
   offset: number,
   position: any,
 ): Promise<ReferencesState> => {
+  const unsupportedUriMessage = GetReferencesMessage.getUnsupportedUriMessage(uri)
+  if (unsupportedUriMessage) {
+    return {
+      ...state,
+      displayReferences: [],
+      initial: false,
+      languageId,
+      message: unsupportedUriMessage,
+      offset,
+      references: [],
+      uri,
+    }
+  }
   const { assetDir, platform } = state
   const providerResult = await References.getReferences2(uri, languageId, text, offset, position, assetDir, platform)
   const { references } = providerResult
@@ -55,6 +68,16 @@ export const getAndUpdateReferences = async (state: ReferencesState): Promise<Re
   // TODO need to wait for editor
   const editorId = await RendererWorker.getActiveEditorId()
   if (editorId === -1) {
+    let uri = ''
+    try {
+      uri = await RendererWorker.getActiveUri()
+    } catch {
+      // Older renderer workers do not expose the active URI.
+    }
+    const unsupportedUriMessage = GetReferencesMessage.getUnsupportedUriMessage(uri)
+    if (unsupportedUriMessage) {
+      return updateReferences(state, uri, '', '', 0, { columnIndex: 0, rowIndex: 0 })
+    }
     return {
       ...state,
       initial: false,

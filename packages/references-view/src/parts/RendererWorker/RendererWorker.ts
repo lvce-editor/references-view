@@ -5,6 +5,8 @@ type RendererMessagePort = Parameters<typeof RendererWorker.sendMessagePortToEdi
 
 export const getActiveEditorId = (): Promise<number> => RendererWorker.getActiveEditorId()
 
+export const getActiveUri = (): Promise<string> => RendererWorker.invoke('GetActiveEditor.getActiveUri')
+
 export const getIcons = (requests: readonly unknown[]): Promise<readonly string[]> => RendererWorker.getIcons(requests)
 
 export const openUri = (uri: string, focus?: boolean, options?: unknown): Promise<void> => RendererWorker.openUri(uri, focus, options)

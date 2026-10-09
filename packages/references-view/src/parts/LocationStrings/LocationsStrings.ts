@@ -5,6 +5,12 @@ export const noResults = (): string => {
   return I18nString.i18nString(UiStrings.NoResults)
 }
 
+export const findFileReferencesNotSupported = (viewName: string): string => {
+  return I18nString.i18nString(UiStrings.FindFileReferencesNotSupported, {
+    PH1: viewName,
+  })
+}
+
 export const noReferenceProviderRegistered = (): string => {
   return I18nString.i18nString(UiStrings.NoReferenceProviderRegistered)
 }
