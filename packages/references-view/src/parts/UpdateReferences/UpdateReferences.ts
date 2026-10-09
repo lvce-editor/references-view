@@ -16,6 +16,19 @@ export const updateReferences = async (
   offset: number,
   position: any,
 ): Promise<ReferencesState> => {
+  const unsupportedUriMessage = GetReferencesMessage.getUnsupportedUriMessage(uri)
+  if (unsupportedUriMessage) {
+    return {
+      ...state,
+      displayReferences: [],
+      initial: false,
+      languageId,
+      message: unsupportedUriMessage,
+      offset,
+      references: [],
+      uri,
+    }
+  }
   const { assetDir, platform } = state
   const providerResult = await References.getReferences2(uri, languageId, text, offset, position, assetDir, platform)
   const { references } = providerResult

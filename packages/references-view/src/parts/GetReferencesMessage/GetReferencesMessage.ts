@@ -15,3 +15,10 @@ export const getMessage = (resultCount: number, fileCount: number): string => {
   }
   return LocationStrings.manyResultsInManyFiles(resultCount, fileCount)
 }
+
+export const getUnsupportedUriMessage = (uri: string): string | undefined => {
+  if (uri.startsWith('process-explorer://')) {
+    return LocationStrings.findFileReferencesNotSupported('Process Explorer')
+  }
+  return undefined
+}

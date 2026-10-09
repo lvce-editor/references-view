@@ -1,4 +1,5 @@
 export const NoResults = 'No Results'
+export const FindFileReferencesNotSupported = "Find file references isn't supported for {PH1}."
 export const NoReferenceProviderRegistered = 'No Result (no reference provider registered)'
 export const NoImplementationsFound = 'No implementations found'
 export const OneResultInOneFile = '1 result in 1 file'

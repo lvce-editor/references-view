@@ -464,6 +464,38 @@ test('loadContent - restores references for a saved file', async () => {
   })
 })
 
+test('loadContent - explains unsupported builtin views without reading or requesting references', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
+  ExtensionManagementWorker.set(mockRpc)
+
+  const result = await LoadContent.loadContent(createDefaultState(5), {
+    language: 'plaintext',
+    offset: 0,
+    position: {
+      columnIndex: 0,
+      rowIndex: 0,
+    },
+    uri: 'process-explorer://',
+  })
+
+  expect(result).toMatchObject({
+    id: 5,
+    initial: false,
+    languageId: 'plaintext',
+    message: "Find file references isn't supported for Process Explorer.",
+    offset: 0,
+    references: [],
+    uri: 'process-explorer://',
+  })
+  expect(result.displayReferences).toEqual([])
+})
+
 test('loadContent - reports when there is no active editor', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
