@@ -10,16 +10,14 @@
       "ignoreDependencies": ["@lvce-editor/shared-process", "esbuild", "playwright"]
     },
     "packages/e2e": {
-      "entry": ["scripts/*.js", "src/**/*.ts", "fixtures/**/main.js"],
-      "project": ["scripts/*.js", "src/**/*.ts", "fixtures/**/*.js"]
+      "entry": ["scripts/*.js", "src/**/*.ts", "fixtures/**/main.js", "e2e.config.js"],
+      "project": ["scripts/*.js", "src/**/*.ts", "fixtures/**/*.js", "e2e.config.js"]
     },
     "packages/references-view": {
       "entry": ["src/referencesViewWorkerMain.ts", "test/**/*.test.ts"],
       "project": ["src/**/*.ts", "test/**/*.ts"]
     },
     "packages/server": {
-      "entry": ["src/postinstall.js"],
-      "project": ["src/**/*.js"],
       "ignoreDependencies": ["@lvce-editor/server"]
     }
   }
