@@ -5,6 +5,7 @@ export const createDefaultState = (uid = 0): ReferencesState => {
     assetDir: '',
     collapsedUris: [],
     displayReferences: [],
+    editorFound: false,
     fileIconCache: {},
     focusedIndex: -1,
     id: uid,

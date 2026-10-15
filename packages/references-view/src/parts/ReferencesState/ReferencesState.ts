@@ -7,6 +7,7 @@ export interface ReferencesState {
   readonly assetDir: string
   readonly collapsedUris: readonly string[]
   readonly displayReferences: readonly DisplayReference[]
+  readonly editorFound: boolean
   readonly fileIconCache: FileIconCache
   readonly focusedIndex: number
   readonly id: number

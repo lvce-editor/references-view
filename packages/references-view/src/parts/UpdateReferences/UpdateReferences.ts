@@ -41,6 +41,7 @@ export const updateReferences = async (
   return {
     ...state,
     displayReferences,
+    editorFound: true,
     initial: false,
     languageId,
     message,
@@ -59,6 +60,7 @@ export const updateImplementations = async (state: ReferencesState, implementati
   return {
     ...state,
     displayReferences,
+    editorFound: true,
     initial: false,
     message,
     references: implementations,
@@ -82,6 +84,7 @@ export const getAndUpdateReferences = async (state: ReferencesState): Promise<Re
     }
     return {
       ...state,
+      editorFound: false,
       initial: false,
       message: 'No Editor found',
     }
