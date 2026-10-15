@@ -46,6 +46,7 @@ test('selectIndex should update focusedIndex for Leaf type', async () => {
   const newState: ReferencesState = {
     ...state,
     displayReferences: [displayReference],
+    references: [{ uri: 'file:///test.ts' }],
   }
 
   const result = await selectIndex(newState, 0)
