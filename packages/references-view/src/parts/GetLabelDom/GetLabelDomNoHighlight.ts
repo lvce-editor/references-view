@@ -3,12 +3,13 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-const labelNode: VirtualDomNode = {
+const getLabelNode = (index: number): VirtualDomNode => ({
   childCount: 1,
   className: ClassNames.Label,
+  'data-index': index,
   type: VirtualDomElements.Div,
-}
+})
 
-export const getLabelDomNoHighlight = (lineText: string | undefined): readonly VirtualDomNode[] => {
-  return [labelNode, VirtualDomHelpers.text(lineText || '(empty line)')]
+export const getLabelDomNoHighlight = (lineText: string | undefined, index: number): readonly VirtualDomNode[] => {
+  return [getLabelNode(index), VirtualDomHelpers.text(lineText || '(empty line)')]
 }

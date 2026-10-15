@@ -108,6 +108,7 @@ test('getLocationsVirtualDom with leaf location', () => {
   expect(result[5]).toEqual({
     childCount: 3,
     className: ClassNames.Label,
+    'data-index': 0,
     type: VirtualDomElements.Div,
   })
 
@@ -120,6 +121,7 @@ test('getLocationsVirtualDom with leaf location', () => {
   expect(result[7]).toEqual({
     childCount: 1,
     className: ClassNames.Highlight,
+    'data-index': 0,
     type: VirtualDomElements.Span,
   })
 
@@ -170,6 +172,7 @@ test('getLocationsVirtualDom with leaf location empty line', () => {
   expect(result[5]).toEqual({
     childCount: 1,
     className: ClassNames.Label,
+    'data-index': 0,
     type: VirtualDomElements.Div,
   })
 

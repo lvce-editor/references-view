@@ -23,6 +23,7 @@ test('getLabelDom - empty line', () => {
   expect(result[0]).toEqual({
     childCount: 1,
     className: ClassNames.Label,
+    'data-index': 0,
     type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
@@ -51,6 +52,7 @@ test('getLabelDom - with highlight', () => {
   expect(result[0]).toEqual({
     childCount: 3,
     className: ClassNames.Label,
+    'data-index': 0,
     type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
@@ -61,6 +63,7 @@ test('getLabelDom - with highlight', () => {
   expect(result[2]).toEqual({
     childCount: 1,
     className: ClassNames.Highlight,
+    'data-index': 0,
     type: VirtualDomElements.Span,
   })
   expect(result[3]).toEqual({
