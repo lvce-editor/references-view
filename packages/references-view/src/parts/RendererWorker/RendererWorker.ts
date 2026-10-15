@@ -9,9 +9,26 @@ export const getActiveUri = (applicationId?: string): Promise<string> => Rendere
 
 export const getIcons = (requests: readonly unknown[]): Promise<readonly string[]> => RendererWorker.getIcons(requests)
 
-export const openUri = (uri: string, focus?: boolean, options?: unknown): Promise<void> => RendererWorker.openUri(uri, focus, options)
+export const openUri = (uri: string, focus?: boolean, options?: unknown, applicationId?: string): Promise<void> => {
+  if (applicationId) {
+    return RendererWorker.invoke('Application.execute', applicationId, 'Main.openUri', uri, focus, options)
+  }
+  return RendererWorker.openUri(uri, focus, options)
+}
 
-export const readFile = (uri: string): Promise<string> => RendererWorker.readFile(uri)
+export const readFile = (uri: string, applicationId?: string): Promise<string> => {
+  if (applicationId) {
+    return RendererWorker.invoke('Application.execute', applicationId, 'FileSystem.readFile', uri)
+  }
+  return RendererWorker.readFile(uri)
+}
+
+export const setSelections = (selections: readonly number[], applicationId?: string): Promise<void> => {
+  if (applicationId) {
+    return RendererWorker.invoke('Application.execute', applicationId, 'GetActiveEditor.setSelections', selections)
+  }
+  return RendererWorker.invoke('GetActiveEditor.setSelections', selections)
+}
 
 export const sendMessagePortToEditorWorker = (port: RendererMessagePort, rpcId: number): Promise<void> => RendererWorker.sendMessagePortToEditorWorker(port, rpcId)
 

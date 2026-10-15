@@ -19,6 +19,7 @@ export const loadContent = async (
   locationType = 'references',
   implementations: readonly any[] = [],
 ): Promise<ReferencesState> => {
+  const { applicationId } = state
   if (locationType === 'implementations') {
     return updateImplementations(state, implementations)
   }
@@ -28,7 +29,7 @@ export const loadContent = async (
       if (GetReferencesMessage.getUnsupportedUriMessage(uri)) {
         return updateReferences(state, uri, languageId, '', offset, position)
       }
-      const text = await FileSystem.readFile(uri)
+      const text = await FileSystem.readFile(uri, applicationId)
       return await updateReferences(state, uri, languageId, text, offset, position)
     }
     return await getAndUpdateReferences(state)
