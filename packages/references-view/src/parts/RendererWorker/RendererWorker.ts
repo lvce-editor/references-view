@@ -3,9 +3,9 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 type RendererMessagePort = Parameters<typeof RendererWorker.sendMessagePortToEditorWorker>[0]
 
-export const getActiveEditorId = (): Promise<number> => RendererWorker.getActiveEditorId()
+export const getActiveEditorId = (applicationId?: string): Promise<number> => RendererWorker.invoke('GetActiveEditor.getActiveEditorId', applicationId)
 
-export const getActiveUri = (): Promise<string> => RendererWorker.invoke('GetActiveEditor.getActiveUri')
+export const getActiveUri = (applicationId?: string): Promise<string> => RendererWorker.invoke('GetActiveEditor.getActiveUri', applicationId)
 
 export const getIcons = (requests: readonly unknown[]): Promise<readonly string[]> => RendererWorker.getIcons(requests)
 

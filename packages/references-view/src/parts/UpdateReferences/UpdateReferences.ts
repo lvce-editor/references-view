@@ -16,6 +16,7 @@ export const updateReferences = async (
   offset: number,
   position: any,
 ): Promise<ReferencesState> => {
+  const { applicationId } = state
   const unsupportedUriMessage = GetReferencesMessage.getUnsupportedUriMessage(uri)
   if (unsupportedUriMessage) {
     return {
@@ -30,7 +31,7 @@ export const updateReferences = async (
     }
   }
   const { assetDir, platform } = state
-  const providerResult = await References.getReferences2(uri, languageId, text, offset, position, assetDir, platform)
+  const providerResult = await References.getReferences2(uri, languageId, text, offset, position, assetDir, platform, applicationId)
   const { references } = providerResult
   const icons = await requestFileIcons(references)
   const collapsedUris: readonly string[] = []
@@ -65,12 +66,13 @@ export const updateImplementations = async (state: ReferencesState, implementati
 }
 
 export const getAndUpdateReferences = async (state: ReferencesState): Promise<ReferencesState> => {
+  const { applicationId } = state
   // TODO need to wait for editor
-  const editorId = await RendererWorker.getActiveEditorId()
+  const editorId = await RendererWorker.getActiveEditorId(applicationId)
   if (editorId === -1) {
     let uri = ''
     try {
-      uri = await RendererWorker.getActiveUri()
+      uri = await RendererWorker.getActiveUri(applicationId)
     } catch {
       // Older renderer workers do not expose the active URI.
     }

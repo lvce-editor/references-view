@@ -15,8 +15,9 @@ export const getReferences2 = async (
   position: any,
   assetDir: string,
   platform: number,
+  applicationId?: string,
 ): Promise<ReferencesResult> => {
-  const providerResult = await ExtensionManagementReference.executeReferenceProvider2(uri, languageId, text, offset, position, assetDir, platform)
+  const providerResult = await ExtensionManagementReference.executeReferenceProvider2(uri, languageId, text, offset, position, assetDir, platform, applicationId)
   const references = await GetReferencesWithPreview.getReferencesWithPreview(providerResult.references)
   return {
     found: providerResult.found,
