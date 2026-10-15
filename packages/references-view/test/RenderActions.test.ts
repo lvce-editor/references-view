@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as RenderActions from '../src/parts/RenderActions/RenderActions.ts'
-import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesStates.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as ReferencesStates from '../src/parts/ReferencesStates/ReferencesStates.ts'
+import * as RenderActions from '../src/parts/RenderActions/RenderActions.ts'
 
 test('renderActions disables actions when no editor is found', () => {
   const state = createDefaultState(1)

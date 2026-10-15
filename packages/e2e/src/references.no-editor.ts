@@ -7,8 +7,12 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   await Command.execute('Layout.openSideBarViewlet', 'References')
 
   // assert
-  await expect(Locator('.LocationsMessage')).toHaveText('No Editor found')
-  await expect(Locator('button[data-command="refresh"]')).toHaveAttribute('disabled', '')
-  await expect(Locator('button[data-command="clear"]')).toHaveAttribute('disabled', '')
-  await expect(Locator('button[data-command="collapseAll"]')).toHaveAttribute('disabled', '')
+  const message = Locator('.LocationsMessage')
+  const refreshButton = Locator('button[data-command="refresh"]')
+  const clearButton = Locator('button[data-command="clear"]')
+  const collapseAllButton = Locator('button[data-command="collapseAll"]')
+  await expect(message).toHaveText('No Editor found')
+  await expect(refreshButton).toHaveAttribute('disabled', '')
+  await expect(clearButton).toHaveAttribute('disabled', '')
+  await expect(collapseAllButton).toHaveAttribute('disabled', '')
 }
