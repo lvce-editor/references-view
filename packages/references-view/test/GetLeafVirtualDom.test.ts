@@ -35,6 +35,7 @@ test('getLeafVirtualDom with highlighted text', () => {
   expect(result[1]).toEqual({
     childCount: 3,
     className: ClassNames.Label,
+    'data-index': 0,
     type: VirtualDomElements.Div,
   })
 
@@ -47,6 +48,7 @@ test('getLeafVirtualDom with highlighted text', () => {
   expect(result[3]).toEqual({
     childCount: 1,
     className: ClassNames.Highlight,
+    'data-index': 0,
     type: VirtualDomElements.Span,
   })
 
@@ -93,6 +95,7 @@ test('getLeafVirtualDom with empty line', () => {
   expect(result[1]).toEqual({
     childCount: 1,
     className: ClassNames.Label,
+    'data-index': 1,
     type: VirtualDomElements.Div,
   })
 

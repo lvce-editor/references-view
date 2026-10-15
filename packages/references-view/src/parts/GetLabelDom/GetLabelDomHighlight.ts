@@ -3,21 +3,23 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as VirtualDomHelpers from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-const labelNode: VirtualDomNode = {
+const getLabelNode = (index: number): VirtualDomNode => ({
   childCount: 3,
   className: ClassNames.Label,
+  'data-index': index,
   type: VirtualDomElements.Div,
-}
+})
 
-const highlightNode: VirtualDomNode = {
+const getHighlightNode = (index: number): VirtualDomNode => ({
   childCount: 1,
   className: ClassNames.Highlight,
+  'data-index': index,
   type: VirtualDomElements.Span,
-}
+})
 
-export const getLabelDomHighlight = (lineText: string, startOffset: number, endOffset: number): readonly VirtualDomNode[] => {
+export const getLabelDomHighlight = (lineText: string, startOffset: number, endOffset: number, index: number): readonly VirtualDomNode[] => {
   const before = lineText.slice(0, startOffset)
   const middle = lineText.slice(startOffset, endOffset)
   const end = lineText.slice(endOffset)
-  return [labelNode, VirtualDomHelpers.text(before), highlightNode, VirtualDomHelpers.text(middle), VirtualDomHelpers.text(end)]
+  return [getLabelNode(index), VirtualDomHelpers.text(before), getHighlightNode(index), VirtualDomHelpers.text(middle), VirtualDomHelpers.text(end)]
 }
