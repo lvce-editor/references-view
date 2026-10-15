@@ -40,3 +40,12 @@ test('diff2 uses states from ReferencesStates', () => {
 
   expect(result).toEqual([DiffType.RenderIncremental])
 })
+
+test('diff2 updates the toolbar when only editor availability changes', () => {
+  const uid = 4
+  const oldState = createDefaultState(uid)
+  const newState = { ...oldState, editorFound: true }
+  ReferencesStates.set(uid, oldState, newState)
+
+  expect(Diff2.diff2(uid)).toEqual([DiffType.RenderIncremental])
+})

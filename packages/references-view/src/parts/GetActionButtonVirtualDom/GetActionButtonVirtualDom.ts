@@ -5,12 +5,13 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
 
 export const getActionButtonVirtualDom = (action: ViewletAction): readonly VirtualDomNode[] => {
-  const { command, icon, id } = action
+  const { command, disabled, icon, id } = action
   return [
     {
       childCount: 1,
       className: ClassNames.IconButton,
       'data-command': command,
+      ...(disabled !== undefined && { disabled }),
       title: id,
       type: VirtualDomElements.Button,
     },

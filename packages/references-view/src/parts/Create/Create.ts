@@ -16,6 +16,7 @@ export const create = (
     assetDir,
     collapsedUris: [],
     displayReferences: [],
+    editorFound: false,
     fileIconCache: {},
     focusedIndex: -1,
     id,
