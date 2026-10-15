@@ -1,8 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'references.definition-provider'
-// The e2e runner's packaged server uses the published references-view until its consumer update lands.
-export const skip = 1
 
 export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main }) => {
   // arrange
