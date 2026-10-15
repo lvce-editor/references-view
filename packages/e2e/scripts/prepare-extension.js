@@ -30,6 +30,7 @@ await Promise.all([
   prepareFixture('sample.language-xyz'),
   prepareFixture('sample.reference-provider-advanced'),
   prepareFixture('sample.reference-provider-basic'),
+  prepareFixture('sample.definition-provider-only'),
   prepareFixture('sample.reference-provider-error'),
   prepareFixture('sample.reference-provider-error-main-not-found', false),
   prepareFixture('sample.reference-provider-no-results'),

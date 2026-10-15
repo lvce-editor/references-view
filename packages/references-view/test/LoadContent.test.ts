@@ -18,11 +18,12 @@ test('loadContent - loads references and updates state', async () => {
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string) => {
+    invoke: (method: string, kind: string) => {
       if (method === 'Extensions.activateByEvent') {
         return { error: undefined, hasActivatedExtensions: true }
       }
       if (method === 'Extensions.executeLanguageProvider') {
+        if (kind === 'definition') return { found: false }
         return { found: true, result: mockReferences }
       }
       if (method === 'GetActiveEditor.getActiveEditorId') {
@@ -102,11 +103,12 @@ test('loadContent - loads references and updates state', async () => {
 test('loadContent - handles empty references', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string) => {
+    invoke: (method: string, kind: string) => {
       if (method === 'Extensions.activateByEvent') {
         return { error: undefined, hasActivatedExtensions: true }
       }
       if (method === 'Extensions.executeLanguageProvider') {
+        if (kind === 'definition') return { found: false }
         return { found: true, result: [] }
       }
       if (method === 'GetActiveEditor.getActiveEditorId') {
@@ -355,11 +357,12 @@ test('loadContent - preserves existing state properties', async () => {
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string) => {
+    invoke: (method: string, kind: string) => {
       if (method === 'Extensions.activateByEvent') {
         return { error: undefined, hasActivatedExtensions: true }
       }
       if (method === 'Extensions.executeLanguageProvider') {
+        if (kind === 'definition') return { found: false }
         return { found: true, result: mockReferences }
       }
       if (method === 'GetActiveEditor.getActiveEditorId') {
@@ -425,11 +428,12 @@ test('loadContent - preserves existing state properties', async () => {
 test('loadContent - restores references for a saved file', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string) => {
+    invoke: (method: string, kind: string) => {
       if (method === 'Extensions.activateByEvent') {
         return { error: undefined, hasActivatedExtensions: true }
       }
       if (method === 'Extensions.executeLanguageProvider') {
+        if (kind === 'definition') return { found: false }
         return { found: true, result: [] }
       }
       if (method === 'IconTheme.getIcons') {

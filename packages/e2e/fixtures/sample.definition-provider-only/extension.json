@@ -1,0 +1,12 @@
+{
+  "id": "sample.definition-provider-only",
+  "browser": "main.js",
+  "isolated": true,
+  "activation": ["onDefinition:xyz"],
+  "languages": [
+    {
+      "id": "xyz",
+      "extensions": [".xyz"]
+    }
+  ]
+}
