@@ -8,12 +8,14 @@ export interface LanguageProviderResult {
 export const executeProvider = async ({
   assetDir,
   event,
+  kind = 'reference',
   method,
   params,
   platform,
   textDocument,
 }: {
   event: string
+  kind?: string
   method: string
   params: readonly any[]
   platform: number
@@ -30,12 +32,6 @@ export const executeProvider = async ({
   if (activationResult.error) {
     throw activationResult.error
   }
-  const providerResult = (await ExtensionManagementWorker.invoke(
-    'Extensions.executeLanguageProvider',
-    'reference',
-    method,
-    textDocument,
-    ...params,
-  )) as LanguageProviderResult
+  const providerResult = (await ExtensionManagementWorker.invoke('Extensions.executeLanguageProvider', kind, method, textDocument, ...params)) as LanguageProviderResult
   return providerResult
 }
