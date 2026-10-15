@@ -66,8 +66,10 @@ export const executeReferenceProvider2 = async (
   position: any,
   assetDir: string,
   platform: number,
+  applicationId?: string,
 ): Promise<ReferenceProviderResult> => {
   const providerResult = await ExecuteProvider.executeProvider({
+    applicationId,
     assetDir,
     event: `onReferences:${languageId}`,
     method: 'provideReferences',
@@ -86,6 +88,7 @@ export const executeReferenceProvider2 = async (
     references = providerResult.result as readonly any[]
   }
   const definitionResult = await ExecuteProvider.executeProvider({
+    applicationId,
     assetDir,
     event: `onDefinition:${languageId}`,
     kind: 'definition',

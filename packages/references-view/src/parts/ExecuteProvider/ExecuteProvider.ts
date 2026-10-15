@@ -6,6 +6,7 @@ export interface LanguageProviderResult {
 }
 
 export const executeProvider = async ({
+  applicationId,
   assetDir,
   event,
   kind = 'reference',
@@ -14,6 +15,7 @@ export const executeProvider = async ({
   platform,
   textDocument,
 }: {
+  applicationId?: string
   event: string
   kind?: string
   method: string
@@ -26,12 +28,17 @@ export const executeProvider = async ({
     readonly uri: string
   }
 }): Promise<LanguageProviderResult> => {
-  const activationResult = (await ExtensionManagementWorker.invoke('Extensions.activateByEvent', event, assetDir, platform)) as {
+  const invoke = (method: string, ...args: readonly unknown[]): Promise<unknown> => {
+    return applicationId
+      ? ExtensionManagementWorker.invoke('Extensions.invokeForApplication', applicationId, method, ...args)
+      : ExtensionManagementWorker.invoke(method, ...args)
+  }
+  const activationResult = (await invoke('Extensions.activateByEvent', event, assetDir, platform)) as {
     readonly error?: Error
   }
   if (activationResult.error) {
     throw activationResult.error
   }
-  const providerResult = (await ExtensionManagementWorker.invoke('Extensions.executeLanguageProvider', kind, method, textDocument, ...params)) as LanguageProviderResult
+  const providerResult = (await invoke('Extensions.executeLanguageProvider', kind, method, textDocument, ...params)) as LanguageProviderResult
   return providerResult
 }

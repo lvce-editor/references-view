@@ -13,3 +13,8 @@ test('create - should initialize a new references state', () => {
   const state = ReferencesStates.get(id)
   expect(state).toBeDefined()
 })
+
+test('create stores the originating application ID', () => {
+  Create.create(2, 'memfs:///test.txt', 0, 0, 100, 100, '', 0, 'preview')
+  expect(ReferencesStates.get(2)?.newState.applicationId).toBe('preview')
+})

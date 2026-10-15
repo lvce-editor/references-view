@@ -145,6 +145,49 @@ test('executeReferenceProvider2 uses a definition when no reference provider exi
   })
 })
 
+test('executeReferenceProvider2 invokes providers in the originating application', async () => {
+  const invocations: unknown[] = []
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...params: readonly unknown[]) => {
+      invocations.push([method, ...params])
+      if (method !== 'Extensions.invokeForApplication') throw new Error(`unexpected method ${method}`)
+      const [applicationId, applicationMethod, ...applicationParams] = params
+      expect(applicationId).toBe('preview')
+      if (applicationMethod === 'Extensions.activateByEvent') return { error: undefined, hasActivatedExtensions: true }
+      if (applicationMethod === 'Extensions.executeLanguageProvider') {
+        const [, providerMethod] = applicationParams
+        if (providerMethod === 'provideDefinition') return { found: true, result: { endOffset: 3, startOffset: 0, uri: 'memfs:///example.txt' } }
+        return { found: false }
+      }
+      throw new Error(`unexpected application method ${applicationMethod}`)
+    },
+  })
+  ExtensionManagementWorker.set(mockRpc)
+
+  await expect(ExtensionManagementReference.executeReferenceProvider2('memfs:///example.txt', 'plaintext', 'let x', 0, {}, '/assets', 2, 'preview')).resolves.toEqual({
+    found: true,
+    references: [
+      {
+        endColumnIndex: 3,
+        endOffset: 3,
+        endRowIndex: 0,
+        startColumnIndex: 0,
+        startOffset: 0,
+        startRowIndex: 0,
+        uri: 'memfs:///example.txt',
+      },
+    ],
+  })
+  expect(invocations).toHaveLength(4)
+  expect(invocations).toEqual(
+    expect.arrayContaining([
+      ['Extensions.invokeForApplication', 'preview', 'Extensions.activateByEvent', 'onReferences:plaintext', '/assets', 2],
+      ['Extensions.invokeForApplication', 'preview', 'Extensions.activateByEvent', 'onDefinition:plaintext', '/assets', 2],
+    ]),
+  )
+})
+
 test('executeReferenceProvider2 preserves references when the definition is unavailable', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},

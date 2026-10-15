@@ -3,6 +3,7 @@ import type { FileIconCache } from '../FileIconCache/FileIconCache.ts'
 import type { Reference } from '../Reference/Reference.ts'
 
 export interface ReferencesState {
+  readonly applicationId?: string
   readonly assetDir: string
   readonly collapsedUris: readonly string[]
   readonly displayReferences: readonly DisplayReference[]
